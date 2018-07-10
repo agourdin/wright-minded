@@ -20,9 +20,11 @@ import loadTestToStore from '../../../../../../redux/actions/diagnosticForm/load
 import loadSATConversionToStore from '../../../../../../redux/actions/diagnosticForm/load_sat_conversion_to_store';
 import getAvailableTests from '../../../../../../redux/actions/diagnosticForm/get_available_tests';
 import setLoadingTestStatus from '../../../../../../redux/actions/diagnosticForm/set_loading_test_status';
+import setSelectedTest from '../../../../../../redux/actions/diagnosticForm/set_selected_test';
 import setDiagnosticInProgressStatus from '../../../../../../redux/actions/diagnosticForm/set_diagnostic_in_progress_status';
 import logUserAnswer from '../../../../../../redux/actions/diagnosticForm/log_user_answer';
 import postUserAnswers from '../../../../../../redux/actions/diagnosticForm/post_user_answers';
+import setStep from '../../../../../../redux/actions/diagnosticForm/set_step';
 
 class DiagnosticForm extends React.Component {
   constructor(props) {
@@ -32,11 +34,8 @@ class DiagnosticForm extends React.Component {
       // API Compliant: NA
       // Redux Aligned: ✔
       // Tested: WARNING
-      step: -1,
       cursor: 0,
       subCursor: 0,
-      selectedTestName: '',
-      selectedTestID: '',
       encoder_string: '97e42aY9spjdQQ&',
       completedTest: []
     };
@@ -71,7 +70,7 @@ class DiagnosticForm extends React.Component {
     // API Compliant: R4R
     // Redux Aligned: ✔
     // Tested: WARNING
-    var step = this.state.step;
+    var step = this.props.step;
     var sections = this.props.sections; // REDUX PROPS - sections
     var question = cursor;
     var subCursor = this.state.subCursor;
@@ -91,7 +90,7 @@ class DiagnosticForm extends React.Component {
     // API Compliant: R4R
     // Redux Aligned: ✔
     // Tested: WARNING
-    var step = this.state.step;
+    var step = this.props.step;
     var sections = this.props.sections; // REDUX PROPS - Sections
     var question = question_num * 1 - 1;
     var isSameAnswerChoice = sections[step][question].user_answer === input;
@@ -122,7 +121,7 @@ class DiagnosticForm extends React.Component {
     // Redux Aligned: ✔
     // Tested: WARNING
     var sections = this.props.sections; // REDUX PROPS - sections
-    var step = this.state.step;
+    var step = this.props.step;
     var section = sections[step];
     var cursor = this.state.cursor;
     var subCursor = this.state.subCursor;
@@ -165,7 +164,7 @@ class DiagnosticForm extends React.Component {
     // Redux Aligned: ✔
     // Tested: WARNING
     var sections = this.props.sections; // REDUX ACCESS PROPS - sections
-    var step = this.state.step;
+    var step = this.props.step;
     if (cursor >= sections[step].length) {
       return undefined;
     }
@@ -220,18 +219,16 @@ class DiagnosticForm extends React.Component {
     // API Compliant: WARNING
     // Redux Aligned: R4R
     // Tested: WARNING
-    if (this.state.step === -1) {
-      if (this.state.selectedTestID === 0) {
+    if (this.props.step === -1) {
+      if (this.props.selected_test_id === 0) {
         alert('Please select a test first!');
       } else {
         this.props.setDiagnosticInProgressStatus(true); // REDUX DISPATCH - setDiagnosticInProgressStatus
-        this.setState(prevState => ({
-          step: 0
-        }));
+        this.props.setStep(0);
       }
-    } else if (this.state.step < this.props.sections.length) {
+    } else if (this.props.step < this.props.sections.length) {
+      this.props.setStep(this.props.step * 1 + 1);
       this.setState(prevState => ({
-        step: prevState.step * 1 + 1,
         cursor: 0
       }));
     }
@@ -242,8 +239,8 @@ class DiagnosticForm extends React.Component {
     // API Compliant: NA
     // Redux Aligned: NA
     // Tested: WARNING
+    this.props.setStep(this.props.step * 1 - 1);
     this.setState(prevState => ({
-      step: prevState.step * 1 - 1,
       cursor: 0
     }));
   }
@@ -255,9 +252,9 @@ class DiagnosticForm extends React.Component {
     // Redux Aligned: R4R
     // Tested: WARNING
     this.props.setDiagnosticInProgressStatus(false); // REDUX DISPATCH - setDiagnosticInProgressStatus
+    this.props.setStep(-1);
+    this.props.setSelectedTest(0, 0);
     this.setState({
-      selectedTestID: 0,
-      step: -1,
       cursor: 0,
       subCursor: 0
     });
@@ -269,22 +266,16 @@ class DiagnosticForm extends React.Component {
     // Redux Aligned: R4R
     // Tested: WARNING
     if (event.target.value * 1 === 0) {
-      this.setState({
-        selectedTestName: 0,
-        selectedTestID: 0
-      });
+      this.props.setSelectedTest(0, 0);
     } else {
       var selectedTestID = event.target.value;
       var availableTests = this.props.available_tests; // REDUX ACCESS PROPS - available_tests
       var selectedTestName = availableTests.filter(
         test => test.id === event.target.value * 1
       )[0].test_name;
+      this.props.setSelectedTest(selectedTestID, selectedTestName);
       this.props.loadTestToStore(selectedTestID); // REDUX DISPATCH - loadTestToStore
       this.props.loadSATConversionToStore(selectedTestID); // REDUX DISPATCH - loadSATConversionToStore
-      this.setState({
-        selectedTestName: selectedTestName,
-        selectedTestID: selectedTestID
-      });
     }
   }
 
@@ -293,7 +284,7 @@ class DiagnosticForm extends React.Component {
     // Redux Aligned: Pending
     // Tested: WARNING
     var sections = this.props.sections; // REDUX PROPS - sections
-    var step = this.state.step;
+    var step = this.props.step;
     var section = sections[step];
     var cursor = this.state.cursor;
     var subCursor = this.state.subCursor;
@@ -427,47 +418,46 @@ class DiagnosticForm extends React.Component {
     // API Compliant: WARNING
     // Redux Aligned: WARNING
     // Tested: WARNING
-    // if (this.state.step === -1) {
-    //   return (
-    //     <TestSelector
-    //       handleSubmit={this.handleSubmit}
-    //       handleChange={this.handleTestSelect}
-    //       availableTests={this.props.available_tests}
-    //       selectedTestName={this.state.selectedTestName}
-    //       selectedTestID={this.state.selectedTestID}
-    //       loadingTestStatus={this.props.loading_test_status}
-    //     />
-    //   );
-    // } else if (this.state.step < this.props.sections.length) {
-    //   this.props.push('/resources/diagnostic-tools/section/' + this.state.step);
-    //   return (
-    //     <DiagnosticFormSection
-    //       handleBubbleClick={this.handleBubbleClick}
-    //       handleGridInClick={this.handleGridInClick}
-    //       handleGridInChange={this.handleGridInChange}
-    //       handleKeyDown={this.handleKeyDown}
-    //       handleSubmit={this.handleSubmit}
-    //       handleBack={this.handleBack}
-    //       handleStartOver={this.handleStartOver}
-    //       step={this.state.step}
-    //       cursor={this.state.cursor}
-    //       subCursor={this.state.subCursor}
-    //       selectedTestName={this.state.selectedTestName}
-    //       selectedTestID={this.state.selectedTestID}
-    //       sections={this.props.sections}
-    //       sectionNames={this.props.section_names}
-    //     />
-    //   );
-    // } else {
-    return (
-      <SATResults
-        sections={this.props.sections}
-        sectionNames={this.props.section_names}
-        selectedTestName={this.state.selectedTestName}
-        conversionChart={this.props.conversion_chart}
-      />
-    );
-    // }
+    if (this.props.step === -1) {
+      return (
+        <TestSelector
+          handleSubmit={this.handleSubmit}
+          handleChange={this.handleTestSelect}
+          availableTests={this.props.available_tests}
+          selectedTestName={this.props.selected_test_name}
+          selectedTestID={this.props.selected_test_id}
+          loadingTestStatus={this.props.loading_test_status}
+        />
+      );
+    } else if (this.props.step < this.props.sections.length) {
+      return (
+        <DiagnosticFormSection
+          handleBubbleClick={this.handleBubbleClick}
+          handleGridInClick={this.handleGridInClick}
+          handleGridInChange={this.handleGridInChange}
+          handleKeyDown={this.handleKeyDown}
+          handleSubmit={this.handleSubmit}
+          handleBack={this.handleBack}
+          handleStartOver={this.handleStartOver}
+          step={this.props.step}
+          cursor={this.state.cursor}
+          subCursor={this.state.subCursor}
+          selectedTestName={this.props.selected_test_name}
+          selectedTestID={this.props.selected_test_id}
+          sections={this.props.sections}
+          sectionNames={this.props.section_names}
+        />
+      );
+    } else {
+      return (
+        <SATResults
+          sections={this.props.sections}
+          sectionNames={this.props.section_names}
+          selectedTestName={this.props.selected_test_name}
+          conversionChart={this.props.conversion_chart}
+        />
+      );
+    }
   }
 }
 
@@ -479,9 +469,12 @@ function mapStateToProps(state) {
     sections: state.diagnostic_form.sections,
     available_tests: state.diagnostic_form.available_tests,
     loading_test_status: state.diagnostic_form.loading_test_status,
+    selected_test_id: state.diagnostic_form.selected_test_id,
+    selected_test_name: state.diagnostic_form.selected_test_name,
     diagnostic_in_progress_status:
       state.diagnostic_form.diagnostic_in_progress_status,
-    conversion_chart: state.diagnostic_form.conversion_chart
+    conversion_chart: state.diagnostic_form.conversion_chart,
+    step: state.diagnostic_form.step
   };
 }
 
@@ -493,9 +486,11 @@ function mapDispatchToProps(dispatch) {
       loadSATConversionToStore: loadSATConversionToStore,
       getAvailableTests: getAvailableTests,
       setLoadingTestStatus: setLoadingTestStatus,
+      setSelectedTest: setSelectedTest,
       setDiagnosticInProgressStatus: setDiagnosticInProgressStatus,
       logUserAnswer: logUserAnswer,
-      postUserAnswers: postUserAnswers
+      postUserAnswers: postUserAnswers,
+      setStep: setStep
     },
     dispatch
   );

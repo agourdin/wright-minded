@@ -3,11 +3,13 @@ import {
   LOAD_TEST_TO_STORE,
   LOAD_SAT_CONVERSION_TO_STORE,
   SET_LOADING_TEST_STATUS,
+  SET_SELECTED_TEST,
   LOG_USER_ANSWER,
-  SET_DIAGNOSTIC_IN_PROGRESS_STATUS
+  SET_DIAGNOSTIC_IN_PROGRESS_STATUS,
+  SET_STEP
 } from '../actions/types';
 
-export default function(state = [], action) {
+export default function(state = { step: -1 }, action) {
   switch (action.type) {
     case GET_AVAILABLE_TESTS:
       return Object.assign({}, state, {
@@ -24,6 +26,12 @@ export default function(state = [], action) {
     case SET_LOADING_TEST_STATUS:
       return Object.assign({}, state, {
         loading_test_status: action.payload
+      });
+
+    case SET_SELECTED_TEST:
+      return Object.assign({}, state, {
+        selected_test_id: action.payload.selectedTestID,
+        selected_test_name: action.payload.selectedTestName
       });
 
     case SET_DIAGNOSTIC_IN_PROGRESS_STATUS:
@@ -43,8 +51,14 @@ export default function(state = [], action) {
       });
 
     case LOAD_SAT_CONVERSION_TO_STORE:
+      console.log(state);
       return Object.assign({}, state, {
         conversion_chart: action.payload
+      });
+
+    case SET_STEP:
+      return Object.assign({}, state, {
+        step: action.payload
       });
 
     default:
