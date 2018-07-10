@@ -1,0 +1,575 @@
+[
+  {
+    "section": "Reading",
+    "total": 52,
+    "correct": 12,
+    "question_type_groups": [
+      {
+        "question_type_group": "Information & Ideas",
+        "total": 29,
+        "correct": 8,
+        "question_types": [
+          {
+            "question_type": "Central Ideas And Themes",
+            "total": 2,
+            "correct": 1
+          },
+          {
+            "question_type": "Citing Textual Evidence",
+            "total": 10,
+            "correct": 0
+          },
+          {
+            "question_type": "Determining Explicit Meanings",
+            "total": 4,
+            "correct": 1
+          },
+          {
+            "question_type": "Determining Implicit Meanings",
+            "total": 2,
+            "correct": 2
+          },
+          { "question_type": "Summarizing", "total": 1, "correct": 0 },
+          {
+            "question_type": "Understanding Relationships",
+            "total": 3,
+            "correct": 1
+          },
+          { "question_type": "Words In Context", "total": 7, "correct": 3 }
+        ]
+      },
+      {
+        "question_type_group": "Rhetoric",
+        "total": 16,
+        "correct": 2,
+        "question_types": [
+          { "question_type": "Analyzing Evidence", "total": 2, "correct": 0 },
+          {
+            "question_type": "Claims And Counterclaims",
+            "total": 4,
+            "correct": 1
+          },
+          {
+            "question_type": "Overall Text Structure",
+            "total": 1,
+            "correct": 0
+          },
+          {
+            "question_type": "Part-Whole Relationships",
+            "total": 1,
+            "correct": 0
+          },
+          { "question_type": "Purpose", "total": 5, "correct": 0 },
+          { "question_type": "Word Choice", "total": 3, "correct": 1 }
+        ]
+      },
+      {
+        "question_type_group": "Synthesis",
+        "total": 7,
+        "correct": 2,
+        "question_types": [
+          { "question_type": "Multiple Texts", "total": 3, "correct": 0 },
+          {
+            "question_type": "Quantitative Information",
+            "total": 4,
+            "correct": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "section": "Writing",
+    "total": 44,
+    "correct": 15,
+    "question_type_groups": [
+      {
+        "question_type_group": "Expression of Ideas",
+        "total": 22,
+        "correct": 9,
+        "question_types": [
+          { "question_type": "Concision", "total": 3, "correct": 0 },
+          { "question_type": "Focus", "total": 3, "correct": 1 },
+          {
+            "question_type": "Introductions, Conclusions, And Transitions",
+            "total": 5,
+            "correct": 3
+          },
+          { "question_type": "Logical Sequence", "total": 3, "correct": 2 },
+          { "question_type": "Precision", "total": 2, "correct": 0 },
+          { "question_type": "Proposition", "total": 2, "correct": 1 },
+          { "question_type": "Style And Tone", "total": 1, "correct": 1 },
+          { "question_type": "Support", "total": 1, "correct": 0 },
+          { "question_type": "Syntax", "total": 2, "correct": 1 }
+        ]
+      },
+      {
+        "question_type_group": "Standard English Conventions",
+        "total": 20,
+        "correct": 6,
+        "question_types": [
+          {
+            "question_type": "Conventional Expression",
+            "total": 2,
+            "correct": 1
+          },
+          { "question_type": "Items In A Series", "total": 1, "correct": 0 },
+          { "question_type": "Modifier Placement", "total": 1, "correct": 0 },
+          {
+            "question_type": "Nonrestrictive And Parenthetical Elements",
+            "total": 2,
+            "correct": 2
+          },
+          { "question_type": "Parallel Structure", "total": 1, "correct": 1 },
+          {
+            "question_type": "Possessive Determiners",
+            "total": 1,
+            "correct": 1
+          },
+          { "question_type": "Possessive Pronouns", "total": 1, "correct": 0 },
+          { "question_type": "Pronoun Agreement", "total": 1, "correct": 0 },
+          { "question_type": "Sentence Boundaries", "total": 2, "correct": 0 },
+          {
+            "question_type": "Shifts In Verb Tense, Mood, And Voice",
+            "total": 2,
+            "correct": 0
+          },
+          {
+            "question_type": "Subject-Verb Agreement",
+            "total": 3,
+            "correct": 1
+          },
+          {
+            "question_type": "Subordination And Coordination",
+            "total": 1,
+            "correct": 0
+          },
+          {
+            "question_type": "Within-Sentence Punctuation",
+            "total": 2,
+            "correct": 0
+          }
+        ]
+      },
+      {
+        "question_type_group": "Synthesis",
+        "total": 2,
+        "correct": 0,
+        "question_types": [
+          {
+            "question_type": "Quantitative Information",
+            "total": 2,
+            "correct": 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "section": "Math No Calculator",
+    "total": 20,
+    "correct": 4,
+    "question_type_groups": [
+      {
+        "question_type_group": "Additional Topics in Math",
+        "total": 3,
+        "correct": 1,
+        "question_types": [
+          { "question_type": "Complex Numbers", "total": 1, "correct": 0 },
+          {
+            "question_type": "Congruence And Similarity",
+            "total": 1,
+            "correct": 0
+          },
+          {
+            "question_type": "Right Triangle Trigonometry",
+            "total": 1,
+            "correct": 1
+          }
+        ]
+      },
+      {
+        "question_type_group": "Heart of Algebra",
+        "total": 8,
+        "correct": 1,
+        "question_types": [
+          {
+            "question_type": "Graphing Linear Equations",
+            "total": 1,
+            "correct": 1
+          },
+          {
+            "question_type": "Interpreting Linear Functions",
+            "total": 2,
+            "correct": 0
+          },
+          {
+            "question_type": "Linear Equations And Inequalities",
+            "total": 1,
+            "correct": 0
+          },
+          {
+            "question_type": "Linear Function Word Problems",
+            "total": 1,
+            "correct": 0
+          },
+          {
+            "question_type": "Systems Of Linear Equations",
+            "total": 2,
+            "correct": 0
+          },
+          {
+            "question_type": "Systems Of Linear Equations Word Problems",
+            "total": 1,
+            "correct": 0
+          }
+        ]
+      },
+      {
+        "question_type_group": "Passport to Advanced Math",
+        "total": 9,
+        "correct": 2,
+        "question_types": [
+          { "question_type": "Isolating Quantities", "total": 1, "correct": 0 },
+          {
+            "question_type": "Operations With Polynomials",
+            "total": 1,
+            "correct": 0
+          },
+          {
+            "question_type": "Operations With Rational Expressions",
+            "total": 1,
+            "correct": 0
+          },
+          { "question_type": "Quadratic Equations", "total": 3, "correct": 1 },
+          {
+            "question_type": "Radical And Rational Equations",
+            "total": 1,
+            "correct": 1
+          },
+          {
+            "question_type": "Radicals And Rational Exponents",
+            "total": 1,
+            "correct": 0
+          },
+          {
+            "question_type": "Structure In Expressions",
+            "total": 1,
+            "correct": 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "section": "Math Calculator",
+    "total": 38,
+    "correct": 13,
+    "question_type_groups": [
+      {
+        "question_type_group": "Additional Topics in Math",
+        "total": 3,
+        "correct": 1,
+        "question_types": [
+          { "question_type": "Circle Equations", "total": 1, "correct": 1 },
+          {
+            "question_type": "Congruence And Similarity",
+            "total": 1,
+            "correct": 0
+          },
+          { "question_type": "Volume Word Problems", "total": 1, "correct": 0 }
+        ]
+      },
+      {
+        "question_type_group": "Heart of Algebra",
+        "total": 11,
+        "correct": 4,
+        "question_types": [
+          {
+            "question_type": "Graphing Linear Equations",
+            "total": 2,
+            "correct": 0
+          },
+          {
+            "question_type": "Interpreting Linear Functions",
+            "total": 1,
+            "correct": 1
+          },
+          {
+            "question_type": "Linear Equations And Inequalities",
+            "total": 3,
+            "correct": 1
+          },
+          {
+            "question_type": "Linear Inequality Word Problems",
+            "total": 2,
+            "correct": 2
+          },
+          {
+            "question_type": "Systems Of Linear Equations Word Problems",
+            "total": 1,
+            "correct": 0
+          },
+          {
+            "question_type": "Systems Of Linear Inequalities Word Problems",
+            "total": 2,
+            "correct": 0
+          }
+        ]
+      },
+      {
+        "question_type_group": "Passport to Advanced Math",
+        "total": 7,
+        "correct": 1,
+        "question_types": [
+          { "question_type": "Isolating Quantities", "total": 1, "correct": 1 },
+          {
+            "question_type":
+              "Manipulating Quadratic And Exponential Expressions",
+            "total": 1,
+            "correct": 0
+          },
+          {
+            "question_type": "Operations With Polynomials",
+            "total": 1,
+            "correct": 0
+          },
+          {
+            "question_type": "Quadratic And Exponential Word Problems",
+            "total": 3,
+            "correct": 0
+          },
+          { "question_type": "Quadratic Equations", "total": 1, "correct": 0 }
+        ]
+      },
+      {
+        "question_type_group": "Problem Solving & Data Analysis",
+        "total": 17,
+        "correct": 7,
+        "question_types": [
+          {
+            "question_type": "Center, Spread, And Shape Of Distributions",
+            "total": 2,
+            "correct": 1
+          },
+          {
+            "question_type": "Key Features Of Graphs",
+            "total": 3,
+            "correct": 1
+          },
+          { "question_type": "Percents", "total": 2, "correct": 1 },
+          {
+            "question_type": "Ratios, Rates, And Proportions",
+            "total": 3,
+            "correct": 2
+          },
+          { "question_type": "Scatterplots", "total": 1, "correct": 0 },
+          { "question_type": "Table Data", "total": 3, "correct": 1 },
+          { "question_type": "Units", "total": 3, "correct": 1 }
+        ]
+      }
+    ]
+  },
+  {
+    "section": "Math Combined",
+    "total": 58,
+    "correct": 17,
+    "total_no_calculator": 20,
+    "total_calculator": 38,
+    "correct_no_calculator": 4,
+    "correct_calculator": 13,
+    "question_type_groups": [
+      {
+        "question_type_group": "Heart of Algebra",
+        "total": 8,
+        "correct": 1,
+        "question_types": [
+          {
+            "question_type": "Graphing Linear Equations",
+            "total": 1,
+            "correct": 1
+          },
+          {
+            "question_type": "Interpreting Linear Functions",
+            "total": 2,
+            "correct": 0
+          },
+          {
+            "question_type": "Linear Equations And Inequalities",
+            "total": 1,
+            "correct": 0
+          },
+          {
+            "question_type": "Linear Function Word Problems",
+            "total": 1,
+            "correct": 0
+          },
+          {
+            "question_type": "Systems Of Linear Equations",
+            "total": 2,
+            "correct": 0
+          },
+          {
+            "question_type": "Systems Of Linear Equations Word Problems",
+            "total": 1,
+            "correct": 0
+          }
+        ]
+      },
+      {
+        "question_type_group": "Additional Topics in Math",
+        "total": 3,
+        "correct": 1,
+        "question_types": [
+          { "question_type": "Complex Numbers", "total": 1, "correct": 0 },
+          {
+            "question_type": "Congruence And Similarity",
+            "total": 1,
+            "correct": 0
+          },
+          {
+            "question_type": "Right Triangle Trigonometry",
+            "total": 1,
+            "correct": 1
+          }
+        ]
+      },
+      {
+        "question_type_group": "Passport to Advanced Math",
+        "total": 9,
+        "correct": 2,
+        "question_types": [
+          { "question_type": "Isolating Quantities", "total": 1, "correct": 0 },
+          {
+            "question_type": "Operations With Polynomials",
+            "total": 1,
+            "correct": 0
+          },
+          {
+            "question_type": "Operations With Rational Expressions",
+            "total": 1,
+            "correct": 0
+          },
+          { "question_type": "Quadratic Equations", "total": 3, "correct": 1 },
+          {
+            "question_type": "Radical And Rational Equations",
+            "total": 1,
+            "correct": 1
+          },
+          {
+            "question_type": "Radicals And Rational Exponents",
+            "total": 1,
+            "correct": 0
+          },
+          {
+            "question_type": "Structure In Expressions",
+            "total": 1,
+            "correct": 0
+          }
+        ]
+      },
+      {
+        "question_type_group": "Problem Solving & Data Analysis",
+        "total": 17,
+        "correct": 7,
+        "question_types": [
+          {
+            "question_type": "Center, Spread, And Shape Of Distributions",
+            "total": 2,
+            "correct": 1
+          },
+          {
+            "question_type": "Key Features Of Graphs",
+            "total": 3,
+            "correct": 1
+          },
+          { "question_type": "Percents", "total": 2, "correct": 1 },
+          {
+            "question_type": "Ratios, Rates, And Proportions",
+            "total": 3,
+            "correct": 2
+          },
+          { "question_type": "Scatterplots", "total": 1, "correct": 0 },
+          { "question_type": "Table Data", "total": 3, "correct": 1 },
+          { "question_type": "Units", "total": 3, "correct": 1 }
+        ]
+      },
+      {
+        "question_type_group": "Additional Topics in Math",
+        "total": 3,
+        "correct": 1,
+        "question_types": [
+          { "question_type": "Circle Equations", "total": 1, "correct": 1 },
+          {
+            "question_type": "Congruence And Similarity",
+            "total": 1,
+            "correct": 0
+          },
+          { "question_type": "Volume Word Problems", "total": 1, "correct": 0 }
+        ]
+      },
+      {
+        "question_type_group": "Heart of Algebra",
+        "total": 11,
+        "correct": 4,
+        "question_types": [
+          {
+            "question_type": "Graphing Linear Equations",
+            "total": 2,
+            "correct": 0
+          },
+          {
+            "question_type": "Interpreting Linear Functions",
+            "total": 1,
+            "correct": 1
+          },
+          {
+            "question_type": "Linear Equations And Inequalities",
+            "total": 3,
+            "correct": 1
+          },
+          {
+            "question_type": "Linear Inequality Word Problems",
+            "total": 2,
+            "correct": 2
+          },
+          {
+            "question_type": "Systems Of Linear Equations Word Problems",
+            "total": 1,
+            "correct": 0
+          },
+          {
+            "question_type": "Systems Of Linear Inequalities Word Problems",
+            "total": 2,
+            "correct": 0
+          }
+        ]
+      },
+      {
+        "question_type_group": "Passport to Advanced Math",
+        "total": 7,
+        "correct": 1,
+        "question_types": [
+          { "question_type": "Isolating Quantities", "total": 1, "correct": 1 },
+          {
+            "question_type":
+              "Manipulating Quadratic And Exponential Expressions",
+            "total": 1,
+            "correct": 0
+          },
+          {
+            "question_type": "Operations With Polynomials",
+            "total": 1,
+            "correct": 0
+          },
+          {
+            "question_type": "Quadratic And Exponential Word Problems",
+            "total": 3,
+            "correct": 0
+          },
+          { "question_type": "Quadratic Equations", "total": 1, "correct": 0 }
+        ]
+      }
+    ]
+  }
+]

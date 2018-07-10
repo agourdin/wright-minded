@@ -1,0 +1,32 @@
+/*******************************************************************************
+
+
+                              SPLASH PAGE STYLES
+
+
+*******************************************************************************/
+
+
+
+/****************************
+            HERO
+*****************************/
+
+.learnmore-button {
+  border: none !important;
+  background-color: var(--wm-yellow) !important;
+  transition: all 100ms;
+}
+.learnmore-button:hover {
+  color: #FCFCFC !important;
+  background-color: var(--wm-blue-light) !important;
+}
+.learnmore-button:active {
+  background-color: var(--wm-blue) !important;
+}
+
+.splash-footer {
+  position: relative;
+  bottom: 2em;
+  z-index: 30;
+}

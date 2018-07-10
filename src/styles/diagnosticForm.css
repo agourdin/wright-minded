@@ -1,0 +1,397 @@
+/*******************************************************************************
+
+
+                          DIAGNOSTIC FORM STYLES
+
+
+*******************************************************************************/
+
+/****************************
+        TEST SELECTOR
+*****************************/
+
+.test-selector {
+  font-size: 1em !important;
+  font-weight: 300 !important;
+  height: 2em !important;
+  background-color: transparent !important;
+  text-align: center !important;
+}
+.test-selector:focus {
+  outline: 0.25;
+  outline-color: var(--wm-red);
+}
+
+/****************************
+   ANSWER SECTION & ROWS
+*****************************/
+
+.answer-grid {
+  height: 300px;
+  width: 75%;
+  display: flex;
+  flex-flow: column wrap;
+}
+
+.question-row {
+  display: flex;
+  flex-flow: row wrap;
+  border-radius: 5em !important;
+  padding-left: 0.5em !important;
+  padding-right: 0.6em !important;
+  margin-left: 0.5em !important;
+  padding-top: 0.25em !important;
+  padding-bottom: 0.25em !important;
+  /* transition: all 100ms ease !important; */
+}
+
+.question-row.is-active {
+  background-color: var(--wm-yellow);
+}
+
+.gridin-row {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+/****************************
+   BUBBLES & GRID-IN BOXES
+*****************************/
+
+.bubble.button.is-rounded {
+  font-size: 0.65em !important;
+  width: 2em !important;
+  margin-right: 0.3em !important;
+}
+
+.bubble.button.is-rounded.is-active {
+  background-color: var(--wm-blue-light);
+  border-color: var(--wm-blue);
+}
+
+.box.button {
+  border: 0.1em solid lightgrey !important;
+  border-radius: 0em !important;
+  border-top-width: 0em !important;
+  box-shadow: none !important;
+  font-size: 0.75em !important;
+  width: 2.15em !important;
+  height: 2em !important;
+  margin-right: -0.1em !important;
+  margin-bottom: 0em !important;
+  padding: 0em !important;
+  padding-top: 0.2em !important;
+  color: transparent;
+  text-shadow: 0 0 0 black;
+  /* transition: all 100ms ease !important; */
+}
+
+.box.button.is-active {
+  background-color: lightgrey !important;
+}
+
+/****************************
+          RESULTS
+*****************************/
+
+/*******************
+   Main Container
+********************/
+
+.diagnostic-results {
+  margin-top: 2em;
+  padding-right: 13rem;
+  padding-left: 13rem;
+}
+
+/*******************
+      Sections
+********************/
+
+.diagnostic-results .section {
+  padding: 0em;
+  margin: 0em;
+}
+
+.diagnostic-results .section.score .columns {
+  margin-bottom: 0.5em !important;
+}
+
+.diagnostic-results .section-divider {
+  margin: 2em;
+}
+
+.diagnostic-results .column.divider {
+  height: 1px;
+}
+
+/*******************
+      Spacing
+********************/
+
+.diagnostic-results .more-space {
+  margin: 0.5em !important;
+  padding: 0.5em !important;
+}
+.diagnostic-results .more-space-top-bottom {
+  margin-top: 0.5em !important;
+  margin-bottom: 0.5em !important;
+}
+
+.diagnostic-results .more-space-top-bottom-row > div {
+  padding-top: 0.5em !important;
+  padding-bottom: 0.5em !important;
+}
+
+.diagnostic-results .less-space {
+  margin: 0em !important;
+  padding: 0em !important;
+}
+
+.diagnostic-results .small-negative-space-top {
+  margin-top: -0.25em;
+}
+
+.diagnostic-results .vertically-aligned {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/*******************
+       Text
+********************/
+
+.diagnostic-results .text-size-1 {
+  font-size: 0.8em;
+}
+.diagnostic-results .text-size-2 {
+  font-size: 1em;
+}
+.diagnostic-results .text-size-2-plus {
+  font-size: 1.4em;
+}
+.diagnostic-results .text-size-3 {
+  font-size: 1.5em;
+}
+.diagnostic-results .text-size-4 {
+  font-size: 2em;
+}
+.diagnostic-results .text-size-5 {
+  font-size: 2.5em;
+}
+
+.diagnostic-results .text-centered {
+  text-align: center !important;
+}
+.diagnostic-results .text-right {
+  text-align: right !important;
+}
+.diagnostic-results .text-left {
+  text-align: left !important;
+}
+
+.diagnostic-results .text-bold {
+  font-weight: 800;
+}
+.diagnostic-results .text-semibold {
+  font-weight: 600;
+}
+.diagnostic-results .text-italic {
+  font-style: italic;
+}
+
+.diagnostic-results .reading .text-color-reg {
+  color: var(--wm-red) !important;
+}
+.diagnostic-results .reading .text-color-dark {
+  color: var(--wm-red-dark) !important;
+}
+.diagnostic-results .writing .text-color-reg {
+  color: var(--wm-green) !important;
+}
+.diagnostic-results .writing .text-color-dark {
+  color: var(--wm-green-dark) !important;
+}
+.diagnostic-results .math .text-color-reg {
+  color: var(--wm-blue) !important;
+}
+.diagnostic-results .math .text-color-dark {
+  color: var(--wm-blue-dark) !important;
+}
+
+/*******************
+      Borders
+********************/
+
+.diagnostic-results .section {
+  border: 1px solid;
+  margin-right: 1px !important;
+}
+
+.diagnostic-results .section.score {
+  border-color: var(--wm-dark-grey) !important;
+}
+
+.diagnostic-results .section.reading {
+  border-color: var(--wm-red-dark) !important;
+}
+
+.diagnostic-results .section.writing {
+  border-color: var(--wm-green-dark) !important;
+}
+
+.diagnostic-results .section.math {
+  border-color: var(--wm-blue-dark) !important;
+}
+
+.diagnostic-results .bordered {
+  border-left: none solid !important;
+  border-right: none !important;
+  margin: 0px !important;
+  overflow: hidden !important;
+}
+
+.diagnostic-results .bordered-bottom {
+  border-bottom: 1px solid !important;
+  margin-bottom: 0px !important;
+  overflow: hidden !important;
+}
+
+.diagnostic-results .bordered .column {
+  border-left: 1px solid;
+  border-top: 1px solid;
+  margin-top: 0px !important;
+  margin-bottom: 0px !important;
+  margin-right: 0px !important;
+}
+.diagnostic-results .bordered .column:first-child {
+  border-left: none !important;
+}
+
+.diagnostic-results .reading .bordered {
+  border-color: var(--wm-red-dark) !important;
+}
+.diagnostic-results .reading .bordered-bottom {
+  border-color: var(--wm-red-dark) !important;
+}
+.diagnostic-results .reading .bordered .column {
+  border-color: var(--wm-red-dark) !important;
+}
+
+.diagnostic-results .writing .bordered {
+  border-color: var(--wm-green-dark) !important;
+}
+.diagnostic-results .writing .bordered-bottom {
+  border-color: var(--wm-green-dark) !important;
+}
+.diagnostic-results .writing .bordered .column {
+  border-color: var(--wm-green-dark) !important;
+}
+
+.diagnostic-results .math .bordered {
+  border-color: var(--wm-blue-dark) !important;
+}
+.diagnostic-results .math .bordered-bottom {
+  border-color: var(--wm-blue-dark) !important;
+}
+.diagnostic-results .math .bordered .column {
+  border-color: var(--wm-blue-dark) !important;
+}
+
+/*******************
+ Background Colors
+********************/
+
+.diagnostic-results .score .background-color-reg {
+  background-color: var(--wm-dark-grey);
+  color: white;
+}
+
+.diagnostic-results .reading .background-color-reg {
+  background-color: var(--wm-red);
+  color: white;
+}
+.diagnostic-results .reading .background-color-light {
+  background-color: var(--wm-red-light);
+}
+.diagnostic-results .reading .background-color-dark {
+  background-color: var(--wm-red-dark);
+  color: white;
+}
+
+.diagnostic-results .writing .background-color-reg {
+  background-color: var(--wm-green);
+  color: white;
+}
+.diagnostic-results .writing .background-color-light {
+  background-color: var(--wm-green-light);
+}
+.diagnostic-results .writing .background-color-dark {
+  background-color: var(--wm-green-dark);
+  color: white;
+}
+
+.diagnostic-results .math .background-color-reg {
+  background-color: var(--wm-blue);
+  color: white;
+}
+.diagnostic-results .math .background-color-light {
+  background-color: var(--wm-blue-light);
+}
+.diagnostic-results .math .background-color-dark {
+  background-color: var(--wm-blue-dark);
+  color: white;
+}
+
+/*******************
+      Titles
+********************/
+
+.diagnostic-results .section-title {
+  font-size: 1.5em;
+  font-weight: 800;
+}
+
+.diagnostic-results .main-title {
+  font-size: 2em;
+  font-weight: 800;
+}
+
+.diagnostic-results .section .your-score-title {
+  font-size: 2em;
+  font-weight: 800;
+}
+.diagnostic-results .section .your-score-number {
+  font-size: 2em;
+  font-weight: 800;
+}
+
+.diagnostic-results .section .section-score-title {
+  font-size: 1.5em;
+  font-weight: 800;
+}
+.diagnostic-results .section .section-score-number {
+  font-size: 1.5em;
+  font-weight: 800;
+}
+
+.diagnostic-results .section .your-subscore-title {
+  font-size: 1.5em;
+  font-weight: 600;
+}
+
+.diagnostic-results .section.reading .section-score-title {
+  color: var(--wm-red-dark);
+}
+
+.diagnostic-results .section.reading .section-score-number {
+  color: var(--wm-red);
+}
+
+/*******************
+      Columns
+********************/
+
+.diagnostic-results .section .column.has-text-left {
+}
