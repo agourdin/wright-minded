@@ -51,7 +51,7 @@ class GetSingleTestTest(TestCase):
     def test_get_invalid_single_test(self):
         # GET API response
         response = client.get(
-            reverse('get_delete_update_test', kwargs={'pk': 30}))
+            reverse('get_delete_update_test', kwargs={'pk': -5}))
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
 
 

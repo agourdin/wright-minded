@@ -2,6 +2,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework import generics
+from rest_framework import mixins
 
 from ..models import SATScoreConversion
 from ..serializers import SATScoreConversionSerializer
@@ -19,6 +20,9 @@ class SATScoreConversionList(generics.ListAPIView):
             queryset = queryset.filter(test=testid)
         return queryset
 
+# class SATScoreConversionRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
+#     serializer_class = SATScoreConversionSerializer
+#     queryset = SATScoreConversion.objects.all()
 
 # @api_view(['GET', 'DELETE', 'PUT'])
 # def get_delete_update_sat_score_conversion(request, pk):

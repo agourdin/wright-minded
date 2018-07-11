@@ -1,5 +1,6 @@
 from django.urls import path, re_path, include
 from django.views.generic import TemplateView
+from rest_framework import routers
 
 from . import views
 
@@ -121,14 +122,6 @@ urlpatterns = [
         name='get_delete_update_user_answer'),
 
     # SAT SCORE CONVERSION
-    # path(
-    #     'v0.1/sat_score_conversions/',
-    #     views.get_post_sat_score_conversions,
-    #     name='get_post_sat_score_conversions'),
-    # path(
-    #     'v0.1/sat_score_conversions/<pk>/',
-    #     views.get_delete_update_sat_score_conversion,
-    #     name='get_delete_update_sat_score_conversion'),
     path(
         'v0.1/sat_score_conversions',
         views.SATScoreConversionList.as_view(),
