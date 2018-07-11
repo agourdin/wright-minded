@@ -1,4 +1,5 @@
 import React from 'react';
+import onClickOutside from 'react-onclickoutside';
 import NavbarBrand from './nav/NavbarBrand';
 import NavbarMenu from './nav/NavbarMenu';
 
@@ -11,6 +12,12 @@ class Nav extends React.Component {
     super(props);
     this.state = { isNavburgerActive: false };
     this.toggleNavburger = this.toggleNavburger.bind(this);
+  }
+
+  handleClickOutside(event) {
+    this.setState({
+      isNavburgerActive: false
+    });
   }
 
   toggleNavburger() {
@@ -41,4 +48,4 @@ class Nav extends React.Component {
   }
 }
 
-export default Nav;
+export default onClickOutside(Nav);

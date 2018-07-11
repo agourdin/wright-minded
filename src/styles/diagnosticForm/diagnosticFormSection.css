@@ -1,0 +1,67 @@
+/****************************
+   ANSWER SECTION & ROWS
+*****************************/
+
+.answer-grid {
+  height: 300px;
+  width: 75%;
+  display: flex;
+  flex-flow: column wrap;
+}
+
+.question-row {
+  display: flex;
+  flex-flow: row wrap;
+  border-radius: 5em !important;
+  padding-left: 0.5em !important;
+  padding-right: 0.6em !important;
+  margin-left: 0.5em !important;
+  padding-top: 0.25em !important;
+  padding-bottom: 0.25em !important;
+  /* transition: all 100ms ease !important; */
+}
+
+.question-row.is-active {
+  background-color: var(--wm-yellow);
+}
+
+.gridin-row {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+/****************************
+   BUBBLES & GRID-IN BOXES
+*****************************/
+
+.bubble.button.is-rounded {
+  font-size: 0.65em !important;
+  width: 2em !important;
+  margin-right: 0.3em !important;
+}
+
+.bubble.button.is-rounded.is-active {
+  background-color: var(--wm-blue-light);
+  border-color: var(--wm-blue);
+}
+
+.box.button {
+  border: 0.1em solid lightgrey !important;
+  border-radius: 0em !important;
+  border-top-width: 0em !important;
+  box-shadow: none !important;
+  font-size: 0.75em !important;
+  width: 2.15em !important;
+  height: 2em !important;
+  margin-right: -0.1em !important;
+  margin-bottom: 0em !important;
+  padding: 0em !important;
+  padding-top: 0.2em !important;
+  color: transparent;
+  text-shadow: 0 0 0 black;
+  /* transition: all 100ms ease !important; */
+}
+
+.box.button.is-active {
+  background-color: lightgrey !important;
+}

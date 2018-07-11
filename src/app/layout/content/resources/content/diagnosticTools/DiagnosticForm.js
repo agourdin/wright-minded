@@ -228,9 +228,9 @@ class DiagnosticForm extends React.Component {
       }
     } else if (this.props.step < this.props.sections.length) {
       this.props.setStep(this.props.step * 1 + 1);
-      this.setState(prevState => ({
+      this.setState({
         cursor: 0
-      }));
+      });
     }
     event.preventDefault();
   }
