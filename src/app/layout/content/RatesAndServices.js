@@ -6,7 +6,7 @@ class RatesAndServices extends React.Component {
   }
   render() {
     return (
-      <div style={{ marginTop: '5em' }}>
+      <div>
         <p>This is the Rates & Services page</p>
       </div>
     );

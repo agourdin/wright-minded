@@ -6,7 +6,7 @@ class WhoIAm extends React.Component {
   }
   render() {
     return (
-      <div style={{ marginTop: '5em' }}>
+      <div>
         <p>This is the Who I Am page</p>
       </div>
     );

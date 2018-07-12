@@ -6,6 +6,10 @@
 
 *******************************************************************************/
 
+.navbar {
+  background-color: var(--wm-white);
+}
+
 /****************************
         LOGO & BURGER
 *****************************/
@@ -52,7 +56,7 @@
 *****************************/
 
 .tabs a {
-  border-bottom-color: white !important;
+  border-bottom-color: var(--wm-white) !important;
   transition: all 186ms ease !important;
 }
 
@@ -144,26 +148,24 @@ ul > a.navbar-item {
 
 .login-button {
   border: none !important;
-  color: #101010;
+  color: var(--dark-grey);
   transition: color 100ms;
 }
 .login-button:hover {
-  color: #101010;
+  color: var(--wm-black);
 }
 .login-button:active {
   border: none !important;
 }
 
 .signup-button {
-  border: none !important;
+  border: transparent !important;
   background-color: var(--wm-yellow) !important;
   transition: all 100ms;
 }
-.signup-button:hover {
-  color: #fcfcfc !important;
-  background-color: var(--wm-blue-light) !important;
-}
+.signup-button:hover,
 .signup-button:active {
+  color: var(--wm-white) !important;
   background-color: var(--wm-blue) !important;
 }
 

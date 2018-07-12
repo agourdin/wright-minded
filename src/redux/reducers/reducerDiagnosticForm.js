@@ -9,7 +9,7 @@ import {
   SET_STEP
 } from '../actions/types';
 
-export default function(state = { step: -1 }, action) {
+export default function(state = { step: -1, selected_test_id: 0 }, action) {
   switch (action.type) {
     case GET_AVAILABLE_TESTS:
       return Object.assign({}, state, {

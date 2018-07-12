@@ -5,7 +5,6 @@
   "dependencies": {
     "@fortawesome/fontawesome-free-regular": "^5.0.13",
     "@fortawesome/fontawesome-svg-core": "^1.2.0",
-    "@fortawesome/free-regular-svg-icons": "^5.1.0",
     "@fortawesome/pro-light-svg-icons": "^5.1.0",
     "@fortawesome/pro-regular-svg-icons": "^5.1.0",
     "@fortawesome/pro-solid-svg-icons": "^5.1.0",
@@ -14,10 +13,7 @@
     "axios": "^0.18.0",
     "connected-react-router": "^4.3.0",
     "font-awesome": "^4.7.0",
-    "graphql": "^0.13.2",
-    "graphql-tag": "^2.9.2",
     "lodash": "^4.17.10",
-    "prisma": "^1.8.3",
     "react": "^16.2.0",
     "react-apollo": "^2.1.4",
     "react-dom": "^16.2.0",
@@ -69,12 +65,8 @@
     "sinon": "^6.0.1"
   },
   "jest": {
-    "setupFiles": [
-      "<rootDir>/test/dom.js"
-    ],
+    "setupFiles": ["<rootDir>/test/dom.js"],
     "setupTestFrameworkScriptFile": "<rootDir>/test/helpers.js",
-    "testPathIgnorePatterns": [
-      "./test/"
-    ]
+    "testPathIgnorePatterns": ["./test/"]
   }
 }

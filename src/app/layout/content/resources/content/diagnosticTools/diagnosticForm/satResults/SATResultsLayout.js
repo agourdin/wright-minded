@@ -5,6 +5,7 @@ export default class SATResultsLayout extends React.Component {
     var qtg_heading = qtg.question_type_group.toUpperCase();
     rowArray.push(
       <div
+        id={qtg_heading.replace(/\s/g, '').replace(/&/g, '')}
         key={qtg_heading}
         className="columns is-multiline is-mobile is-narrow bordered text-centered text-bold text-color-dark more-space-top-bottom-row"
       >
@@ -24,8 +25,8 @@ export default class SATResultsLayout extends React.Component {
       var qt_heading = qt.question_type;
       rowArray.push(
         <div key={qt_heading}>
-          <div className="columns is-gapless is-multiline is-mobile bordered is-narrow text-size-1 text-centered text-color-dark">
-            <div className="column is-6 text-semibold background-color-light">
+          <div className="columns is-multiline is-mobile bordered is-narrow text-size-1 text-centered text-color-dark more-space-top-bottom-qt-row">
+            <div className="column is-6 text-bold background-color-light">
               {qt_heading}
             </div>
             <div className="column is-2 vertically-aligned">{qt.total}</div>
@@ -109,7 +110,7 @@ export default class SATResultsLayout extends React.Component {
               READING
             </div>
           </div>
-          <div className="columns is-gapless is-multiline is-mobile bordered-top text-size-2-plus more-space-top-bottom">
+          <div className="columns is-gapless is-multiline is-mobile bordered-top text-size-3 more-space-top-bottom">
             <div className="column is-6 text-right text-bold text-color-dark">
               Your Score:
             </div>
@@ -165,34 +166,34 @@ export default class SATResultsLayout extends React.Component {
               MATH
             </div>
           </div>
-          <div className="columns is-gapless is-multiline is-mobile bordered-top text-size-2-plus more-space-top-bottom">
-            <div className="column is-6 text-right text-bold text-color-dark">
-              Your Score (No Calculator):
+          <div className="columns is-gapless is-multiline is-mobile bordered-top more-space-top-bottom">
+            <div className="column is-6 text-size-3 text-right text-bold text-color-dark more-space-top-bottom-smaller">
+              Your Score:
             </div>
-            <div className="column is-2 text-centered text-semibold text-color-reg vertically-aligned">
-              {mathNoCalc.correct + '/' + mathNoCalc.total}
-            </div>
-            <div className="column is-2 text-centered text-semibold text-color-reg vertically-aligned">
-              {Math.round(mathNoCalc.correct / mathNoCalc.total * 100) + '%'}
-            </div>
-            <div className="column is-6 text-right text-bold text-color-dark">
-              Your Score (Calculator):
-            </div>
-            <div className="column is-2 text-centered text-semibold text-color-reg vertically-aligned">
-              {mathCalc.correct + '/' + mathCalc.total}
-            </div>
-            <div className="column is-2 text-centered text-semibold text-color-reg vertically-aligned">
-              {Math.round(mathCalc.correct / mathCalc.total * 100) + '%'}
-            </div>
-            <div className="column is-6 text-right text-bold text-color-dark">
-              Your Score (Total):
-            </div>
-            <div className="column is-2 text-centered text-semibold text-color-reg vertically-aligned">
+            <div className="column is-2 text-size-3 text-centered text-semibold text-color-reg vertically-aligned more-space-top-bottom-smaller">
               {mathCombined.correct + '/' + mathCombined.total}
             </div>
-            <div className="column is-2 text-centered text-semibold text-color-reg vertically-aligned">
+            <div className="column is-2 text-size-3 text-centered text-semibold text-color-reg vertically-aligned more-space-top-bottom-smaller">
               {Math.round(mathCombined.correct / mathCombined.total * 100) +
                 '%'}
+            </div>
+            <div className="column is-6 text-size-2 text-right text-bold text-color-dark more-space-bottom-smaller">
+              No Calculator:
+            </div>
+            <div className="column is-2 text-size-2 text-centered text-semibold text-color-light vertically-aligned more-space-bottom-smaller">
+              {mathNoCalc.correct + '/' + mathNoCalc.total}
+            </div>
+            <div className="column is-2 text-size-2 text-centered text-semibold text-color-light vertically-aligned more-space-bottom-smaller">
+              {Math.round(mathNoCalc.correct / mathNoCalc.total * 100) + '%'}
+            </div>
+            <div className="column is-6 text-size-2 text-right text-bold text-color-dark more-space-bottom-small more-space-bottom-smaller">
+              Calculator:
+            </div>
+            <div className="column is-2 text-size-2 text-centered text-semibold text-color-light vertically-aligned more-space-bottom-small">
+              {mathCalc.correct + '/' + mathCalc.total}
+            </div>
+            <div className="column is-2 text-size-2 text-centered text-semibold text-color-light vertically-aligned more-space-bottom-small">
+              {Math.round(mathCalc.correct / mathCalc.total * 100) + '%'}
             </div>
           </div>
           <div className="columns is-gapless is-multiline is-mobile bordered text-bold text-centered background-color-reg">

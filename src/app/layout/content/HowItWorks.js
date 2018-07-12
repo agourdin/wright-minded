@@ -6,7 +6,7 @@ class HowItWorks extends React.Component {
   }
   render() {
     return (
-      <div style={{ marginTop: '5em' }}>
+      <div>
         <p>This is the How It Works page</p>
       </div>
     );

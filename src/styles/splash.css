@@ -6,8 +6,6 @@
 
 *******************************************************************************/
 
-
-
 /****************************
             HERO
 *****************************/
@@ -17,11 +15,9 @@
   background-color: var(--wm-yellow) !important;
   transition: all 100ms;
 }
-.learnmore-button:hover {
-  color: #FCFCFC !important;
-  background-color: var(--wm-blue-light) !important;
-}
+.learnmore-button:hover,
 .learnmore-button:active {
+  color: var(--wm-white) !important;
   background-color: var(--wm-blue) !important;
 }
 

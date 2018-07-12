@@ -1,43 +1,16 @@
 import React from 'react';
 import onClickOutside from 'react-onclickoutside';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAngleDown, faAngleUp } from '@fortawesome/pro-light-svg-icons';
+import { faAngleDown, faAngleUp } from '@fortawesome/pro-regular-svg-icons';
 
 class Dropdown extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      listOpen: false
-    };
-
-    this.toggleList = this.toggleList.bind(this);
-    this.handleClick = this.handleClick.bind(this);
-    this.handleClickOutside = this.handleClickOutside.bind(this);
-  }
-
   handleClickOutside(event) {
-    this.setState({
-      listOpen: false
-    });
-  }
-
-  toggleList() {
-    this.setState(prevState => ({
-      listOpen: !prevState.listOpen
-    }));
-  }
-
-  handleClick(event) {
-    this.props.handleChange(event);
-    this.setState({
-      listOpen: false
-    });
+    this.props.handleClickOutside();
   }
 
   render() {
     var list = this.props.availableTests;
-    var listOpen = this.state.listOpen;
-    var headerTitle = this.state.headerTitle;
+    var listOpen = this.props.listOpen;
     var availableTestsList = [
       <option key={0} value={0}>
         Select a test...
@@ -78,7 +51,7 @@ class Dropdown extends React.Component {
         >
           <div
             className={listOpen ? 'selected-option open' : 'selected-option'}
-            onClick={this.toggleList}
+            onClick={this.props.toggleList}
           >
             <div className="selected-option-name">
               {this.props.selectedTestName
@@ -97,7 +70,7 @@ class Dropdown extends React.Component {
                   className="option-item"
                   key={test.id}
                   value={test.id}
-                  onClick={this.handleClick}
+                  onClick={this.props.handleClick}
                 >
                   {test.test_name}
                 </li>

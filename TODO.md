@@ -4,7 +4,8 @@
 
 ## **Current**
 
-* **FRONTEND** // Integrate Redux with React-Router
+* **FRONTEND** // Implement print formatting
+* **FRONTEND** // Fix ordering of Question Types and Question Type Groups (after Mike has finished question type revamp)
 * **FRONTEND** // [Write full suite of tests for current components](https://www.robinwieruch.de/react-testing-tutorial/)
 
 ---
@@ -18,7 +19,6 @@
     * DiagnosticForm
       * Figure out decimal issue:
         * Decimals should be exact, or fill up the whole space. I.e. ".66" and ".67"(?) are wrong, but ".666" and ".667" and "0.67"(?) are right.
-      * Figure out Results page implementation
       * Format page elements
       * Figure out mobile keyboard implementation
         * [React-device-detect](https://www.npmjs.com/package/react-device-detect)
@@ -89,3 +89,4 @@
 * 2018.07.04 - **FRONTEND** // Write a diagnostic_in_progress Redux flag
 * 2018.07.06 - **BACKEND** // Write Question Type Group Test -> Model -> Serializer -> View
 * 2018.07.10 - **FRONTEND** // Implement SAT Results with formatting
+* 2018.07.11 - **FRONTEND** // Integrate Redux with React-Router
