@@ -45,6 +45,7 @@ export default function auth(state = initialState, action) {
     case REGISTRATION_FAILED:
     case LOGIN_FAILED:
     case LOGOUT_SUCCESSFUL:
+      console.log('Login failed');
       localStorage.removeItem('token');
       return {
         ...state,

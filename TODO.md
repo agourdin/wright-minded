@@ -4,7 +4,6 @@
 
 ## **Current**
 
-* **FRONTEND** // Implement print formatting
 * **FRONTEND** // Fix ordering of Question Types and Question Type Groups (after Mike has finished question type revamp)
 * **FRONTEND** // [Write full suite of tests for current components](https://www.robinwieruch.de/react-testing-tutorial/)
 
@@ -89,4 +88,5 @@
 * 2018.07.04 - **FRONTEND** // Write a diagnostic_in_progress Redux flag
 * 2018.07.06 - **BACKEND** // Write Question Type Group Test -> Model -> Serializer -> View
 * 2018.07.10 - **FRONTEND** // Implement SAT Results with formatting
-* 2018.07.11 - **FRONTEND** // Integrate Redux with React-Router
+* 2018.07.10 - **FRONTEND** // Integrate Redux with React-Router
+* 2018.07.11 - **FRONTEND** // Implement print formatting

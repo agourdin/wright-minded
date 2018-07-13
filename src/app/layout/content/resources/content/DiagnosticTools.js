@@ -10,7 +10,7 @@ export default class DiagnosticTools extends React.Component {
     return (
       <div
         className="main container"
-        style={{ marginTop: '3.5em', padding: '2em', minHeight: '600px' }}
+        style={{ marginTop: '3.5em', minHeight: '600px' }}
       >
         <DiagnosticForm />
       </div>

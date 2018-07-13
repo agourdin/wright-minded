@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 import LogoutButton from '../buttons/LogoutButton';
 import LoginButton from '../buttons/LoginButton';
@@ -15,12 +17,22 @@ class NavbarEnd extends React.Component {
           right: '0px'
         }}
       >
-        <LogoutButton />
-        <LoginButton />
-        <SignupButton />
+        {this.props.auth.isAuthenticated ? <LogoutButton /> : <LoginButton />}
+        {this.props.auth.isAuthenticated ? null : <SignupButton />}
       </div>
     );
   }
 }
 
-export default NavbarEnd;
+// BOILERPLATE
+function mapStateToProps(state) {
+  return {
+    auth: state.auth
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({}, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavbarEnd);

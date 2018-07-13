@@ -1,0 +1,168 @@
+.register.hero {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.register-form {
+  width: 45em;
+}
+
+.register-form .control-group.password {
+  margin-top: 2em;
+}
+.register-form .control-group.password.two {
+  margin-top: 1.3em !important;
+}
+
+.register .control-group label {
+  font-size: 1.2em;
+  font-weight: 600;
+}
+
+.register .control-group .controls {
+  margin-top: 0.2em;
+}
+
+.register .control-group .controls input {
+  font-size: 1em;
+  width: 100%;
+  height: 3em;
+  padding: 1em;
+  border: 1px solid var(--wm-blue);
+}
+.register .control-group .controls input::placeholder {
+  color: var(--wm-grey);
+}
+
+.register .control-group .controls input:focus {
+  outline: 2px solid;
+  outline-color: var(--wm-blue);
+}
+
+.register .button-group {
+  margin-top: 2em;
+}
+
+.register .button-group .button {
+  margin-top: 1.5em;
+  height: 2.5em;
+  width: 100%;
+  color: var(--wm-white);
+  font-size: 1.1em;
+  font-weight: 600;
+  border-color: transparent;
+  background-color: var(--wm-blue);
+  transition: all 100ms;
+}
+.register .button-group .button:hover {
+  color: var(--wm-black);
+  background-color: var(--wm-yellow);
+}
+.register .button-group .button.disabled {
+  background-color: var(--wm-blue-light);
+  cursor: default;
+}
+.register .button-group .button.disabled:hover {
+  color: var(--wm-white);
+}
+
+.register .columns {
+  margin-left: 0em;
+  margin-right: 0em;
+  margin-top: 2em;
+}
+.register .columns .username.column {
+  padding-right: 1em !important;
+}
+.register .columns .email.column {
+  padding-left: 1em !important;
+}
+.register .columns .column {
+  font-size: 1.1em;
+  font-weight: 600;
+  padding: 0;
+  transition: all 100ms;
+}
+.register .columns .column a:hover {
+  color: var(--wm-blue);
+}
+.register .columns .forgot-password {
+  text-align: right;
+}
+
+.register .bad-register {
+  margin-bottom: 1em;
+  padding: 0.75em;
+  background-color: var(--wm-light-grey);
+  border-left: 4px solid var(--wm-red);
+  font-size: 1em;
+  border-top-right-radius: 0.2em;
+  border-bottom-right-radius: 0.2em;
+}
+.register .bad-register .uh-oh {
+  font-weight: 800;
+}
+
+.register .error {
+  position: absolute;
+  z-index: 30;
+  font-weight: 400 !important;
+  margin-top: 0em;
+  font-size: 16px !important;
+  font-style: italic;
+  color: var(--wm-red);
+}
+
+@media screen and (max-width: 768px) {
+  .register-form {
+    width: 30em;
+  }
+  .register .control-group.email {
+    margin-top: 2em;
+  }
+  .register .columns .column {
+    text-align: left;
+    font-size: 1em;
+    margin-top: 1em;
+  }
+  .register .columns .username.column {
+    padding-right: 0em !important;
+  }
+  .register .columns .email.column {
+    padding-left: 0em !important;
+  }
+}
+
+@media screen and (max-width: 475px) {
+  .register-form {
+    width: 15em;
+  }
+  .register .control-group label {
+    font-size: 1em;
+  }
+  .register .control-group.email {
+    margin-top: 2em;
+  }
+  .register .columns {
+    width: 100%;
+    margin-left: 0em;
+    margin-right: 0em;
+    margin-top: 2em;
+  }
+  .register .columns .column {
+    text-align: left;
+    font-size: 1em;
+    margin-top: 1em;
+  }
+  .register .columns .username.column {
+    padding-right: 0em !important;
+  }
+  .register .columns .email.column {
+    padding-left: 0em !important;
+  }
+
+  .register .button-group {
+    margin-top: 1.3em;
+  }
+}

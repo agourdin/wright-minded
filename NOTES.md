@@ -14,6 +14,28 @@
 
 ---
 
+## **> C**
+
+### **CSS**
+
+**Media Widths**
+
+```
+@media screen and (min-width: 1088px) {
+}
+
+@media screen and (max-width: 1087px) {
+}
+
+@media screen and (max-width: 768px) {
+}
+
+@media screen and (max-width: 475px) {
+}
+```
+
+---
+
 ## **> P**
 
 ### **Postgres**

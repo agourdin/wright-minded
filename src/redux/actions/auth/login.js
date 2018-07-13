@@ -1,11 +1,12 @@
 import { LOGIN_SUCCESSFUL, LOGIN_FAILED, AUTHENTICATION_ERROR } from '../types';
+import { SERVER_URL, API_AUTH_LOGIN } from '../urls';
 import axios from 'axios';
 
 export const login = (username, password) => {
   return (dispatch, getState) => {
     let headers = { 'Content-Type': 'application/json' };
     let body = JSON.stringify({ username, password });
-    let url = 'http://localhost:8000/api/v0.1/auth/login';
+    let url = SERVER_URL + API_AUTH_LOGIN;
     return axios({
       method: 'post',
       url: url,
@@ -13,6 +14,7 @@ export const login = (username, password) => {
       headers: headers
     })
       .then(res => {
+        console.log('firing');
         if (res.status < 500) {
           console.log(res);
           console.log({ status: res.status, data: res.data });
@@ -34,9 +36,14 @@ export const login = (username, password) => {
           dispatch({ type: AUTHENTICATION_ERROR, data: res.data });
           throw res.data;
         } else {
+          console.log('Login failed');
           dispatch({ type: LOGIN_FAILED, data: res.data });
           throw res.data;
         }
+      })
+      .catch(error => {
+        dispatch({ type: LOGIN_FAILED, data: error.response.data });
+        throw error.response.data;
       });
   };
 };

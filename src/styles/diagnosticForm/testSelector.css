@@ -91,7 +91,7 @@
   border-bottom-right-radius: 0.2em;
 }
 .test-selector .displayed-select .option-list::-webkit-scrollbar-thumb {
-  background-color: var(--wm-light-grey);
+  background-color: var(--wm-grey);
   border-radius: 0.2em;
 }
 

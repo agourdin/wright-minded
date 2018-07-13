@@ -7,7 +7,7 @@ export default class SATResultsLayout extends React.Component {
       <div
         id={qtg_heading.replace(/\s/g, '').replace(/&/g, '')}
         key={qtg_heading}
-        className="columns is-multiline is-mobile is-narrow bordered text-centered text-bold text-color-dark more-space-top-bottom-row"
+        className="columns is-multiline is-mobile is-narrow bordered text-size-2 mobile-text-size-2 text-centered text-bold text-color-dark more-space-top-bottom-row"
       >
         <div className="column is-6 text-italic vertically-aligned">
           {qtg_heading}
@@ -25,7 +25,7 @@ export default class SATResultsLayout extends React.Component {
       var qt_heading = qt.question_type;
       rowArray.push(
         <div key={qt_heading}>
-          <div className="columns is-multiline is-mobile bordered is-narrow text-size-1 text-centered text-color-dark more-space-top-bottom-qt-row">
+          <div className="columns is-multiline is-mobile bordered is-narrow text-size-1 mobile-text-size-1 text-centered text-color-dark more-space-top-bottom-qt-row">
             <div className="column is-6 text-bold background-color-light">
               {qt_heading}
             </div>
@@ -111,19 +111,19 @@ export default class SATResultsLayout extends React.Component {
             </div>
           </div>
           <div className="columns is-gapless is-multiline is-mobile bordered-top text-size-3 more-space-top-bottom">
-            <div className="column is-6 text-right text-bold text-color-dark">
+            <div className="column is-6 mobile-text-size-3 text-right text-bold text-color-dark">
               Your Score:
             </div>
-            <div className="column is-2 text-centered text-semibold text-color-reg">
+            <div className="column is-2 text-centered text-semibold text-color-reg vertically-aligned-score-mobile">
               {reading.correct + '/' + reading.total}
             </div>
-            <div className="column is-2 text-centered text-semibold text-color-reg">
+            <div className="column is-2 text-centered text-semibold text-color-reg vertically-aligned-score-mobile">
               {Math.round(reading.correct / reading.total * 100) + '%'}
             </div>
           </div>
-          <div className="columns is-gapless is-multiline is-mobile bordered text-bold text-centered background-color-reg">
+          <div className="columns is-gapless is-multiline is-mobile bordered text-size-2 text-bold text-centered background-color-reg">
             <div className="column is-6">Question Type</div>
-            <div className="column is-2">Questions</div>
+            <div className="column is-2">Total</div>
             <div className="column is-2">Missed</div>
             <div className="column is-2">Score</div>
           </div>
@@ -139,19 +139,19 @@ export default class SATResultsLayout extends React.Component {
             </div>
           </div>
           <div className="columns is-gapless is-multiline is-mobile bordered-top text-size-3 more-space-top-bottom">
-            <div className="column is-6 text-right text-bold text-color-dark">
+            <div className="column is-6 mobile-text-size-3 text-right text-bold text-color-dark">
               Your Score:
             </div>
-            <div className="column is-2 text-centered text-semibold text-color-reg">
+            <div className="column is-2 text-centered text-semibold text-color-reg vertically-aligned-score-mobile">
               {writing.correct + '/' + writing.total}
             </div>
-            <div className="column is-2 text-centered text-semibold text-color-reg">
+            <div className="column is-2 text-centered text-semibold text-color-reg vertically-aligned-score-mobile">
               {Math.round(writing.correct / writing.total * 100) + '%'}
             </div>
           </div>
-          <div className="columns is-gapless is-multiline is-mobile bordered text-bold text-centered background-color-reg">
+          <div className="columns is-gapless is-multiline is-mobile bordered text-size-2 text-bold text-centered background-color-reg">
             <div className="column is-6">Question Type</div>
-            <div className="column is-2">Questions</div>
+            <div className="column is-2">Total</div>
             <div className="column is-2">Missed</div>
             <div className="column is-2">Score</div>
           </div>
@@ -167,38 +167,38 @@ export default class SATResultsLayout extends React.Component {
             </div>
           </div>
           <div className="columns is-gapless is-multiline is-mobile bordered-top more-space-top-bottom">
-            <div className="column is-6 text-size-3 text-right text-bold text-color-dark more-space-top-bottom-smaller">
+            <div className="column is-6 mobile-text-size-3 text-size-3 text-right text-bold text-color-dark more-space-top-bottom-smaller">
               Your Score:
             </div>
-            <div className="column is-2 text-size-3 text-centered text-semibold text-color-reg vertically-aligned more-space-top-bottom-smaller">
+            <div className="column is-2 text-size-3 text-centered text-semibold text-color-reg vertically-aligned vertically-aligned-score-mobile-math more-space-top-bottom-smaller">
               {mathCombined.correct + '/' + mathCombined.total}
             </div>
-            <div className="column is-2 text-size-3 text-centered text-semibold text-color-reg vertically-aligned more-space-top-bottom-smaller">
+            <div className="column is-2 text-size-3 text-centered text-semibold text-color-reg vertically-aligned vertically-aligned-score-mobile-math more-space-top-bottom-smaller">
               {Math.round(mathCombined.correct / mathCombined.total * 100) +
                 '%'}
             </div>
-            <div className="column is-6 text-size-2 text-right text-bold text-color-dark more-space-bottom-smaller">
+            <div className="column is-6 text-size-2 mobile-text-size-1-plus text-right text-bold text-color-dark more-space-bottom-smaller">
               No Calculator:
             </div>
-            <div className="column is-2 text-size-2 text-centered text-semibold text-color-light vertically-aligned more-space-bottom-smaller">
+            <div className="column is-2 text-size-2 text-centered text-semibold text-color-light vertically-aligned vertically-aligned-score-mobile-math more-space-bottom-smaller">
               {mathNoCalc.correct + '/' + mathNoCalc.total}
             </div>
-            <div className="column is-2 text-size-2 text-centered text-semibold text-color-light vertically-aligned more-space-bottom-smaller">
+            <div className="column is-2 text-size-2 text-centered text-semibold text-color-light vertically-aligned vertically-aligned-score-mobile-math more-space-bottom-smaller">
               {Math.round(mathNoCalc.correct / mathNoCalc.total * 100) + '%'}
             </div>
-            <div className="column is-6 text-size-2 text-right text-bold text-color-dark more-space-bottom-small more-space-bottom-smaller">
+            <div className="column is-6 text-size-2 mobile-text-size-1-plus text-right text-bold text-color-dark more-space-bottom-small more-space-bottom-smaller">
               Calculator:
             </div>
-            <div className="column is-2 text-size-2 text-centered text-semibold text-color-light vertically-aligned more-space-bottom-small">
+            <div className="column is-2 text-size-2 text-centered text-semibold text-color-light vertically-aligned vertically-aligned-score-mobile-math more-space-bottom-smaller">
               {mathCalc.correct + '/' + mathCalc.total}
             </div>
-            <div className="column is-2 text-size-2 text-centered text-semibold text-color-light vertically-aligned more-space-bottom-small">
+            <div className="column is-2 text-size-2 text-centered text-semibold text-color-light vertically-aligned vertically-aligned-score-mobile-math more-space-bottom-smaller">
               {Math.round(mathCalc.correct / mathCalc.total * 100) + '%'}
             </div>
           </div>
-          <div className="columns is-gapless is-multiline is-mobile bordered text-bold text-centered background-color-reg">
+          <div className="columns is-gapless is-multiline is-mobile bordered text-size-2 text-bold text-centered background-color-reg">
             <div className="column is-6">Question Type</div>
-            <div className="column is-2">Questions</div>
+            <div className="column is-2">Total</div>
             <div className="column is-2">Missed</div>
             <div className="column is-2">Score</div>
           </div>

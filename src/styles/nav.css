@@ -147,6 +147,7 @@ ul > a.navbar-item {
 *****************************/
 
 .login-button {
+  background-color: transparent;
   border: none !important;
   color: var(--dark-grey);
   transition: color 100ms;
@@ -177,7 +178,7 @@ ul > a.navbar-item {
   padding-left: 0 !important;
 }
 .small-userauth .navbar-item .button {
-  font-size: 0.75em !important;
+  font-size: 0.95em !important;
 }
 
 /****************************

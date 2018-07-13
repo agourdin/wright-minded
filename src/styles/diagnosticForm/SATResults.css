@@ -8,8 +8,8 @@
 
 .diagnostic-results {
   margin-top: 2em;
-  padding-right: 13rem;
-  padding-left: 13rem;
+  padding-right: 17rem;
+  padding-left: 17rem;
 }
 
 /*******************
@@ -31,6 +31,10 @@
 
 .diagnostic-results .column.divider {
   height: 1px;
+}
+
+.diagnostic-results .section.score {
+  margin-top: 5em;
 }
 
 /*******************
@@ -320,7 +324,91 @@
       Columns
 ********************/
 
-.diagnostic-results .section .column.has-text-left {
+/****************************
+          SCREEN
+*****************************/
+
+@media screen and (min-width: 1088px) {
+}
+
+@media screen and (max-width: 1087px) {
+}
+
+@media screen and (max-width: 768px) {
+  .diagnostic-results {
+    margin-top: 2em;
+    padding-right: 5rem;
+    padding-left: 5rem;
+  }
+}
+
+@media screen and (max-width: 475px) {
+  .diagnostic-results {
+    margin-top: 2em;
+    padding-right: 1rem;
+    padding-left: 1rem;
+  }
+
+  .diagnostic-results .section-divider {
+    margin: 1.5em;
+  }
+
+  /*******************
+        Spacing
+  ********************/
+
+  .diagnostic-results .more-space-bottom-smaller {
+    margin-top: 0.2em !important;
+    margin-bottom: 0.2em !important;
+  }
+
+  .diagnostic-results .vertically-aligned-score-mobile {
+    position: relative;
+    top: 0.34em;
+  }
+  .diagnostic-results .vertically-aligned-score-mobile-math {
+    position: relative;
+    top: 0.17em;
+  }
+
+  /******************
+        TEXT
+  ******************/
+
+  .diagnostic-results .text-size-1 {
+    font-size: 0.6em;
+  }
+  .diagnostic-results .text-size-2 {
+    font-size: 0.75em;
+  }
+  .diagnostic-results .text-size-2-plus {
+    font-size: 0.75em;
+  }
+  .diagnostic-results .text-size-3 {
+    font-size: 0.9em;
+  }
+  .diagnostic-results .text-size-4 {
+    font-size: 1.25em;
+  }
+  .diagnostic-results .text-size-5 {
+    font-size: 1.5em;
+  }
+  .diagnostic-results .mobile-text-size-1 {
+    font-size: 0.8em !important;
+  }
+  .diagnostic-results .mobile-text-size-1-plus {
+    font-size: 1em !important;
+    position: relative;
+    right: 0.4em;
+  }
+  .diagnostic-results .mobile-text-size-2 {
+    font-size: 1em !important;
+  }
+  .diagnostic-results .mobile-text-size-3 {
+    font-size: 1.3em !important;
+    position: relative;
+    right: 0.3em;
+  }
 }
 
 /****************************

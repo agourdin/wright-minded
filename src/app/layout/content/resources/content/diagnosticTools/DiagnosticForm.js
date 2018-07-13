@@ -418,46 +418,46 @@ class DiagnosticForm extends React.Component {
     // API Compliant: WARNING
     // Redux Aligned: WARNING
     // Tested: WARNING
-    // if (this.props.step === -1) {
-    //   return (
-    //     <TestSelector
-    //       handleSubmit={this.handleSubmit}
-    //       handleChange={this.handleTestSelect}
-    //       availableTests={this.props.available_tests}
-    //       selectedTestName={this.props.selected_test_name}
-    //       selectedTestID={this.props.selected_test_id}
-    //       loadingTestStatus={this.props.loading_test_status}
-    //     />
-    //   );
-    // } else if (this.props.step < this.props.sections.length) {
-    //   return (
-    //     <DiagnosticFormSection
-    //       handleBubbleClick={this.handleBubbleClick}
-    //       handleGridInClick={this.handleGridInClick}
-    //       handleGridInChange={this.handleGridInChange}
-    //       handleKeyDown={this.handleKeyDown}
-    //       handleSubmit={this.handleSubmit}
-    //       handleBack={this.handleBack}
-    //       handleStartOver={this.handleStartOver}
-    //       step={this.props.step}
-    //       cursor={this.state.cursor}
-    //       subCursor={this.state.subCursor}
-    //       selectedTestName={this.props.selected_test_name}
-    //       selectedTestID={this.props.selected_test_id}
-    //       sections={this.props.sections}
-    //       sectionNames={this.props.section_names}
-    //     />
-    //   );
-    // } else {
-    return (
-      <SATResults
-        sections={this.props.sections}
-        sectionNames={this.props.section_names}
-        selectedTestName={this.props.selected_test_name}
-        conversionChart={this.props.conversion_chart}
-      />
-    );
-    // }
+    if (this.props.step === -1) {
+      return (
+        <TestSelector
+          handleSubmit={this.handleSubmit}
+          handleChange={this.handleTestSelect}
+          availableTests={this.props.available_tests}
+          selectedTestName={this.props.selected_test_name}
+          selectedTestID={this.props.selected_test_id}
+          loadingTestStatus={this.props.loading_test_status}
+        />
+      );
+    } else if (this.props.step < this.props.sections.length) {
+      return (
+        <DiagnosticFormSection
+          handleBubbleClick={this.handleBubbleClick}
+          handleGridInClick={this.handleGridInClick}
+          handleGridInChange={this.handleGridInChange}
+          handleKeyDown={this.handleKeyDown}
+          handleSubmit={this.handleSubmit}
+          handleBack={this.handleBack}
+          handleStartOver={this.handleStartOver}
+          step={this.props.step}
+          cursor={this.state.cursor}
+          subCursor={this.state.subCursor}
+          selectedTestName={this.props.selected_test_name}
+          selectedTestID={this.props.selected_test_id}
+          sections={this.props.sections}
+          sectionNames={this.props.section_names}
+        />
+      );
+    } else {
+      return (
+        <SATResults
+          sections={this.props.sections}
+          sectionNames={this.props.section_names}
+          selectedTestName={this.props.selected_test_name}
+          conversionChart={this.props.conversion_chart}
+        />
+      );
+    }
   }
 }
 

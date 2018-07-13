@@ -1,4 +1,5 @@
 import { LOGOUT_SUCCESSFUL, AUTHENTICATION_ERROR } from '../types';
+import { SERVER_URL, API_AUTH_LOGOUT } from '../urls';
 import axios from 'axios';
 
 export const logout = () => {
@@ -12,7 +13,7 @@ export const logout = () => {
     if (token) {
       headers['Authorization'] = `Token ${token}`;
     }
-    let url = 'http://localhost:8000/api/v0.1/auth/logout';
+    let url = SERVER_URL + API_AUTH_LOGOUT;
     return axios({
       method: 'post',
       url: url,

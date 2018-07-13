@@ -3,13 +3,14 @@ import {
   REGISTRATION_FAILED,
   AUTHENTICATION_ERROR
 } from '../types';
+import { SERVER_URL, API_AUTH_REGISTER } from '../urls';
 import axios from 'axios';
 
 export function register(username, email, password) {
   return (dispatch, getState) => {
     let headers = { 'Content-Type': 'application/json' };
     let body = JSON.stringify({ username, email, password });
-    let url = 'http://localhost:8000/api/v0.1/auth/register';
+    let url = SERVER_URL + API_AUTH_REGISTER;
     return axios({
       method: 'post',
       url: url,
@@ -35,6 +36,10 @@ export function register(username, email, password) {
           dispatch({ type: REGISTRATION_FAILED, data: res.data });
           throw res.data;
         }
+      })
+      .catch(error => {
+        dispatch({ type: REGISTRATION_FAILED, data: error.response.data });
+        throw error.response.data;
       });
   };
 }
