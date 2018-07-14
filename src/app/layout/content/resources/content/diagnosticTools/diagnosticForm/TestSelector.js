@@ -1,5 +1,4 @@
 import React from 'react';
-import { Select } from 'react-select';
 import LetsGoButton from './testSelector/LetsGoButton';
 import Dropdown from './testSelector/Dropdown';
 

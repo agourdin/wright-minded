@@ -52,6 +52,9 @@ INSTALLED_APPS = [
   'import_export',
 
   'rest_framework',
+  'rest_framework.authtoken',
+
+  'rest_auth',
 
   'backend',
 ]
@@ -150,6 +153,11 @@ AUTH_PASSWORD_VALIDATORS = [
     'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
   },
 ]
+
+
+# EMAIL BACKEND
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 
 # Internationalization

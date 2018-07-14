@@ -8,9 +8,10 @@ import SignupButton from '../buttons/SignupButton';
 
 class NavbarEnd extends React.Component {
   render() {
+    console.log(this.props.auth.isAuthenticated);
     return (
       <div
-        className="navbar-end is-hidden-touch"
+        className="navbar-end "
         style={{
           width: '200px',
           position: 'relative',

@@ -6,6 +6,7 @@ import {
   LOGOUT_SUCCESSFUL,
   REGISTRATION_SUCCESSFUL,
   REGISTRATION_FAILED,
+  PASSWORD_RESET_FAILED,
   AUTHENTICATION_ERROR
 } from '../actions/types';
 
@@ -45,7 +46,6 @@ export default function auth(state = initialState, action) {
     case REGISTRATION_FAILED:
     case LOGIN_FAILED:
     case LOGOUT_SUCCESSFUL:
-      console.log('Login failed');
       localStorage.removeItem('token');
       return {
         ...state,
@@ -54,6 +54,13 @@ export default function auth(state = initialState, action) {
         user: null,
         isAuthenticated: false,
         isLoading: false
+      };
+
+    case PASSWORD_RESET_FAILED:
+      console.log('Password reset failed');
+      return {
+        ...state,
+        errors: action.data
       };
 
     default:

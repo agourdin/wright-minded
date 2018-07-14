@@ -64,7 +64,7 @@
 }
 
 .test-selector .displayed-select .option-list {
-  position: fixed;
+  position: absolute;
   z-index: 30;
   width: 13em;
   display: flex;

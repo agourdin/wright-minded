@@ -25,12 +25,9 @@ export const login = (username, password) => {
         }
       })
       .then(res => {
-        console.log('Firing in second .then');
-        console.log(res);
         if (res.status === 200) {
           console.log('200 successful');
           dispatch({ type: LOGIN_SUCCESSFUL, data: res.data });
-          console.log(res.data);
           return res.data;
         } else if (res.status === 403 || res.status === 401) {
           dispatch({ type: AUTHENTICATION_ERROR, data: res.data });

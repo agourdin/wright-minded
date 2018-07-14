@@ -15,6 +15,7 @@ django-import-export = "*"
 drf-writable-nested = "*"
 django-cors-headers = "*"
 django-rest-knox = "*"
+django-rest-auth = "*"
 
 [dev-packages]
 

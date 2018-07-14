@@ -3,6 +3,10 @@ import { Switch, Route } from 'react-router-dom';
 
 import Login from './auth/Login';
 import Register from './auth/Register';
+import ForgotPassword from './auth/ForgotPassword';
+import PasswordResetSent from './auth/PasswordResetSent';
+import ConfirmPasswordReset from './auth/ConfirmPasswordReset';
+import PasswordResetSuccess from './auth/PasswordResetSuccess';
 import Home from './content/Home';
 import WhoIAm from './content/WhoIAm';
 import HowItWorks from './content/HowItWorks';
@@ -11,13 +15,20 @@ import Resources from './content/Resources';
 import DiagnosticTools from './content/resources/content/DiagnosticTools';
 import VideoCourses from './content/resources/content/VideoCourses';
 
-class Router extends React.Component {
+export default class Router extends React.Component {
   render() {
     return (
       <Switch>
         <Route exact path="/" component={Home} />
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
+        <Route path="/forgot-password" component={ForgotPassword} />
+        <Route path="/password-reset-sent" component={PasswordResetSent} />
+        <Route path="/reset/:uid/:token/" component={ConfirmPasswordReset} />
+        <Route
+          path="/password-reset-successful"
+          component={PasswordResetSuccess}
+        />
         <Route path="/who-i-am" component={WhoIAm} />
         <Route path="/how-it-works" component={HowItWorks} />
         <Route path="/rates-and-services" component={RatesAndServices} />
@@ -33,21 +44,5 @@ class Router extends React.Component {
   }
 }
 
-export default Router;
-
-// OLD WORKING VERSION
-// class Router extends React.Component {
-//   render () {
-//     return (
-//       <Switch>
-//         <Route exact path='/' component={Home}/>
-//         <Route path='/who-i-am' component={WhoIAm}/>
-//         <Route path='/how-it-works' component={HowItWorks}/>
-//         <Route path='/rates-and-services' component={RatesAndServices}/>
-//         <Route exact path='/resources' component={Resources}/>
-//       </Switch>
-//     )
-//   }
-// }
-//
-// export default Router
+// <Route path="reset/:uid/:token" component={in your react view you can get these values like this.props.params.uid and this.props.params.token}/>
+// https://github.com/reactjs/react-router-tutorial/tree/master/lessons/06-params
