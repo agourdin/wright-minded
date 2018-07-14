@@ -5,7 +5,7 @@ from rest_framework.response import Response
 
 from knox.models import AuthToken
 
-from ..serializers import UserSerializer
+from ...serializers import UserSerializer
 
 class UserAPI(generics.RetrieveAPIView):
     permission_classes = [permissions.IsAuthenticated, ]

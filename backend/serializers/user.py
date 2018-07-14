@@ -42,3 +42,8 @@ class LoginUserSerializer(serializers.Serializer):
         if user and user.is_active:
             return user
         raise serializers.ValidationError("Your username and password don't match, please try again.")
+
+
+class ChangePasswordSerializer(serializers.Serializer):
+    old_password = serializers.CharField(required=True)
+    new_password = serializers.CharField(required=True)

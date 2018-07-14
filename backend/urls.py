@@ -29,6 +29,13 @@ urlpatterns = [
         views.LogoutAPI.as_view(),
         name='post_logout'),
 
+    # CHANGE PASSWORD
+    path(
+        'v0.1/auth/change_password',
+        views.ChangePasswordView.as_view(),
+        name='change_password'
+    ),
+
     # USER
     path(
         'v0.1/auth/user',

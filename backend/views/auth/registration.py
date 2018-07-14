@@ -3,8 +3,8 @@ from rest_framework.response import Response
 
 from knox.models import AuthToken
 
-from ..models import Test
-from ..serializers import CreateUserSerializer, UserSerializer
+from ...models import Test
+from ...serializers import CreateUserSerializer, UserSerializer
 
 
 class RegistrationAPI(generics.GenericAPIView):

@@ -1,3 +1,4 @@
+from .auth import *
 from .test import *
 from .test_answer import *
 from .test_type import *
@@ -7,7 +8,3 @@ from .question_type import *
 from .question import *
 from .user_answer import *
 from .sat_score_conversion import *
-from .registration import *
-from .login import *
-from .logout import *
-from .user import *
