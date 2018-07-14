@@ -27,7 +27,6 @@ class ConfirmPasswordReset extends Component {
       let uid = this.props.match.params.uid;
       let token = this.props.match.params.token;
       this.props.confirmPasswordReset(password, password2, uid, token);
-      this.props.history.push('/password-reset-successful');
     } else {
       this.setState({ passwordError: true });
     }
@@ -37,17 +36,20 @@ class ConfirmPasswordReset extends Component {
     if (this.props.isAuthenticated) {
       return <Redirect to="/" />;
     }
+    if (this.props.passwordResetSuccess) {
+      this.props.history.push('/password-reset-successful');
+    }
     if (this.state.passwordError) {
       var passwordError = <div className="error">Passwords don't match!</div>;
     } else {
       passwordError = null;
     }
     if (!this.state.password || !this.state.password2) {
-      var submitButton = <div className="button disabled">Register</div>;
+      var submitButton = <div className="button disabled">Change Password</div>;
     } else {
       submitButton = (
         <button className="button" type="submit">
-          Register
+          Change Password
         </button>
       );
     }
@@ -113,7 +115,8 @@ const mapStateToProps = state => {
   }
   return {
     errors,
-    isAuthenticated: state.auth.isAuthenticated
+    isAuthenticated: state.auth.isAuthenticated,
+    passwordResetSuccess: state.auth.passwordResetSuccess
   };
 };
 

@@ -7,6 +7,7 @@ import {
   REGISTRATION_SUCCESSFUL,
   REGISTRATION_FAILED,
   PASSWORD_RESET_FAILED,
+  PASSWORD_RESET_SUCCESS,
   AUTHENTICATION_ERROR
 } from '../actions/types';
 
@@ -60,7 +61,15 @@ export default function auth(state = initialState, action) {
       console.log('Password reset failed');
       return {
         ...state,
+        passwordResetSuccess: false,
         errors: action.data
+      };
+
+    case PASSWORD_RESET_SUCCESS:
+      console.log('Password reset failed');
+      return {
+        ...state,
+        passwordResetSuccess: true
       };
 
     default:

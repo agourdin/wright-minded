@@ -51,7 +51,6 @@ export default function(state = { step: -1, selected_test_id: 0 }, action) {
       });
 
     case LOAD_SAT_CONVERSION_TO_STORE:
-      console.log(state);
       return Object.assign({}, state, {
         conversion_chart: action.payload
       });

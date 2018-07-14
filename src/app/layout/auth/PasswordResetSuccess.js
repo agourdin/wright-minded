@@ -15,7 +15,7 @@ class PasswordResetSuccess extends Component {
     return (
       <div className="login hero is-fullheight">
         Congratulations! Your password has been successfully reset!
-        <Link to="/forgot-password">Click here to log in again</Link>
+        <Link to="/login">Click here to log in again</Link>
       </div>
     );
   }
