@@ -6,7 +6,7 @@ class WhoIAm extends React.Component {
   }
   render() {
     return (
-      <div>
+      <div className="hero is-fullheight">
         <p>This is the Who I Am page</p>
       </div>
     );

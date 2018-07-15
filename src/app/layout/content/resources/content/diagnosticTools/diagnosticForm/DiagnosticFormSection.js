@@ -27,7 +27,7 @@ export default class DiagnosticFormSection extends React.Component {
       if (question.input_type === 'bubble') {
         rows.push(
           <div key={question.question_num} className={className}>
-            {question.question_num}.&nbsp;
+            <div className="row-number">{question.question_num}.</div>
             <MultiChoiceQuestionRow
               id={question.id}
               onClick={this.props.handleBubbleClick}
@@ -66,16 +66,32 @@ export default class DiagnosticFormSection extends React.Component {
         </div>
       );
     }
+    var sectionName = this.props.sectionNames[this.props.step];
     return (
-      <div>
-        <p>Test: {this.props.selectedTestName}</p>
-        <p>Section: {this.props.sectionNames[this.props.step]}</p>
-        <form onSubmit={this.props.handleSubmit}>
-          <div className="answer-grid">{rows}</div>
-          {backbutton}
-          <input className="button" type="submit" value="Save & Continue" />
-          <StartOverButton handleStartOver={this.props.handleStartOver} />
-        </form>
+      <div className="diagnosticFormSection hero is-fullheight">
+        <div className="hero-body">
+          <div className="section">
+            <div className="test-title">{this.props.selectedTestName}</div>
+            <div className={sectionName}>
+              <div className="section-title">{sectionName}</div>
+              <div className="instructions">{this.props.instructions}</div>
+              <form onSubmit={this.props.handleSubmit}>
+                <div className="answer-grid">{rows}</div>
+                <div className="control-group">
+                  {backbutton}
+                  <input
+                    className="save-and-continue button"
+                    type="submit"
+                    value="Save & Continue"
+                  />
+                  <StartOverButton
+                    handleStartOver={this.props.handleStartOver}
+                  />
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }

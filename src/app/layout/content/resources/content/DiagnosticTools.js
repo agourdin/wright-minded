@@ -8,10 +8,7 @@ export default class DiagnosticTools extends React.Component {
   }
   render() {
     return (
-      <div
-        className="main container"
-        style={{ marginTop: '3.5em', minHeight: '600px' }}
-      >
+      <div className="main container" style={{ minHeight: '600px' }}>
         <DiagnosticForm />
       </div>
     );

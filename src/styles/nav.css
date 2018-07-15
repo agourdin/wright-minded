@@ -8,6 +8,7 @@
 
 .navbar {
   background-color: var(--wm-white);
+  z-index: 999 !important;
 }
 
 /****************************

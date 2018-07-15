@@ -1,7 +1,6 @@
 import React from 'react';
 
 import Content from './resources/Content';
-import ResourcesSplash from './resources/content/ResourcesSplash';
 
 export default class Resources extends React.Component {
   componentDidMount() {
@@ -9,10 +8,8 @@ export default class Resources extends React.Component {
   }
   render() {
     return (
-      <div>
-        <Content>
-          <ResourcesSplash />
-        </Content>
+      <div className="resources hero is-fullheight">
+        <Content />
       </div>
     );
   }

@@ -9,7 +9,6 @@ export const confirmPasswordReset = (
   token
 ) => {
   return (dispatch, getState) => {
-    // const { uid, token } = props.match.params;
     let headers = { 'Content-Type': 'application/json' };
     let body = JSON.stringify({ new_password1, new_password2, uid, token });
     let url = SERVER_URL + API_AUTH_CONFIRM_PASSWORD_RESET;

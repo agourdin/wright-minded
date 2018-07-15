@@ -6,7 +6,7 @@ class RatesAndServices extends React.Component {
   }
   render() {
     return (
-      <div>
+      <div className="hero is-fullheight">
         <p>This is the Rates & Services page</p>
       </div>
     );

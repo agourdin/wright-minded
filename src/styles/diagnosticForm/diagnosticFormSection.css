@@ -1,17 +1,74 @@
 /****************************
+    SECTION FORMATTING
+*****************************/
+
+.diagnosticFormSection {
+  padding-left: 5em;
+  padding-right: 5em;
+}
+
+.diagnosticFormSection .hero-body {
+  flex-direction: column !important;
+  padding-bottom: 0;
+}
+
+.diagnosticFormSection .section {
+  width: 100%;
+  padding: 0.5em 2em 0.75em 2em;
+}
+
+.diagnosticFormSection .section .Reading {
+}
+
+/****************************
+   TEST & SECTION TITLES
+*****************************/
+
+.diagnosticFormSection .test-title {
+  /* background-color: var(--wm-dark-grey); */
+  /* color: var(--wm-white); */
+  text-align: center;
+  font-size: 1.5em;
+  font-weight: 800;
+  padding: 0.25em;
+}
+
+.diagnosticFormSection .section .section-title {
+  /* background-color: var(--wm-red); */
+  text-align: center;
+  font-size: 2em;
+  font-weight: 800;
+  padding: 0.25em;
+}
+
+.diagnosticFormSection .section .Reading .section-title {
+  color: var(--wm-red);
+}
+
+/****************************
    ANSWER SECTION & ROWS
 *****************************/
 
+.diagnosticFormSection form {
+  display: flex !important;
+  flex-direction: column;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
 .answer-grid {
-  height: 300px;
+  height: 425px;
   width: 75%;
   display: flex;
   flex-flow: column wrap;
+  align-items: center;
+  margin: auto !important;
 }
 
 .question-row {
   display: flex;
   flex-flow: row wrap;
+  justify-content: center;
   border-radius: 5em !important;
   padding-left: 0.5em !important;
   padding-right: 0.6em !important;
@@ -28,6 +85,12 @@
 .gridin-row {
   display: flex;
   flex-flow: row wrap;
+}
+
+.diagnosticFormSection .row-number {
+  margin-right: 0.2em;
+  text-align: center;
+  width: 1.5em;
 }
 
 /****************************

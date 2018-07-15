@@ -3,6 +3,8 @@ import onClickOutside from 'react-onclickoutside';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown, faAngleUp } from '@fortawesome/pro-regular-svg-icons';
 
+import Collapse from '@material-ui/core/Collapse';
+
 class Dropdown extends React.Component {
   handleClickOutside(event) {
     this.props.handleClickOutside();
@@ -63,21 +65,49 @@ class Dropdown extends React.Component {
               icon={listOpen ? faAngleUp : faAngleDown}
             />
           </div>
-          {listOpen && (
-            <ul className="option-list">
-              {list.map(test => (
-                <li
+        </div>
+        <Collapse
+          in={listOpen}
+          timeout={200}
+          mountOnEnter
+          unmountOnExit
+          style={{
+            position: 'absolute',
+            zIndex: '30',
+            width: '13em',
+            cursor: 'pointer',
+            fontSize: '1.25em',
+            fontWeight: '600',
+            border: '1px solid',
+            borderColor: 'var(--wm-grey)',
+            borderTop: 'none',
+            borderBottomLeftRadius: '0.2em',
+            borderBottomRightRadius: '0.2em',
+            maxHeight: '325px',
+            overflowY: 'auto',
+            marginBottom: 'auto',
+            marginLeft: '0',
+            marginTop: '0',
+            marginRight: 'auto',
+            marginLeft: 'auto',
+            backgroundColor: 'var(--wm-white)',
+            boxShadow: '0px 1px 5px var(--wm-light-grey)'
+          }}
+        >
+          <div className="selectList">
+            {list &&
+              list.map(test => (
+                <option
                   className="option-item"
                   key={test.id}
                   value={test.id}
                   onClick={this.props.handleClick}
                 >
                   {test.test_name}
-                </li>
+                </option>
               ))}
-            </ul>
-          )}
-        </div>
+          </div>
+        </Collapse>
       </div>
     );
   }

@@ -4,6 +4,7 @@
 
 ## **Current**
 
+* **FRONTEND** // Start to formalize design language (look at test selection screen for some good examples)
 * **FRONTEND** // Fix ordering of Question Types and Question Type Groups (after Mike has finished question type revamp)
 * **FRONTEND** // [Write full suite of tests for current components](https://www.robinwieruch.de/react-testing-tutorial/)
 
@@ -23,13 +24,18 @@
         * [React-device-detect](https://www.npmjs.com/package/react-device-detect)
     * Video archive
       * Research YouTube API for potential ways of automatically generating playlist based on channel content
-  * Redux
-    * Implement full integration
-      * [Explore react-connected-router](https://github.com/supasate/connected-react-router)
-  * Data Fetching
-    * [Read this article for more info](https://www.robinwieruch.de/react-fetching-data/)
+    * Refactor Nav to be more sensible, clean, and organized
+    * Add document.title calls to every view
+  * Animations
+    * Sensible, clean, unobtrusive animations throughout (should guide users intuitively)
+  * Routing
+    * Create a catch all route:
+      * `<Route render={() => <div>Not Found</div>} />`
+    * [Read/watch this article/video on programmatic routing](https://tylermcginnis.com/react-router-programmatically-navigate/)
   * Organization
     * Clean up inline styles where possible
+  * Maintenance
+    * Add propTypes to all components
   * Accessibility
     * Research standards and implement
 * **Testing**
@@ -46,17 +52,11 @@
 #### **_BACKEND_**
 
 * **Implementation**
-  * Models
-    * Authorization
-  * Views
-    * Authorization
-  * Serializers
-    * Authorization
+  * Models \*
+  * Views \*
+  * Serializers \*
 * **Testing**
-  * Views
-    * Authorization
-    * SAT Score Conversion
-      * New tests for generic ListAPIView
+  * Views \*
 * **Bug Fixes**
 
 #### **_DEPLOYMENT_**
@@ -87,6 +87,9 @@
 * 2018.07.04 - **BACKEND** // [Implement first-pass user authorization](http://v1k45.com/blog/modern-django-part-4-adding-authentication-to-react-spa-using-drf/)
 * 2018.07.04 - **FRONTEND** // Write a diagnostic_in_progress Redux flag
 * 2018.07.06 - **BACKEND** // Write Question Type Group Test -> Model -> Serializer -> View
-* 2018.07.10 - **FRONTEND** // Implement SAT Results with formatting
+* 2018.07.10 - **FRONTEND** // **Implement SAT Results with formatting**
 * 2018.07.10 - **FRONTEND** // Integrate Redux with React-Router
 * 2018.07.11 - **FRONTEND** // Implement print formatting
+* 2018.07.11 - **FRONTEND** // Implement custom test select dropdown
+* 2018.07.14 - **FRONTEND** // **Implement user registration, authorization, authentication, and password reset flows (along with basic formatting)**
+* 2018.07.14 - **FRONTEND** // Implement some basic UI transitions at page-level and component-level

@@ -14,10 +14,7 @@ export const login = (username, password) => {
       headers: headers
     })
       .then(res => {
-        console.log('firing');
         if (res.status < 500) {
-          console.log(res);
-          console.log({ status: res.status, data: res.data });
           return { status: res.status, data: res.data };
         } else {
           console.log('Server Error!');

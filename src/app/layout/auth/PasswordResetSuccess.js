@@ -5,8 +5,6 @@ import { bindActionCreators } from 'redux';
 
 import { Link, Redirect } from 'react-router-dom';
 
-import { resetPassword } from '../../../redux/actions/auth/resetPassword';
-
 class PasswordResetSuccess extends Component {
   render() {
     if (this.props.isAuthenticated) {
@@ -14,7 +12,7 @@ class PasswordResetSuccess extends Component {
     }
     return (
       <div className="login hero is-fullheight">
-        Congratulations! Your password has been successfully reset!
+        Congratulations, your password has been successfully reset!
         <Link to="/login">Click here to log in again</Link>
       </div>
     );
@@ -38,7 +36,6 @@ const mapStateToProps = state => {
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(
     {
-      resetPassword: resetPassword,
       push: push
     },
     dispatch
