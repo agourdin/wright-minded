@@ -87,6 +87,37 @@ Instead of using component, use the render prop. render accepts a functional com
 
 So to recap, if you need to pass a prop to a component being rendered by React Router, instead of using Routes component prop, use its render prop passing it an inline function then pass along the arguments to the element you’re creating.
 
+### **Redux**
+
+#### Boilerplate
+
+```
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import [action] from './path/to/action';
+
+(...)
+
+// BOILERPLATE
+function mapStateToProps(state) {
+  return {
+    [name for prop]: [state.____]
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(
+    {
+      [action name for props]: [action]
+    },
+    dispatch
+  );
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)([COMPONENT]);
+```
+
 ---
 
 ## **> T**

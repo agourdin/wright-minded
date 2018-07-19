@@ -3,6 +3,9 @@
 /build
 /staticfiles
 /.vscode
+/stubs
+/src_dep_0
+/src_dep_00
 
 *.pyc
 *.sqlite3

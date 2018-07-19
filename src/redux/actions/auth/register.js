@@ -6,10 +6,16 @@ import {
 import { SERVER_URL, API_AUTH_REGISTER } from '../urls';
 import axios from 'axios';
 
-export function register(username, email, password) {
+export function register(username, email, password, first_name, last_name) {
   return (dispatch, getState) => {
     let headers = { 'Content-Type': 'application/json' };
-    let body = JSON.stringify({ username, email, password });
+    let body = JSON.stringify({
+      username,
+      email,
+      password,
+      first_name,
+      last_name
+    });
     let url = SERVER_URL + API_AUTH_REGISTER;
     return axios({
       method: 'post',

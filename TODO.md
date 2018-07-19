@@ -29,10 +29,13 @@
   * Animations
     * Sensible, clean, unobtrusive animations throughout (should guide users intuitively)
   * Routing
+    * [Code split routes and components](https://github.com/jamiebuilds/react-loadable)
+      * [More in-depth info](https://tylermcginnis.com/react-router-code-splitting/)
     * Create a catch all route:
       * `<Route render={() => <div>Not Found</div>} />`
     * [Read/watch this article/video on programmatic routing](https://tylermcginnis.com/react-router-programmatically-navigate/)
   * Organization
+    * [Convert presentational components to FSCs](https://javascriptplayground.com/functional-stateless-components-react/)
     * Clean up inline styles where possible
   * Maintenance
     * Add propTypes to all components

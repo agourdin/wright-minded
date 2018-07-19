@@ -32,7 +32,6 @@ export const logout = () => {
       })
       .then(res => {
         if (res.status === 204) {
-          console.log('Res.status = 204');
           dispatch({ type: LOGOUT_SUCCESSFUL });
           return res.data;
         } else if (res.status === 403 || res.status === 401) {

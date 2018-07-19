@@ -1,29 +1,37 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { withRouter } from 'react-router';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-import './bulma/css/bulma.css';
-import './styles/all-styles.css';
-import './fontawesome-all.js';
+// Actions
+import loadUser from 'redux/actions/auth/load_user';
 
-import { loadUser } from './redux/actions/auth/load_user';
+// Components
+import Main from 'app/main/Main';
+import User from 'app/user/User';
 
-import Layout from './app/Layout';
-
-class App extends Component {
+export class App extends React.Component {
   componentDidMount() {
-    // API Compliant: ✔
-    // Redux Aligned: ✔
-    // Tested: WARNING
     this.props.loadUser();
   }
-
   render() {
-    return <Layout />;
+    if (this.props.auth.isAuthenticated) {
+      return (
+        <Router>
+          <Route path="/" component={User} />
+        </Router>
+      );
+    } else {
+      return (
+        <Router>
+          <Route path="/" component={Main} />
+        </Router>
+      );
+    }
   }
 }
 
+// BOILERPLATE
 function mapStateToProps(state) {
   return {
     auth: state.auth
@@ -39,4 +47,4 @@ function mapDispatchToProps(dispatch) {
   );
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
+export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -45,3 +45,5 @@ export const loadUser = () => {
     );
   };
 };
+
+export default loadUser;

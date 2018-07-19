@@ -26,12 +26,12 @@
   width: 100%;
   height: 3em;
   padding: 1em;
-  border: 1px solid var(--wm-blue);
+  border: 1px solid var(--blue);
 }
 
 .login .control-group .controls input:focus {
   outline: 2px solid;
-  outline-color: var(--wm-blue);
+  outline-color: var(--blue);
 }
 
 .login .button-group {
@@ -41,23 +41,23 @@
 .login .button-group .button {
   height: 2.5em;
   width: 100%;
-  color: var(--wm-white);
+  color: var(--white);
   font-size: 1.1em;
   font-weight: 600;
   border-color: transparent;
-  background-color: var(--wm-blue);
+  background-color: var(--blue);
   transition: all 100ms;
 }
 .login .button-group .button:hover {
-  color: var(--wm-black);
-  background-color: var(--wm-yellow);
+  color: var(--black);
+  background-color: var(--yellow);
 }
 .login .button-group .button.disabled {
-  background-color: var(--wm-blue-light);
+  background-color: var(--blue-light);
   cursor: default;
 }
 .login .button-group .button.disabled:hover {
-  color: var(--wm-white);
+  color: var(--white);
 }
 
 .login .columns {
@@ -67,14 +67,14 @@
   margin-top: 2em;
 }
 .login .columns .column {
-  color: var(--wm-blue);
+  color: var(--blue);
   font-size: 1.1em;
   font-weight: 600;
   padding: 0;
   transition: all 100ms;
 }
 .login .columns .column a:hover {
-  color: var(--wm-blue);
+  color: var(--blue);
 }
 .login .columns .forgot-password {
   text-align: right;
@@ -83,8 +83,8 @@
 .login .bad-login {
   margin-bottom: 1em;
   padding: 0.75em;
-  background-color: var(--wm-light-grey);
-  border-left: 4px solid var(--wm-red);
+  background-color: var(--light-grey);
+  border-left: 4px solid var(--red);
   font-size: 1em;
   border-top-right-radius: 0.2em;
   border-bottom-right-radius: 0.2em;

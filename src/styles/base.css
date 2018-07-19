@@ -2,24 +2,24 @@
 @import url('https://fonts.googleapis.com/css?family=Space+Mono:400,700');
 
 :root {
-  --wm-black: #2a2a2a;
-  --wm-white: #fdfdfd;
-  --wm-grey: #bbbbbb;
-  --wm-dark-grey: #434343;
-  --wm-light-grey: #efefef;
-  --wm-lighter-grey: #f8f8f8;
-  --wm-green: #00a878;
-  --wm-green-dark: #00694b;
-  --wm-green-light: #9fdecc;
-  --wm-red: #ff6f59;
-  --wm-red-dark: #9f4538;
-  --wm-red-light: #ffc9c1;
-  --wm-blue: #4d9de0;
-  --wm-blue-light: #bcdaf3;
-  --wm-blue-dark: #30628c;
-  --wm-blue-medium-light: #63a9e4;
-  --wm-yellow: #f3de2c;
-  --wm-yellow-dark: #f5bb00;
+  --black: #2a2a2a;
+  --white: #fdfdfd;
+  --grey: #bbbbbb;
+  --dark-grey: #434343;
+  --light-grey: #efefef;
+  --lighter-grey: #f8f8f8;
+  --green: #00a878;
+  --green-dark: #00694b;
+  --green-light: #9fdecc;
+  --red: #ff6f59;
+  --red-dark: #9f4538;
+  --red-light: #ffc9c1;
+  --blue: #4d9de0;
+  --blue-light: #bcdaf3;
+  --blue-dark: #30628c;
+  --blue-medium-light: #63a9e4;
+  --yellow: #f3de2c;
+  --yellow-dark: #f5bb00;
 }
 
 * {
@@ -27,7 +27,7 @@
 }
 
 html {
-  background-color: var(--wm-white);
+  background-color: var(--white);
 }
 
 ::-webkit-scrollbar {
@@ -37,8 +37,58 @@ html {
   border-radius: 0.2em;
 }
 ::-webkit-scrollbar-thumb {
-  background-color: var(--wm-grey);
+  background-color: var(--grey);
   border-radius: 0.2em;
+}
+
+/*************************************
+
+            TEXT STYLES
+
+*************************************/
+
+/********************
+       STYLE
+********************/
+
+.has-text-bold {
+  font-weight: 800 !important;
+}
+
+.has-text-semibold {
+  font-weight: 600 !important;
+}
+
+/********************
+       COLOR
+********************/
+
+.has-text-black {
+  color: var(--black) !important;
+}
+
+.has-text-dark-grey {
+  color: var(--dark-grey) !important;
+}
+
+.has-text-grey {
+  color: var(--grey) !important;
+}
+
+.has-text-red {
+  color: var(--red) !important;
+}
+
+.has-text-blue {
+  color: var(--blue) !important;
+}
+
+.has-text-green {
+  color: var(--green) !important;
+}
+
+.has-text-yellow {
+  color: var(--yellow-dark) !important;
 }
 
 /*************************************

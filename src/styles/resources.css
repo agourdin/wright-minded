@@ -36,7 +36,7 @@
 }
 
 .resources-splash .resource-select:hover {
-  background-color: var(--wm-yellow-dark);
+  box-shadow: 0 0 3px var(--wm-yellow-dark);
 }
 
 .resources-splash .description {
