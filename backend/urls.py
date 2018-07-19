@@ -40,7 +40,7 @@ urlpatterns = [
     path(
         'v0.1/auth/user',
         views.UserAPI.as_view(),
-        name='get_user'),
+        name='get_update_user'),
 
 
     # TESTS

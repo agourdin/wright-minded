@@ -17,7 +17,7 @@ from django.contrib.auth.models import AnonymousUser, User
 # Initialize the APIClient app
 client = APIClient()
 
-class RegistrationTest(APITestCase):
+class ChangePasswordTest(APITestCase):
     """ Test module for POST to login API """
 
     def setUp(self):

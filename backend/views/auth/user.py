@@ -7,7 +7,7 @@ from knox.models import AuthToken
 
 from ...serializers import UserSerializer
 
-class UserAPI(generics.RetrieveAPIView):
+class UserAPI(generics.RetrieveUpdateAPIView):
     permission_classes = [permissions.IsAuthenticated, ]
     serializer_class = UserSerializer
 

@@ -16,13 +16,15 @@ from django.contrib.auth.models import AnonymousUser, User
 client = APIClient()
 
 class RegistrationTest(APITestCase):
-    """ Test module for POST to login API """
+    """ Test module for POST to registration API """
 
     def setUp(self):
         self.valid_payload = {
             "username": "todd",
             "email": "todd@example.com",
-            "password": "todd12345"
+            "password": "todd12345",
+            "first_name": "Todd",
+            "last_name": "Toddson"
         }
         self.invalid_payload = {
             "username": "poop",
