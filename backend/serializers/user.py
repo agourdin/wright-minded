@@ -43,7 +43,7 @@ class LoginUserSerializer(serializers.Serializer):
         user = authenticate(**data)
         if user and user.is_active:
             return user
-        raise serializers.ValidationError("Your username and password don't match, please try again.")
+        raise serializers.ValidationError("Your email address and password don't match, please try again.")
 
 
 class ChangePasswordSerializer(serializers.Serializer):

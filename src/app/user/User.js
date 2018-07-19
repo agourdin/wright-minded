@@ -1,28 +1,31 @@
-import React, { Component } from 'react';
-import { Route, Switch, Link } from 'react-router-dom';
-import Fade from '@material-ui/core/Fade';
+import React from 'react';
+import { Route, Switch, Link, Redirect } from 'react-router-dom';
 
 //// Components
 // Common
-import Nav from 'common/navigation/userNav/Nav';
+import UserNav from 'common/navigation/UserNav';
 import Footer from 'common/footer/Footer';
 import NotFound from 'common/notFound/NotFound';
 // User
-import UserHome from './userHome/UserHome';
-import UserDashboard from './userDashboard/UserDashboard';
-import UserProfile from './userProfile/UserProfile';
+import UserHome from './home/UserHome';
+import UserDashboard from './dashboard/UserDashboard';
+import UserProfile from './profile/UserProfile';
 
-export const User = () => {
+function User() {
   return (
     <div>
-      <Nav />
-      <Route exact path="/" component={UserHome} />
-      <Route exact path="/dashboard" component={UserDashboard} />
-      <Route exact path="/profile" component={UserProfile} />
-      <Route component={NotFound} />
+      <UserNav />
+      <Switch>
+        <Redirect from="/login" to="/" />
+        <Redirect from="/register" to="/" />
+        <Route exact path="/" component={UserHome} />
+        <Route exact path="/dashboard" component={UserDashboard} />
+        <Route exact path="/profile" component={UserProfile} />
+        <Route component={NotFound} />
+      </Switch>
       <Footer />
     </div>
   );
-};
+}
 
 export default User;

@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Route, Switch, Link } from 'react-router-dom';
 
-//// Components
 // Common
-import Nav from 'common/navigation/mainNav/Nav';
+import MainNav from 'common/navigation/MainNav';
 import Footer from 'common/footer/Footer';
+import DiagnosticForm from 'common/testDiagnostics/DiagnosticForm';
 // Auth
 import Login from './auth/Login';
 import Register from './auth/Register';
@@ -20,10 +20,10 @@ import RatesAndServices from './ratesAndServices/RatesAndServices';
 import Resources from './resources/Resources';
 import NotFound from 'common/notFound/NotFound';
 
-export const Main = () => {
+function Main() {
   return (
     <div>
-      <Nav />
+      <MainNav />
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/login" component={Login} />
@@ -51,9 +51,7 @@ export const Main = () => {
         <Route
           exact
           path="/resources/diagnostic-tools"
-          component={() => (
-            <div style={{ marginTop: '5em' }}>Diagnostic Tools</div>
-          )}
+          component={DiagnosticForm}
         />
         <Route
           exact
@@ -68,6 +66,6 @@ export const Main = () => {
       <Footer />
     </div>
   );
-};
+}
 
 export default Main;

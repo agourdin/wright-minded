@@ -1,6 +1,6 @@
 import React from 'react';
 
-import DiagnosticForm from './diagnosticTools/DiagnosticForm';
+import DiagnosticForm from 'app/common/testDiagnostics/DiagnosticForm';
 
 export default class DiagnosticTools extends React.Component {
   componentDidMount() {

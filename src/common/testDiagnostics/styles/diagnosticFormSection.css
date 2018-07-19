@@ -1,0 +1,130 @@
+/****************************
+    SECTION FORMATTING
+*****************************/
+
+.diagnosticFormSection {
+  padding-left: 5em;
+  padding-right: 5em;
+}
+
+.diagnosticFormSection .hero-body {
+  flex-direction: column !important;
+  padding-bottom: 0;
+}
+
+.diagnosticFormSection .section {
+  width: 100%;
+  padding: 0.5em 2em 0.75em 2em;
+}
+
+.diagnosticFormSection .section .Reading {
+}
+
+/****************************
+   TEST & SECTION TITLES
+*****************************/
+
+.diagnosticFormSection .test-title {
+  /* background-color: var(--dark-grey); */
+  /* color: var(--white); */
+  text-align: center;
+  font-size: 1.5em;
+  font-weight: 800;
+  padding: 0.25em;
+}
+
+.diagnosticFormSection .section .section-title {
+  /* background-color: var(--red); */
+  text-align: center;
+  font-size: 2em;
+  font-weight: 800;
+  padding: 0.25em;
+}
+
+.diagnosticFormSection .section .Reading .section-title {
+  color: var(--red);
+}
+
+/****************************
+   ANSWER SECTION & ROWS
+*****************************/
+
+.diagnosticFormSection form {
+  display: flex !important;
+  flex-direction: column;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.answer-grid {
+  height: 425px;
+  width: 75%;
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  margin: auto !important;
+}
+
+.question-row {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  border-radius: 5em !important;
+  padding-left: 0.5em !important;
+  padding-right: 0.6em !important;
+  margin-left: 0.5em !important;
+  padding-top: 0.25em !important;
+  padding-bottom: 0.25em !important;
+  /* transition: all 100ms ease !important; */
+}
+
+.question-row.is-active {
+  background-color: var(--yellow);
+}
+
+.gridin-row {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.diagnosticFormSection .row-number {
+  margin-right: 0.2em;
+  text-align: center;
+  width: 1.5em;
+}
+
+/****************************
+   BUBBLES & GRID-IN BOXES
+*****************************/
+
+.bubble.button.is-rounded {
+  font-size: 0.65em !important;
+  width: 2em !important;
+  margin-right: 0.3em !important;
+}
+
+.bubble.button.is-rounded.is-active {
+  background-color: var(--blue-light);
+  border-color: var(--blue);
+}
+
+.box.button {
+  border: 0.1em solid lightgrey !important;
+  border-radius: 0em !important;
+  border-top-width: 0em !important;
+  box-shadow: none !important;
+  font-size: 0.75em !important;
+  width: 2.15em !important;
+  height: 2em !important;
+  margin-right: -0.1em !important;
+  margin-bottom: 0em !important;
+  padding: 0em !important;
+  padding-top: 0.2em !important;
+  color: transparent;
+  text-shadow: 0 0 0 black;
+  /* transition: all 100ms ease !important; */
+}
+
+.box.button.is-active {
+  background-color: lightgrey !important;
+}

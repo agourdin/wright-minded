@@ -4,12 +4,14 @@ import { bindActionCreators } from 'redux';
 
 import { Link, Redirect } from 'react-router-dom';
 
-import { register } from 'redux/actions/auth/register';
+import './styles/register.css';
+
+import { register } from './duck/actions';
 
 class Register extends Component {
   state = {
-    name: '',
-    username: '',
+    first_name: '',
+    last_name: '',
     email: '',
     password: '',
     password2: '',
@@ -23,11 +25,13 @@ class Register extends Component {
 
   onSubmit = e => {
     e.preventDefault();
-    var username = this.state.username;
-    var email = this.state.email;
-    var password = this.state.password;
+    let first_name = this.state.first_name;
+    let last_name = this.state.last_name;
+    let username = this.state.email;
+    let email = this.state.email;
+    let password = this.state.password;
     if (this.state.password === this.state.password2) {
-      this.props.register(username, email, password);
+      this.props.register(username, email, password, first_name, last_name);
     } else {
       this.setState({ passwordError: true });
     }
@@ -55,7 +59,8 @@ class Register extends Component {
     //   non_field_error = null;
     // }
     if (
-      !this.state.username ||
+      !this.state.first_name ||
+      !this.state.last_name ||
       !this.state.email ||
       !this.state.password ||
       !this.state.password2
@@ -72,64 +77,67 @@ class Register extends Component {
       <div className="register hero is-fullheight">
         <form className="register-form" onSubmit={this.onSubmit}>
           <div className="form">
-            {/* <div className="control-group name">
-              <label htmlFor="name">Your name</label>
-              <div className="controls">
-                <input
-                  type="name"
-                  id="register_name"
-                  ref={input => {
-                    this.usernameField = input;
-                  }}
-                  placeholder="We use this to help customize the site for you."
-                  onChange={e =>
-                    this.setState({
-                      name: e.target.value
-                    })
-                  }
-                />
-              </div>
-            </div> */}
             <div className="columns">
-              <div className="username column">
+              <div className="first-name column">
                 <div className="control-group username">
-                  <label htmlFor="username">Username</label>
+                  <label htmlFor="first_name">First name</label>
                   <div className="controls">
                     <input
                       type="text"
-                      id="register_username"
-                      placeholder="e.g. jsmith"
+                      id="register_first_name"
+                      placeholder="e.g. Jane"
                       ref={input => (this._input = input)}
                       onChange={e =>
-                        this.setState({ username: e.target.value })
+                        this.setState({ first_name: e.target.value })
                       }
                     />
                     <div className="error">
-                      {this.props.errors.find(e => e.field === 'username') &&
-                        'Username is already taken!'}
+                      {this.props.errors.find(e => e.field === 'first_name') &&
+                        'First name error!'}
                     </div>
                   </div>
                 </div>
               </div>
-              <div className="email column">
-                <div className="control-group email">
-                  <label htmlFor="email">Email address</label>
+              <div className="last-name column">
+                <div className="control-group username">
+                  <label htmlFor="last_name">Last name</label>
                   <div className="controls">
                     <input
                       type="text"
-                      id="register_email"
-                      placeholder="e.g. jsmith@example.com"
-                      onChange={e => this.setState({ email: e.target.value })}
+                      id="register_last_name"
+                      placeholder="e.g. Smith"
+                      onChange={e =>
+                        this.setState({ last_name: e.target.value })
+                      }
                     />
                     <div className="error">
-                      {this.props.errors.find(e => e.field === 'email') &&
-                        'Please enter a valid email address!'}
+                      {this.props.errors.find(e => e.field === 'last_name') &&
+                        'Last name error!'}
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-
+            <div className="control-group email">
+              <label htmlFor="email">Email address</label>
+              <div className="controls">
+                <input
+                  type="text"
+                  id="register_email"
+                  placeholder="e.g. jsmith@example.com"
+                  onChange={e =>
+                    this.setState({
+                      email: e.target.value,
+                      username: e.target.value
+                    })
+                  }
+                />
+                <div className="error">
+                  {this.props.errors.find(e => e.field === 'email') &&
+                    'Please enter a valid email address!'}
+                </div>
+              </div>
+            </div>
             <div className="control-group password">
               <label htmlFor="password">Password</label>
               <div className="controls">

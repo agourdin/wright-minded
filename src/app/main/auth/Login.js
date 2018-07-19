@@ -4,11 +4,13 @@ import { bindActionCreators } from 'redux';
 
 import { Link, Redirect } from 'react-router-dom';
 
-import { login } from 'redux/actions/auth/login';
+import './styles/login.css';
+
+import { login } from './duck/actions';
 
 class Login extends Component {
   state = {
-    username: '',
+    email: '',
     password: ''
   };
 
@@ -19,8 +21,7 @@ class Login extends Component {
 
   onSubmit = e => {
     e.preventDefault();
-    this.props.login(this.state.username, this.state.password);
-    this.props.history.push('/');
+    this.props.login(this.state.email, this.state.password);
   };
 
   render() {
@@ -39,7 +40,7 @@ class Login extends Component {
     } else {
       non_field_error = null;
     }
-    if (!this.state.username || !this.state.password) {
+    if (!this.state.email || !this.state.password) {
       var loginButton = <div className="button disabled">Login</div>;
     } else {
       loginButton = (
@@ -50,50 +51,54 @@ class Login extends Component {
     }
     return (
       <div className="login hero is-fullheight">
-        <form className="login-form" onSubmit={this.onSubmit}>
-          <div className="form">
-            <div>{non_field_error}</div>
-            <div className="control-group username">
-              <label htmlFor="username">Username</label>
-              <div className="controls">
-                <input
-                  type="text"
-                  id="login_username"
-                  ref={input => (this._input = input)}
-                  onChange={e => this.setState({ username: e.target.value })}
-                />
-                <div className="error">
-                  {this.props.errors.find(e => e.field === 'username') &&
-                    this.props.errors.find(e => e.field === 'username').message}
+        <div className="hero-body is-centered">
+          <form className="login-form" onSubmit={this.onSubmit}>
+            <div className="form">
+              <div>{non_field_error}</div>
+              <div className="control-group username">
+                <label htmlFor="username">Email address</label>
+                <div className="controls">
+                  <input
+                    type="text"
+                    id="login_username"
+                    ref={input => (this._input = input)}
+                    onChange={e => this.setState({ email: e.target.value })}
+                  />
+                  <div className="error">
+                    {this.props.errors.find(e => e.field === 'username') &&
+                      this.props.errors.find(e => e.field === 'username')
+                        .message}
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="control-group password">
-              <label htmlFor="password">Password</label>
-              <div className="controls">
-                <input
-                  type="password"
-                  id="login_password"
-                  onChange={e => this.setState({ password: e.target.value })}
-                />
-                <div className="error">
-                  {this.props.errors.find(e => e.field === 'password') &&
-                    this.props.errors.find(e => e.field === 'password').message}
+              <div className="control-group password">
+                <label htmlFor="password">Password</label>
+                <div className="controls">
+                  <input
+                    type="password"
+                    id="login_password"
+                    onChange={e => this.setState({ password: e.target.value })}
+                  />
+                  <div className="error">
+                    {this.props.errors.find(e => e.field === 'password') &&
+                      this.props.errors.find(e => e.field === 'password')
+                        .message}
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="button-group">{loginButton}</div>
+              <div className="button-group">{loginButton}</div>
 
-            <div className="columns">
-              <div className="column register">
-                <Link to="/register">Create an account</Link>
-              </div>
-              <div className="column forgot-password">
-                <Link to="/forgot-password">Forgot password</Link>
+              <div className="columns">
+                <div className="column register">
+                  <Link to="/register">Create an account</Link>
+                </div>
+                <div className="column forgot-password">
+                  <Link to="/forgot-password">Forgot password</Link>
+                </div>
               </div>
             </div>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
     );
   }
