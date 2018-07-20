@@ -170,8 +170,7 @@ class UserAnswerSerializer(serializers.ModelSerializer):
             'id',
             'user',
             'test',
-            'encoded_answer',
-            'encoder_string'
+            'answer'
         )
 
 class UserAnswerInfoSerializer(serializers.ModelSerializer):
@@ -184,8 +183,7 @@ class UserAnswerInfoSerializer(serializers.ModelSerializer):
             'id',
             'user',
             'test',
-            'encoded_answer',
-            'encoder_string'
+            'answer'
         )
 
 

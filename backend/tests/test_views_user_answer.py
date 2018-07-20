@@ -23,13 +23,11 @@ class GetAllUserAnswersTest(TestCase):
         self.UserAnswer1 = UserAnswer.objects.create(
             user=self.User1,
             test=self.Test1,
-            encoded_answer='A/!*B/!*C/!*D/!*B/!*C/!*D/!*D/!*B',
-            encoder_string='/!*')
+            answer='A/!*B/!*C/!*D/!*B/!*C/!*D/!*D/!*B')
         self.UserAnswer2 = UserAnswer.objects.create(
             user=self.User1,
             test=self.Test2,
-            encoded_answer='A/!*B/!*C/!*D/!*B/!*C/!*D/!*D/!*B',
-            encoder_string='/!*')
+            answer='A/!*B/!*C/!*D/!*B/!*C/!*D/!*D/!*B')
 
     def test_get_all_user_answers(self):
         # Get API response
@@ -53,13 +51,11 @@ class GetSingleUserAnswerTest(TestCase):
         self.UserAnswer1 = UserAnswer.objects.create(
             user=self.User1,
             test=self.Test1,
-            encoded_answer='A/!*B/!*C/!*D/!*B/!*C/!*D/!*D/!*B',
-            encoder_string='/!*')
+            answer='A/!*B/!*C/!*D/!*B/!*C/!*D/!*D/!*B')
         self.UserAnswer2 = UserAnswer.objects.create(
             user=self.User1,
             test=self.Test2,
-            encoded_answer='A/!*B/!*C/!*D/!*B/!*C/!*D/!*D/!*B',
-            encoder_string='/!*')
+            answer='A/!*B/!*C/!*D/!*B/!*C/!*D/!*D/!*B')
 
     def test_get_valid_single_user_answer(self):
         # Get API response
@@ -89,14 +85,12 @@ class CreateSingleUserAnswerTest(TestCase):
         self.valid_payload = {
             'user': self.User1.pk,
             'test': self.Test1.pk,
-            'encoded_answer': 'A/!*B/!*C/!*D/!*B/!*C/!*D/!*D/!*B',
-            'encoder_string': '/!*'
+            'answer': 'A/!*B/!*C/!*D/!*B/!*C/!*D/!*D/!*B'
         }
         self.invalid_payload = {
             'user': self.User1.pk,
             'test': 40,
-            'encoded_answer': 'A/!*B/!*C/!*D/!*B/!*C/!*D/!*D/!*B',
-            'encoder_string': '/!*'
+            'answer': 'A/!*B/!*C/!*D/!*B/!*C/!*D/!*D/!*B'
         }
 
     def test_create_valid_user_answer(self):
@@ -128,24 +122,20 @@ class UpdateSingleUserAnswerTest(TestCase):
         self.UserAnswer1 = UserAnswer.objects.create(
             user=self.User1,
             test=self.Test1,
-            encoded_answer='A/!*B/!*C/!*D/!*B/!*C/!*D/!*D/!*B',
-            encoder_string='/!*')
+            answer='A/!*B/!*C/!*D/!*B/!*C/!*D/!*D/!*B')
         self.UserAnswer2 = UserAnswer.objects.create(
             user=self.User1,
             test=self.Test2,
-            encoded_answer='A/!*B/!*C/!*D/!*B/!*C/!*D/!*D/!*B',
-            encoder_string='/!*')
+            answer='A/!*B/!*C/!*D/!*B/!*C/!*D/!*D/!*B')
         self.valid_payload = {
             'user': self.User1.pk,
             'test': self.Test1.pk,
-            'encoded_answer': 'A/!*B/!*C/!*D',
-            'encoder_string': '/!*'
+            'answer': 'A/!*B/!*C/!*D/!*B/!*C/!*D/!*D/!*B'
         }
         self.invalid_payload = {
             'user': self.User1.pk,
             'test': 40,
-            'encoded_answer': 'A/!*B/!*C/!*D/!*B/!*C/!*D/!*D/!*B',
-            'encoder_string': '/!*'
+            'answer': 'A/!*B/!*C/!*D/!*B/!*C/!*D/!*D/!*B'
         }
 
     def test_update_valid_user_answer(self):
@@ -177,13 +167,11 @@ class DeleteSingleUserAnswerTest(TestCase):
         self.UserAnswer1 = UserAnswer.objects.create(
             user=self.User1,
             test=self.Test1,
-            encoded_answer='A/!*B/!*C/!*D/!*B/!*C/!*D/!*D/!*B',
-            encoder_string='/!*')
+            answer='A/!*B/!*C/!*D/!*B/!*C/!*D/!*D/!*B')
         self.UserAnswer2 = UserAnswer.objects.create(
             user=self.User1,
             test=self.Test2,
-            encoded_answer='A/!*B/!*C/!*D/!*B/!*C/!*D/!*D/!*B',
-            encoder_string='/!*')
+            answer='A/!*B/!*C/!*D/!*B/!*C/!*D/!*D/!*B')
 
     def test_delete_valid_user_answer(self):
         response = client.delete(

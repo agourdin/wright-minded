@@ -129,14 +129,13 @@ class UserAnswer(models.Model):
     """
     user = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE)
     test = models.ForeignKey(Test, on_delete=models.CASCADE)
-    encoded_answer = models.TextField()
-    encoder_string = models.CharField(max_length=50)
+    answer = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     @property
-    def encoded_answer_short(self):
-        return truncatechars(self.encoded_answer, 100)
+    def answer_short(self):
+        return truncatechars(self.answer, 100)
 
     def __str__(self):
         return str(self.test) + ': ' + str(self.user)

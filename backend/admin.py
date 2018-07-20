@@ -9,11 +9,41 @@ from .models import (
     QuestionType,
     QuestionTypeGroup,
     UserAnswer,
-    SATScoreConversion
+    SATScoreConversion,
+    ClientProfile
 )
 
+@admin.register(ClientProfile)
+class ClientProfileAdmin(ImportExportModelAdmin):
+    list_display = (
+        'id',
+        'tutor',
+        'client_type',
+        'enrollment_status',
+        'pay_rate',
+        'purchased_hours',
+        'delivered_hours',
+        'focus_area_1',
+        'client_phone',
+        'parent_phone',
+        'parent_email',
+        'updated_at'
+    )
+    list_filter = (
+        'id',
+        'tutor',
+        'client_type',
+        'enrollment_status'
+    )
+    search_fields = (
+        'id',
+        'tutor',
+        'client_type',
+        'enrollment_status'
+        )
 
-# Register your models here.
+
+
 @admin.register(Test)
 class TestAdmin(ImportExportModelAdmin):
     list_display = (
@@ -77,8 +107,7 @@ class UserAnswerAdmin(ImportExportModelAdmin):
         'id',
         'user',
         'test',
-        'encoded_answer_short',
-        'encoder_string',
+        'answer_short',
         'created_at',
     )
     search_fields = ('user', 'test', )

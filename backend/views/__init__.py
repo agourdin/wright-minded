@@ -1,4 +1,5 @@
 from .auth import *
+from .user import *
 from .test import *
 from .test_answer import *
 from .test_type import *

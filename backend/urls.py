@@ -1,11 +1,13 @@
 from django.urls import path, re_path, include
 from django.views.generic import TemplateView
-from rest_framework import routers
+from rest_framework.routers import DefaultRouter
 
 from . import views
 
-urlpatterns = [
+router = DefaultRouter()
+router.register(r'v0.1/client_profiles', views.ClientProfileViewSet, base_name='client_profile')
 
+urlpatterns = [
 
     # AURTHORIZATION
     path('v0.1/auth', include('knox.urls')),
@@ -135,3 +137,5 @@ urlpatterns = [
         name='get_post_sat_score_conversions'),
 
 ]
+
+urlpatterns += router.urls

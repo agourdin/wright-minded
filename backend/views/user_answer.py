@@ -46,8 +46,7 @@ def get_post_user_answers(request):
         data = {
             'user': request.data.get('user'),
             'test': request.data.get('test'),
-            'encoded_answer': request.data.get('encoded_answer'),
-            'encoder_string': request.data.get('encoder_string')
+            'answer': request.data.get('answer')
         }
         serializer = UserAnswerSerializer(data=data)
         if serializer.is_valid():
