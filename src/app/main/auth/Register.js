@@ -144,6 +144,7 @@ class Register extends Component {
                 <input
                   type="password"
                   id="register_password"
+                  placeholder="e.g. bright red delicious apple"
                   onChange={e =>
                     this.setState({
                       password: e.target.value,
@@ -151,6 +152,10 @@ class Register extends Component {
                     })
                   }
                 />
+                <div className="help-text">
+                  Using a descriptive phrase (like: bright red delicious apple)
+                  is secure and easy to remember.
+                </div>
               </div>
             </div>
 

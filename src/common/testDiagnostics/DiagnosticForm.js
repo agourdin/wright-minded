@@ -9,6 +9,7 @@ import './styles/diagnosticForm.css';
 import TestSelector from './diagnosticForm/TestSelector';
 import DiagnosticFormSection from './diagnosticForm/DiagnosticFormSection';
 import SATResults from './diagnosticForm/SATResults';
+import ConfirmSubmit from './diagnosticForm/ConfirmSubmit';
 //DUCK
 import actions from './duck/actions';
 import operations from './duck/operations';
@@ -23,6 +24,7 @@ class DiagnosticForm extends React.Component {
       // Tested: WARNING
       cursor: 0,
       subCursor: 0,
+      confirmSubmit: false,
       encoder_string: '97e42aY9spjdQQ&',
       completedTest: []
     };
@@ -38,6 +40,9 @@ class DiagnosticForm extends React.Component {
     this.handleBubbleClick = this.handleBubbleClick.bind(this);
     this.handleGridInClick = this.handleGridInClick.bind(this);
     this.handleGridInChange = this.handleGridInChange.bind(this);
+    this.handleModalClick = this.handleModalClick.bind(this);
+    this.handleConfirmSubmit = this.handleConfirmSubmit.bind(this);
+    this.handleCancelSubmit = this.handleCancelSubmit.bind(this);
   }
 
   componentDidMount() {
@@ -213,12 +218,33 @@ class DiagnosticForm extends React.Component {
         this.props.setDiagnosticInProgressStatus(true); // REDUX DISPATCH - setDiagnosticInProgressStatus
         this.props.setStep(0);
       }
-    } else if (this.props.step < this.props.sections.length) {
+    } else if (this.props.step < this.props.sections.length * 1 - 1) {
       this.props.setStep(this.props.step * 1 + 1);
       this.setState({
         cursor: 0
       });
+    } else if (this.props.step === this.props.sections.length * 1 - 1) {
+      this.setState({
+        confirmSubmit: true
+      });
     }
+    event.preventDefault();
+  }
+
+  handleConfirmSubmit(event) {
+    this.props.setStep(this.props.step * 1 + 1);
+    event.preventDefault();
+  }
+
+  handleCancelSubmit(event) {
+    this.props.setStep(this.props.step);
+    this.setState({ confirmSubmit: false });
+    event.preventDefault();
+  }
+
+  handleModalClick(event) {
+    this.props.setStep(this.props.step);
+    this.setState({ confirmSubmit: false });
     event.preventDefault();
   }
 
@@ -405,6 +431,17 @@ class DiagnosticForm extends React.Component {
     // API Compliant: WARNING
     // Redux Aligned: WARNING
     // Tested: WARNING
+    var Confirm = <div />;
+    if (this.state.confirmSubmit) {
+      console.log('triggering confirm submit def');
+      Confirm = (
+        <ConfirmSubmit
+          handleModalClick={this.handleModalClick}
+          handleConfirmSubmit={this.handleConfirmSubmit}
+          handleCancelSubmit={this.handleCancelSubmit}
+        />
+      );
+    }
     if (this.props.step === -1) {
       return (
         <TestSelector
@@ -418,28 +455,34 @@ class DiagnosticForm extends React.Component {
       );
     } else if (this.props.step < this.props.sections.length) {
       return (
-        <DiagnosticFormSection
-          handleBubbleClick={this.handleBubbleClick}
-          handleGridInClick={this.handleGridInClick}
-          handleGridInChange={this.handleGridInChange}
-          handleKeyDown={this.handleKeyDown}
-          handleSubmit={this.handleSubmit}
-          handleBack={this.handleBack}
-          handleStartOver={this.handleStartOver}
-          step={this.props.step}
-          cursor={this.state.cursor}
-          subCursor={this.state.subCursor}
-          selectedTestName={this.props.selected_test_name}
-          selectedTestID={this.props.selected_test_id}
-          sections={this.props.sections}
-          sectionNames={this.props.section_names}
-        />
+        <div>
+          {Confirm}
+          <DiagnosticFormSection
+            handleBubbleClick={this.handleBubbleClick}
+            handleGridInClick={this.handleGridInClick}
+            handleGridInChange={this.handleGridInChange}
+            handleKeyDown={this.handleKeyDown}
+            handleSubmit={this.handleSubmit}
+            handleBack={this.handleBack}
+            handleStartOver={this.handleStartOver}
+            step={this.props.step}
+            cursor={this.state.cursor}
+            subCursor={this.state.subCursor}
+            selectedTestName={this.props.selected_test_name}
+            selectedTestID={this.props.selected_test_id}
+            sections={this.props.sections}
+            sectionNames={this.props.section_names}
+          />
+        </div>
       );
     } else {
       return (
         <SATResults
+          postUserAnswers={this.props.postUserAnswers}
+          user={this.props.auth.user}
           sections={this.props.sections}
           sectionNames={this.props.section_names}
+          selectedTestID={this.props.selected_test_id}
           selectedTestName={this.props.selected_test_name}
           conversionChart={this.props.conversion_chart}
         />

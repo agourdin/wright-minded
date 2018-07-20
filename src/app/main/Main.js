@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route, Switch, Link } from 'react-router-dom';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 // Common
 import MainNav from 'common/navigation/MainNav';
@@ -24,45 +25,60 @@ function Main() {
   return (
     <div>
       <MainNav />
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/register" component={Register} />
-        <Route exact path="/forgot-password" component={ForgotPassword} />
-        <Route
-          exact
-          path="/password-reset-sent"
-          component={PasswordResetSent}
-        />
-        <Route
-          exact
-          path="/reset/:uid/:token/"
-          component={ConfirmPasswordReset}
-        />
-        <Route
-          exact
-          path="/password-reset-successful"
-          component={PasswordResetSuccess}
-        />
-        <Route exact path="/who-i-am" component={WhoIAm} />
-        <Route exact path="/how-it-works" component={HowItWorks} />
-        <Route exact path="/rates-and-services" component={RatesAndServices} />
-        <Route exact path="/resources" component={Resources} />
-        <Route
-          exact
-          path="/resources/diagnostic-tools"
-          component={DiagnosticForm}
-        />
-        <Route
-          exact
-          path="/resources/video-courses"
-          component={() => (
-            <div style={{ marginTop: '5em' }}>Video Courses</div>
-          )}
-        />
-        <Route component={NotFound} />
-      </Switch>
-
+      <Route
+        render={({ location }) => (
+          <TransitionGroup>
+            <CSSTransition key={location.key} timeout={150} classNames="fade">
+              <Switch location={location}>
+                <Route exact path="/" component={Home} />
+                <Route exact path="/login" component={Login} />
+                <Route exact path="/register" component={Register} />
+                <Route
+                  exact
+                  path="/forgot-password"
+                  component={ForgotPassword}
+                />
+                <Route
+                  exact
+                  path="/password-reset-sent"
+                  component={PasswordResetSent}
+                />
+                <Route
+                  exact
+                  path="/reset/:uid/:token/"
+                  component={ConfirmPasswordReset}
+                />
+                <Route
+                  exact
+                  path="/password-reset-successful"
+                  component={PasswordResetSuccess}
+                />
+                <Route exact path="/who-i-am" component={WhoIAm} />
+                <Route exact path="/how-it-works" component={HowItWorks} />
+                <Route
+                  exact
+                  path="/rates-and-services"
+                  component={RatesAndServices}
+                />
+                <Route exact path="/resources" component={Resources} />
+                <Route
+                  exact
+                  path="/resources/diagnostic-tools"
+                  component={DiagnosticForm}
+                />
+                <Route
+                  exact
+                  path="/resources/video-courses"
+                  component={() => (
+                    <div style={{ marginTop: '5em' }}>Video Courses</div>
+                  )}
+                />
+                <Route component={NotFound} />
+              </Switch>
+            </CSSTransition>
+          </TransitionGroup>
+        )}
+      />
       <Footer />
     </div>
   );

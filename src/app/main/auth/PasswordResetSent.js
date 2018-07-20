@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 
 import { Link, Redirect } from 'react-router-dom';
 
-import { resetPassword } from 'redux/actions/auth/resetPassword';
+import { resetPassword } from './duck/actions';
 
 class PasswordResetSent extends Component {
   render() {

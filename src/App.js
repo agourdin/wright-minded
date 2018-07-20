@@ -3,9 +3,10 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Loadable from 'react-loadable';
+import uuidv4 from 'uuid/v4';
 
 // Actions
-import loadUser from 'redux/actions/auth/load_user';
+import { loadUser } from 'app/main/auth/duck/actions';
 
 // Components
 import Main from 'app/main/Main';
@@ -30,12 +31,15 @@ export class App extends React.Component {
         </Router>
       );
     } else {
-      return (
-        <Router>
-          <Route path="/" component={Main} />
-        </Router>
-      );
+      if (!localStorage.getItem('wmanon')) {
+        localStorage.setItem('wmanon', uuidv4());
+      }
     }
+    return (
+      <Router>
+        <Route path="/" component={Main} />
+      </Router>
+    );
   }
 }
 

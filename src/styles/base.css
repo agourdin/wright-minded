@@ -59,6 +59,14 @@ html {
   font-weight: 600 !important;
 }
 
+.has-text-thin {
+  font-weight: 300 !important;
+}
+
+.has-text-italic {
+  font-style: italic !important;
+}
+
 /********************
        COLOR
 ********************/
@@ -117,41 +125,4 @@ html {
 .fade-exit {
   opacity: 0;
   z-index: 1;
-}
-
-.fadeExtra-enter {
-  opacity: 0;
-  z-index: 1;
-}
-.fadeExtra-enter.fadeExtra-enter-active {
-  opacity: 1;
-  transition: opacity 2500ms ease-in;
-}
-.fadeExtra-enter.fadeExtra-exit-active {
-  opacity: 1;
-  transition: opacity 2500ms ease-in;
-}
-.fadeExtra-exit {
-  opacity: 0;
-  z-index: 1;
-}
-
-/********************
-      upAndIn
-********************/
-.upAndIn-appear,
-.upAndIn-enter {
-  transform: translateY(1000px);
-}
-.upAndIn-appear.upAndIn-appear-active,
-.upAndIn-enter.upAndIn-enter-active {
-  transform: translateY(0%);
-  transition: transform 250ms ease-in;
-}
-.upAndIn-enter.upAndIn-exit-active {
-  transform: translateY(0%);
-  transition: transform 250ms ease-in;
-}
-.upAndIn-exit {
-  transform: translateY(1000px);
 }

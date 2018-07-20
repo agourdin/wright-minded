@@ -6,7 +6,7 @@ import { bindActionCreators } from 'redux';
 
 import { Link, Redirect } from 'react-router-dom';
 
-import { confirmPasswordReset } from 'redux/actions/auth/confirmPasswordReset';
+import { confirmPasswordReset } from './duck/actions';
 
 class ConfirmPasswordReset extends Component {
   state = {

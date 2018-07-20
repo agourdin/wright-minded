@@ -53,7 +53,7 @@ export function logUserAnswer(step, question_num, user_answer) {
   };
 }
 
-export function postUserAnswers(user, test, encoded_answer, encoder_string) {
+export function postUserAnswers(user, test, answer) {
   return (dispatch, getState) => {
     const token = getState().auth.token;
     let headers = {
@@ -64,8 +64,7 @@ export function postUserAnswers(user, test, encoded_answer, encoder_string) {
       headers['Authorization'] = `Token ${token}`;
     }
     var url = urls.API_USER_ANSWERS;
-    var body = JSON.stringify({ user, test, encoded_answer, encoder_string });
-    console.log(body);
+    var body = JSON.stringify({ user, test, answer });
     return axios({
       method: 'post',
       url: url,

@@ -15,16 +15,28 @@ import aggregateTest from './satResults/aggregateTest';
 import calculateOverallScores from './satResults/calculateOverallScores';
 
 export default class SATResults extends React.Component {
+  componentDidMount() {
+    var scoredTest = scoreTest(this.props.sections);
+    var aggregatedTest = aggregateTest(scoredTest);
+    let user = null;
+    if (this.props.user) {
+      user = this.props.user.id;
+    }
+    this.props.postUserAnswers(
+      user,
+      this.props.selectedTestID,
+      JSON.stringify(aggregatedTest)
+    );
+  }
   render() {
     // TESTING
     // var selectedTestName = 'SAT Practice Test #1';
     // var scoredTest = scoreTest(_sections);
     // REAL
     var selectedTestName = this.props.selectedTestName;
-    var conversionChart = this.props.conversionChart;
     var scoredTest = scoreTest(this.props.sections);
-    // ALWAYS ON
     var aggregatedTest = aggregateTest(scoredTest);
+    var conversionChart = this.props.conversionChart;
     var overallScores = calculateOverallScores(aggregatedTest, conversionChart);
     return (
       <SATResultsLayout
@@ -51,21 +63,13 @@ export default class SATResults extends React.Component {
         //////////
         // REAL //
         //////////
-        reading={aggregateTest(scoreTest(this.props.sections)).find(
-          x => x.section === 'Reading'
-        )}
-        writing={aggregateTest(scoreTest(this.props.sections)).find(
-          x => x.section === 'Writing'
-        )}
-        mathNoCalc={aggregateTest(scoreTest(this.props.sections)).find(
+        reading={aggregatedTest.find(x => x.section === 'Reading')}
+        writing={aggregatedTest.find(x => x.section === 'Writing')}
+        mathNoCalc={aggregatedTest.find(
           x => x.section === 'Math No Calculator'
         )}
-        mathCalc={aggregateTest(scoreTest(this.props.sections)).find(
-          x => x.section === 'Math Calculator'
-        )}
-        mathCombined={aggregateTest(scoreTest(this.props.sections)).find(
-          x => x.section === 'Math Combined'
-        )}
+        mathCalc={aggregatedTest.find(x => x.section === 'Math Calculator')}
+        mathCombined={aggregatedTest.find(x => x.section === 'Math Combined')}
       />
     );
   }

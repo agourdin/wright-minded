@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route, Switch, Link, Redirect } from 'react-router-dom';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 //// Components
 // Common
@@ -15,14 +16,22 @@ function User() {
   return (
     <div>
       <UserNav />
-      <Switch>
-        <Redirect from="/login" to="/" />
-        <Redirect from="/register" to="/" />
-        <Route exact path="/" component={UserHome} />
-        <Route exact path="/dashboard" component={UserDashboard} />
-        <Route exact path="/profile" component={UserProfile} />
-        <Route component={NotFound} />
-      </Switch>
+      <Route
+        render={({ location }) => (
+          <TransitionGroup>
+            <CSSTransition key={location.key} timeout={100} classNames="fade">
+              <Switch location={location}>
+                <Redirect from="/login" to="/" />
+                <Redirect from="/register" to="/" />
+                <Route exact path="/" component={UserHome} />
+                <Route exact path="/dashboard" component={UserDashboard} />
+                <Route exact path="/profile" component={UserProfile} />
+                <Route component={NotFound} />
+              </Switch>
+            </CSSTransition>
+          </TransitionGroup>
+        )}
+      />
       <Footer />
     </div>
   );
