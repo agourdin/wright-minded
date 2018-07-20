@@ -13,7 +13,7 @@ from knox.models import AuthToken
 from django.contrib.auth.models import AnonymousUser, User
 
 from ...models import ClientProfile
-from ...serializers import ClientProfileSerializer, UserSerializer
+from ...serializers import ClientProfileSerializer, ClientProfileInfoSerializer, UserSerializer
 
 # Initialize the APIClient app
 client = APIClient()
@@ -144,7 +144,7 @@ class ClientProfileAPIViewTest(APITestCase):
         client.credentials(HTTP_AUTHORIZATION='Token ' + self.token)
         response = client.get(reverse('client_profile-list'))
         client_profiles = ClientProfile.objects.all()
-        serializer = ClientProfileSerializer(client_profiles, many=True)
+        serializer = ClientProfileInfoSerializer(client_profiles, many=True)
         self.assertEqual(response.data, serializer.data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
@@ -152,7 +152,7 @@ class ClientProfileAPIViewTest(APITestCase):
         client.credentials(HTTP_AUTHORIZATION='Token ' + self.token)
         response = client.get(reverse('client_profile-detail', kwargs={'pk': self.User.pk}))
         client_profile = ClientProfile.objects.get(pk=self.User.pk)
-        serializer = ClientProfileSerializer(client_profile)
+        serializer = ClientProfileInfoSerializer(client_profile)
         self.assertEqual(response.data, serializer.data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 

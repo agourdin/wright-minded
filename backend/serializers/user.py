@@ -4,18 +4,6 @@ from django.contrib.auth import authenticate
 
 from ..models import ClientProfile
 
-# class CreateUserSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = User
-#         fields = ('id', 'username', 'email', 'password')
-#         extra_kwargs = {'password': {'write_only': True}}
-#
-#     def create(self, validated_data):
-#         user = User.objects.create_user(validated_data['username'],
-#                                         validated_data['email'],
-#                                         validated_data['password'])
-#         return user
-
 class CreateUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
@@ -54,6 +42,13 @@ class ChangePasswordSerializer(serializers.Serializer):
 
 
 class ClientProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ClientProfile
+        fields = '__all__'
+
+class ClientProfileInfoSerializer(serializers.ModelSerializer):
+    id = UserSerializer(many=False)
+    tutor = UserSerializer(many=False)
     class Meta:
         model = ClientProfile
         fields = '__all__'
