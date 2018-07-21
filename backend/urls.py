@@ -6,6 +6,13 @@ from . import views
 
 router = DefaultRouter()
 router.register(r'v0.1/client_profiles', views.ClientProfileViewSet, base_name='client_profile')
+router.register(r'v0.1/tests', views.TestViewSet, base_name='test')
+router.register(r'v0.1/question_type_groups', views.QuestionTypeGroupViewSet, base_name='question_type_group')
+router.register(r'v0.1/question_types', views.QuestionTypeViewSet, base_name='question_type')
+router.register(r'v0.1/questions', views.QuestionViewSet, base_name='question')
+router.register(r'v0.1/sections', views.SectionViewSet, base_name='section')
+router.register(r'v0.1/test_types', views.TestTypeViewSet, base_name='test_type')
+router.register(r'v0.1/user_answers', views.UserAnswerViewSet, base_name='user_answer')
 
 urlpatterns = [
 
@@ -44,91 +51,24 @@ urlpatterns = [
         views.UserAPI.as_view(),
         name='get_update_user'),
 
-
-    # TESTS
-    ### NOTE: URLs must be in this order.
+    # CLIENT PROFILES WITH PARAM
     path(
-        'v0.1/tests/',
-        views.get_post_tests,
-        name='get_post_tests'),
+        'v0.1/client_profiles',
+        views.ClientProfileViewSet.as_view({'get': 'list'}),
+        name='client_profile_with_param'),
+
+    # GET AVAILABLE TESTS
     path(
         'v0.1/tests/available/',
         views.get_available_tests,
         name='get_available_tests'),
-    path(
-        'v0.1/tests/<pk>/',
-        views.get_delete_update_test,
-        name='get_delete_update_test'),
 
-    # TEST ANSWERS
-    path(
-        'v0.1/test_answers/',
-        views.get_test_answers,
-        name='get_test_answers'),
-    path(
-        'v0.1/test_answers/<pk>/',
-        views.get_test_answer,
-        name='get_test_answer'),
-
-    # TEST TYPE
-    path(
-        'v0.1/test_types/',
-        views.get_post_test_types,
-        name='get_post_test_types'),
-    path(
-        'v0.1/test_types/<pk>/',
-        views.get_delete_update_test_type,
-        name='get_delete_update_test_type'),
-
-    # SECTION
-    path(
-        'v0.1/sections/',
-        views.get_post_sections,
-        name='get_post_sections'),
-    path(
-        'v0.1/sections/<pk>/',
-        views.get_delete_update_section,
-        name='get_delete_update_section'),
-
-    # QUESTION TYPE GROUP
-    path(
-        'v0.1/question_type_groups/',
-        views.get_post_question_type_groups,
-        name='get_post_question_type_groups'),
-    path(
-        'v0.1/question_type_groups/<pk>/',
-        views.get_delete_update_question_type_group,
-        name='get_delete_update_question_type_group'),
-
-    # QUESTION TYPE
-    path(
-        'v0.1/question_types/',
-        views.get_post_question_types,
-        name='get_post_question_types'),
-    path(
-        'v0.1/question_types/<pk>/',
-        views.get_delete_update_question_type,
-        name='get_delete_update_question_type'),
-
-    # QUESTION
-    path(
-        'v0.1/questions/',
-        views.get_post_questions,
-        name='get_post_questions'),
-    path(
-        'v0.1/questions/<pk>/',
-        views.get_delete_update_question,
-        name='get_delete_update_question'),
 
     # USER ANSWER
     path(
-        'v0.1/user_answers/',
-        views.get_post_user_answers,
-        name='get_post_user_answers'),
-    path(
-        'v0.1/user_answers/<pk>/',
-        views.get_delete_update_user_answer,
-        name='get_delete_update_user_answer'),
+        'v0.1/user_answers',
+        views.UserAnswerViewSet.as_view({'get': 'list'}),
+        name='user_answers_with_param'),
 
     # SAT SCORE CONVERSION
     path(

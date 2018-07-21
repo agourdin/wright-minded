@@ -4,6 +4,7 @@
 
 ## **Current**
 
+* **BACKEND** // Refactor all tests and views to ViewSets
 * **FRONTEND** // Start to formalize design language (look at test selection screen for some good examples)
 * **FRONTEND** // Fix ordering of Question Types and Question Type Groups (after Mike has finished question type revamp)
 * **FRONTEND** // [Write full suite of tests for current components](https://www.robinwieruch.de/react-testing-tutorial/)

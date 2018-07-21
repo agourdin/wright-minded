@@ -28,34 +28,3 @@ class GetAllAvailableTestsTest(TestCase):
         serializer = AvailableTestsSerializer(tests, many=True)
         self.assertEqual(response.data, serializer.data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-
-
-class CreateAvailbleTestsTest(TestCase):
-    """ Test module for blocking POST to available tests API """
-
-    def setUp(self):
-        self.valid_payload = [
-            {
-                "id": 1,
-                "test_name": "SAT Practice Test #1",
-                "test_type": 1
-            },
-            {
-                "id": 2,
-                "test_name": "SAT Practice Test #2",
-                "test_type": 1
-            },
-            {
-                "id": 3,
-                "test_name": "SAT Practice Test #3",
-                "test_type": 1
-            }
-        ]
-
-    def test_cannot_create_test_answer(self):
-        response = client.post(
-            reverse('get_available_tests'),
-            data=json.dumps(self.valid_payload),
-            content_type='application/json'
-        )
-        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)

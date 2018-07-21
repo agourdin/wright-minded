@@ -1,7 +1,6 @@
 from .auth import *
 from .user import *
 from .test import *
-from .test_answer import *
 from .test_type import *
 from .section import *
 from .question_type_group import *

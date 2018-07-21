@@ -1,55 +1,25 @@
-from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from rest_framework import viewsets
 from rest_framework import status
+
+from .permissions import UserAnswerPermissions
 
 from ..models import UserAnswer
 from ..serializers import UserAnswerSerializer, UserAnswerInfoSerializer
 
+class UserAnswerViewSet(viewsets.ModelViewSet):
+    permission_classes = [UserAnswerPermissions, ]
 
-##### USER ANSWER ##############################################################
+    def get_serializer_class(self):
+        if self.action == 'list':
+            return UserAnswerInfoSerializer
+        if self.action == 'retrieve':
+            return UserAnswerInfoSerializer
+        return UserAnswerSerializer
 
-@api_view(['GET', 'DELETE', 'PUT'])
-def get_delete_update_user_answer(request, pk):
-    try:
-        user_answer = UserAnswer.objects.get(pk=pk)
-    except UserAnswer.DoesNotExist:
-        return Response(status=status.HTTP_404_NOT_FOUND)
-
-    # GET details of a single user answer
-    if request.method == 'GET':
-        serializer = UserAnswerInfoSerializer(user_answer)
-        return Response(serializer.data)
-
-    # DELETE a single user answer
-    elif request.method == 'DELETE':
-        user_answer.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
-
-    # UPDATE details of a single user answer
-    elif request.method == 'PUT':
-        serializer = UserAnswerSerializer(user_answer, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_204_NO_CONTENT)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
-@api_view(['GET', 'POST'])
-def get_post_user_answers(request):
-    # get all user answers
-    if request.method == 'GET':
-        user_answers = UserAnswer.objects.all()
-        serializer = UserAnswerInfoSerializer(user_answers, many=True)
-        return Response(serializer.data)
-    # insert a new record for a user answer
-    elif request.method == 'POST':
-        data = {
-            'user': request.data.get('user'),
-            'test': request.data.get('test'),
-            'answer': request.data.get('answer')
-        }
-        serializer = UserAnswerSerializer(data=data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    def get_queryset(self):
+        queryset = UserAnswer.objects.all()
+        userid = self.request.query_params.get('userid', None)
+        if userid is not None:
+            queryset = queryset.filter(user=userid)
+        return queryset

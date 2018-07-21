@@ -1,128 +1,119 @@
 import json
-import uuid
 from rest_framework import status
+from rest_framework.test import APIClient, APITestCase
 from django.test import TestCase, Client
 from django.urls import reverse
+
+from knox.models import AuthToken
+
+from django.contrib.auth.models import AnonymousUser, User
 
 from ..models import Section
 from ..serializers import SectionSerializer
 
 # Initialize the APIClient app
-client = Client()
+client = APIClient()
 
-class GetAllSectionsTest(TestCase):
-    """ Test module for GET all test types API """
+class GET_SectionViewTest(TestCase):
+    """ Test module for GET Section API """
 
     def setUp(self):
         self.Section1 = Section.objects.create(section_name='Section1')
         self.Section2 = Section.objects.create(section_name='Section2')
         self.Section3 = Section.objects.create(section_name='Section3')
 
-    def test_get_all_sections(self):
-        # Get API response
-        response = client.get(reverse('get_post_sections'))
-        # Get data from db
+    def test_get_all_question_type_groups(self):
+        response = self.client.get(reverse('section-list'))
         sections = Section.objects.all()
         serializer = SectionSerializer(sections, many=True)
         self.assertEqual(response.data, serializer.data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
-
-class GetSingleSectionTest(TestCase):
-    """ Test module for GET single test type API """
-
-    def setUp(self):
-        self.Section1 = Section.objects.create(section_name='Section1')
-        self.Section2 = Section.objects.create(section_name='Section2')
-        self.Section3 = Section.objects.create(section_name='Section3')
-
-    def test_get_valid_single_section(self):
-        # Get API response
-        response = client.get(
-            reverse('get_delete_update_section', kwargs={'pk': self.Section1.pk}))
+    def test_get_single_valid_section(self):
+        response = self.client.get(reverse('section-detail', kwargs={'pk': self.Section1.pk}))
         section = Section.objects.get(pk=self.Section1.pk)
         serializer = SectionSerializer(section)
         self.assertEqual(response.data, serializer.data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
-    def test_get_invalid_single_section(self):
-        # GET API response
-        response = client.get(
-            reverse('get_delete_update_section', kwargs={'pk': -5}))
+    def test_get_single_invalid_section(self):
+        response = self.client.get(reverse('section-detail', kwargs={'pk': 90123}))
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
 
 
-class CreateSingleSectionTest(TestCase):
-    """ Test module for inserting a new test type """
+class CREATE_UPDATE_DELETE_SectionViewTest(APITestCase):
+    """ Test module for POST, PUT, DELETE Section API """
 
     def setUp(self):
-        self.valid_payload = {
-            'section_name': 'SAT_2016'
+        self.User = User.objects.create_user(
+            username='test1',
+            email="test1@test.com",
+            password='old_password',
+            first_name='Test',
+            last_name='McTestson')
+        self.Superuser = User.objects.create_superuser(
+            username='test2',
+            email="test2@test.com",
+            password='old_password',
+            first_name='Test',
+            last_name='McTestson')
+        self.token = AuthToken.objects.create(self.Superuser)
+        self.Section1 = Section.objects.create(section_name='Section1')
+        self.Section2 = Section.objects.create(section_name='Section2')
+        self.valid_create_payload = {
+            'section_name': 'Reading'
+        }
+        self.valid_update_payload = {
+            'section_name': 'Writing'
         }
         self.invalid_payload = {
             'section_name': ''
         }
 
     def test_create_valid_section(self):
+        client.credentials(HTTP_AUTHORIZATION='Token ' + self.token)
         response = client.post(
-            reverse('get_post_sections'),
-            data=json.dumps(self.valid_payload),
+            reverse('section-list'),
+            data=json.dumps(self.valid_create_payload),
             content_type='application/json'
         )
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
     def test_create_invalid_section(self):
+        client.credentials(HTTP_AUTHORIZATION='Token ' + self.token)
         response = client.post(
-            reverse('get_post_sections'),
+            reverse('section-list'),
             data=json.dumps(self.invalid_payload),
             content_type='application/json'
         )
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
-
-class UpdateSingleSectionTest(TestCase):
-    """ Test module for updating an existing test record """
-
-    def setUp(self):
-        self.Section1 = Section.objects.create(section_name='Section1')
-        self.Section2 = Section.objects.create(section_name='Section2')
-        self.valid_payload = {
-            'section_name': 'SAT_2016'
-        }
-        self.invalid_payload = {
-            'section_name': ''
-        }
-
-    def test_update_valid_section(self):
-        response = client.put(
-            reverse('get_delete_update_section', kwargs={'pk': self.Section1.pk}),
-            data=json.dumps(self.valid_payload),
+    def test_valid_update_section(self):
+        client.credentials(HTTP_AUTHORIZATION='Token ' + self.token)
+        response = client.patch(
+            reverse('section-detail', kwargs={'pk': self.Section1.pk}),
+            data=json.dumps(self.valid_update_payload),
             content_type='application/json'
         )
-        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
 
-    def test_update_invalid_section(self):
-        response = client.put(
-            reverse('get_delete_update_section', kwargs={'pk': self.Section1.pk}),
+    def test_invalid_update_section(self):
+        client.credentials(HTTP_AUTHORIZATION='Token ' + self.token)
+        response = client.patch(
+            reverse('section-detail', kwargs={'pk': 123412341}),
             data=json.dumps(self.invalid_payload),
             content_type='application/json'
         )
-        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
-
-
-class DeleteSingleSectionTest(TestCase):
-    """ Test module for deleting an existing test record """
-
-    def setUp(self):
-        self.Section1 = Section.objects.create(section_name='Section1')
-        self.Section2 = Section.objects.create(section_name='Section2')
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
 
     def test_delete_valid_section(self):
+        client.credentials(HTTP_AUTHORIZATION='Token ' + self.token)
         response = client.delete(
-            reverse('get_delete_update_section', kwargs={'pk': self.Section1.pk}))
+            reverse('section-detail', kwargs={'pk': self.Section1.pk}))
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
 
     def test_delete_invalid_section(self):
+        client.credentials(HTTP_AUTHORIZATION='Token ' + self.token)
         response = client.delete(
-            reverse('get_delete_update_section', kwargs={'pk': -5}))
+            reverse('section-detail', kwargs={'pk': 123132515}))
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)

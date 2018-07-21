@@ -1,6 +1,8 @@
 from django.contrib import admin
 from import_export.admin import ImportExportModelAdmin
 
+from django.contrib.auth.models import User
+
 from .models import (
     Test,
     TestType,
@@ -16,7 +18,7 @@ from .models import (
 @admin.register(ClientProfile)
 class ClientProfileAdmin(ImportExportModelAdmin):
     list_display = (
-        'id',
+        'client',
         'tutor',
         'client_type',
         'enrollment_status',
@@ -29,18 +31,22 @@ class ClientProfileAdmin(ImportExportModelAdmin):
         'parent_email',
         'updated_at'
     )
+    list_select_related = ('client',)
     list_filter = (
-        'id',
+        'client',
         'tutor',
         'client_type',
         'enrollment_status'
     )
     search_fields = (
-        'id',
+        'client',
         'tutor',
         'client_type',
         'enrollment_status'
         )
+
+    # def name(self, instance):
+    #     return str(instance.user.first_name) + ' ' + str(instance.user.last_name)
 
 
 

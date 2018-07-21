@@ -34,7 +34,7 @@ class ClientProfileAPIViewTest(APITestCase):
             password='old_password',
             first_name='Test',
             last_name='McTestson')
-        self.Tutor = User.objects.create_user(
+        self.Tutor = User.objects.create_superuser(
             username='tutor',
             email='tutor@tutor.com',
             password='tutor_pass',
@@ -42,7 +42,7 @@ class ClientProfileAPIViewTest(APITestCase):
             last_name='Magoo'
         )
         self.ClientProfile = ClientProfile.objects.create(
-            id = self.User,
+            client = self.User,
             tutor = self.Tutor,
             client_type = 'SAT',
             enrollment_status = 'active',
@@ -84,9 +84,9 @@ class ClientProfileAPIViewTest(APITestCase):
             law_schools_accepted = 'Yale, Harvard',
             law_school_matriculated = 'Yale'
         )
-        self.token = AuthToken.objects.create(self.User)
+        self.token = AuthToken.objects.create(self.Tutor)
         self.valid_create_payload = {
-            "id": self.User2.pk,
+            "client": self.User2.pk,
             "tutor": self.Tutor.pk,
             "client_type": "SAT",
             "enrollment_status": "active",

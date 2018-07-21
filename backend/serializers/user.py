@@ -22,7 +22,7 @@ class CreateUserSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('id', 'username', 'first_name', 'last_name')
+        fields = ('id', 'username', 'first_name', 'last_name', 'is_staff')
 
 
 class LoginUserSerializer(serializers.Serializer):
@@ -47,7 +47,7 @@ class ClientProfileSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class ClientProfileInfoSerializer(serializers.ModelSerializer):
-    id = UserSerializer(many=False)
+    client = UserSerializer(many=False)
     tutor = UserSerializer(many=False)
     class Meta:
         model = ClientProfile

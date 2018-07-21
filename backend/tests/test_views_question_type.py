@@ -1,136 +1,130 @@
 import json
-import uuid
 from rest_framework import status
+from rest_framework.test import APIClient, APITestCase
 from django.test import TestCase, Client
 from django.urls import reverse
 
+from knox.models import AuthToken
+
+from django.contrib.auth.models import AnonymousUser, User
+
 from ..models import QuestionType, QuestionTypeGroup
-from ..serializers import QuestionTypeSerializer, QuestionTypeInfoSerializer
+from ..serializers import QuestionTypeSerializer
 
 # Initialize the APIClient app
-client = Client()
+client = APIClient()
 
-class GetAllQuestionTypesTest(TestCase):
-    """ Test module for GET all test types API """
+class GET_QuestionTypeViewTest(TestCase):
+    """ Test module for GET Question Type API """
 
     def setUp(self):
-        self.QuestionTypeGroup1 = QuestionTypeGroup.objects.create(question_type_group='QuestionTypeGroup1')
-        self.QuestionType1 = QuestionType.objects.create(question_type='QuestionType1', question_type_group=self.QuestionTypeGroup1)
-        self.QuestionType2 = QuestionType.objects.create(question_type='QuestionType2', question_type_group=self.QuestionTypeGroup1)
-        self.QuestionType3 = QuestionType.objects.create(question_type='QuestionType3', question_type_group=self.QuestionTypeGroup1)
+        self.QuestionTypeGroup = QuestionTypeGroup.objects.create(question_type_group='qtg')
+        self.QuestionType1 = QuestionType.objects.create(question_type='qt1', question_type_group=self.QuestionTypeGroup)
+        self.QuestionType2 = QuestionType.objects.create(question_type='qt2', question_type_group=self.QuestionTypeGroup)
+        self.valid_create_payload = {
+            'question_type': 'qt50'
+        }
+        self.valid_update_payload = {
+            'question_type': 'qt51'
+        }
+        self.invalid_payload = {
+            'blah': 'blahblahblah'
+        }
 
     def test_get_all_question_types(self):
-        # Get API response
-        response = client.get(reverse('get_post_question_types'))
-        # Get data from db
-        test_types = QuestionType.objects.all()
-        serializer = QuestionTypeInfoSerializer(test_types, many=True)
+        response = self.client.get(reverse('question_type-list'))
+        question_types = QuestionType.objects.all()
+        serializer = QuestionTypeSerializer(question_types, many=True)
         self.assertEqual(response.data, serializer.data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
-
-class GetSingleQuestionTypeTest(TestCase):
-    """ Test module for GET single test type API """
-
-    def setUp(self):
-        self.QuestionTypeGroup1 = QuestionTypeGroup.objects.create(question_type_group='QuestionTypeGroup1')
-        self.QuestionType1 = QuestionType.objects.create(question_type='QuestionType1', question_type_group=self.QuestionTypeGroup1)
-        self.QuestionType2 = QuestionType.objects.create(question_type='QuestionType2', question_type_group=self.QuestionTypeGroup1)
-        self.QuestionType3 = QuestionType.objects.create(question_type='QuestionType3', question_type_group=self.QuestionTypeGroup1)
-
-    def test_get_valid_single_question_type(self):
-        # Get API response
-        response = client.get(
-            reverse('get_delete_update_question_type', kwargs={'pk': self.QuestionType1.pk}))
-        test_type = QuestionType.objects.get(pk=self.QuestionType1.pk)
-        serializer = QuestionTypeInfoSerializer(test_type)
+    def test_get_single_valid_question_type(self):
+        response = self.client.get(reverse('question_type-detail', kwargs={'pk': self.QuestionType1.pk}))
+        question_type = QuestionType.objects.get(pk=self.QuestionType1.pk)
+        serializer = QuestionTypeSerializer(question_type)
         self.assertEqual(response.data, serializer.data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
-    def test_get_invalid_single_question_type(self):
-        # GET API response
-        response = client.get(
-            reverse('get_delete_update_question_type', kwargs={'pk': -5}))
+    def test_get_single_invalid_question_type(self):
+        response = self.client.get(reverse('question_type-detail', kwargs={'pk': 90123}))
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
 
 
-class CreateSingleTestQuestionType(TestCase):
-    """ Test module for inserting a new test type """
+class CREATE_UPDATE_DELETE_QuestionTypeViewTest(APITestCase):
+    """ Test module for POST, PUT, DELETE Question Type API """
 
     def setUp(self):
-        self.QuestionTypeGroup1 = QuestionTypeGroup.objects.create(question_type_group='QuestionTypeGroup1')
-        self.valid_payload = {
-            'question_type': 'Understanding Question Types',
-            'question_type_group': self.QuestionTypeGroup1.pk
+        self.User = User.objects.create_user(
+            username='test1',
+            email="test1@test.com",
+            password='old_password',
+            first_name='Test',
+            last_name='McTestson')
+        self.Superuser = User.objects.create_superuser(
+            username='test2',
+            email="test2@test.com",
+            password='old_password',
+            first_name='Test',
+            last_name='McTestson')
+        self.token = AuthToken.objects.create(self.Superuser)
+        self.QuestionTypeGroup = QuestionTypeGroup.objects.create(question_type_group='qtg')
+        self.QuestionType1 = QuestionType.objects.create(question_type='qt1', question_type_group=self.QuestionTypeGroup)
+        self.QuestionType2 = QuestionType.objects.create(question_type='qt2', question_type_group=self.QuestionTypeGroup)
+        self.valid_create_payload = {
+            'question_type': 'qt50',
+            'question_type_group': self.QuestionTypeGroup.pk
         }
-        self.QuestionType1 = QuestionType.objects.create(question_type='QuestionType1', question_type_group=self.QuestionTypeGroup1)
+        self.valid_update_payload = {
+            'question_type': 'qt51'
+        }
         self.invalid_payload = {
-            'question_type': 'QuestionType1'
+            'blah': 'blahblahblah'
         }
 
     def test_create_valid_question_type(self):
+        client.credentials(HTTP_AUTHORIZATION='Token ' + self.token)
         response = client.post(
-            reverse('get_post_question_types'),
-            data=json.dumps(self.valid_payload),
+            reverse('question_type-list'),
+            data=json.dumps(self.valid_create_payload),
             content_type='application/json'
         )
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
     def test_create_invalid_question_type(self):
+        client.credentials(HTTP_AUTHORIZATION='Token ' + self.token)
         response = client.post(
-            reverse('get_post_question_types'),
+            reverse('question_type-list'),
             data=json.dumps(self.invalid_payload),
             content_type='application/json'
         )
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
-
-class UpdateSingleTestQuestionType(TestCase):
-    """ Test module for updating an existing test record """
-
-    def setUp(self):
-        self.QuestionTypeGroup1 = QuestionTypeGroup.objects.create(question_type_group='QuestionTypeGroup1')
-        self.QuestionType1 = QuestionType.objects.create(question_type='QuestionType1', question_type_group=self.QuestionTypeGroup1)
-        self.QuestionType2 = QuestionType.objects.create(question_type='QuestionType2', question_type_group=self.QuestionTypeGroup1)
-        self.valid_payload = {
-            'question_type': 'Understanding Question Types',
-            'question_type_group': self.QuestionTypeGroup1.pk
-        }
-        self.invalid_payload = {
-            'question_type': ''
-        }
-
-    def test_update_valid_question_type(self):
-        response = client.put(
-            reverse('get_delete_update_question_type', kwargs={'pk': self.QuestionType1.pk}),
-            data=json.dumps(self.valid_payload),
+    def test_valid_update_question_type(self):
+        client.credentials(HTTP_AUTHORIZATION='Token ' + self.token)
+        response = client.patch(
+            reverse('question_type-detail', kwargs={'pk': self.QuestionType1.pk}),
+            data=json.dumps(self.valid_update_payload),
             content_type='application/json'
         )
-        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
 
-    def test_update_invalid_question_type(self):
-        response = client.put(
-            reverse('get_delete_update_question_type', kwargs={'pk': self.QuestionType1.pk}),
+    def test_invalid_update_question_type(self):
+        client.credentials(HTTP_AUTHORIZATION='Token ' + self.token)
+        response = client.patch(
+            reverse('question_type-detail', kwargs={'pk': 123412341}),
             data=json.dumps(self.invalid_payload),
             content_type='application/json'
         )
-        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
-
-
-class DeleteSingleTestQuestionType(TestCase):
-    """ Test module for deleting an existing test record """
-
-    def setUp(self):
-        self.QuestionTypeGroup1 = QuestionTypeGroup.objects.create(question_type_group='QuestionTypeGroup1')
-        self.QuestionType1 = QuestionType.objects.create(question_type='QuestionType1', question_type_group=self.QuestionTypeGroup1)
-        self.QuestionType2 = QuestionType.objects.create(question_type='QuestionType2', question_type_group=self.QuestionTypeGroup1)
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
 
     def test_delete_valid_question_type(self):
+        client.credentials(HTTP_AUTHORIZATION='Token ' + self.token)
         response = client.delete(
-            reverse('get_delete_update_question_type', kwargs={'pk': self.QuestionType1.pk}))
+            reverse('question_type-detail', kwargs={'pk': self.QuestionType1.pk}))
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
 
     def test_delete_invalid_question_type(self):
+        client.credentials(HTTP_AUTHORIZATION='Token ' + self.token)
         response = client.delete(
-            reverse('get_delete_update_question_type', kwargs={'pk': -5}))
+            reverse('question_type-detail', kwargs={'pk': 123132515}))
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)

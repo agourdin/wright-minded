@@ -25,7 +25,7 @@ class ClientProfile(models.Model):
     Client Profile Model
     Defines the attributes of a client profile.
     """
-    id = models.OneToOneField(User, primary_key=True, on_delete=models.CASCADE)
+    client = models.OneToOneField(User, primary_key=True, on_delete=models.CASCADE)
     tutor = models.ForeignKey(User, related_name='tutor', on_delete=models.CASCADE)
     client_type = models.CharField(max_length=50)
     enrollment_status = models.CharField(max_length=50)
