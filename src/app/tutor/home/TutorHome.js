@@ -5,13 +5,13 @@ import { Link, Redirect } from 'react-router-dom';
 
 import Hero from 'common/wrappers/styling/Hero';
 
-class UserDashboard extends Component {
+class TutorHome extends Component {
   render() {
     let user = this.props.auth.user;
     return (
       <Hero>
-        <h1 className="has-text-red">
-          User Dashbaord for {user.first_name} {user.last_name}
+        <h1 className="has-text-blue">
+          Tutor Home for {user.first_name} {user.last_name}
         </h1>
         <p>Stuff goes here.</p>
       </Hero>
@@ -29,4 +29,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({}, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserDashboard);
+export default connect(mapStateToProps, mapDispatchToProps)(TutorHome);

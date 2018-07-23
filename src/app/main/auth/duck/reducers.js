@@ -63,7 +63,7 @@ export default function reducer(state = initialState, action) {
       };
 
     case types.PASSWORD_RESET_SUCCESS:
-      console.log('Password reset failed');
+      console.log('Password reset success');
       return {
         ...state,
         passwordResetSuccess: true

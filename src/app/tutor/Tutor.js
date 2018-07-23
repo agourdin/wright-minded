@@ -8,24 +8,24 @@ import UserNav from 'common/navigation/UserNav';
 import Footer from 'common/footer/Footer';
 import NotFound from 'common/notFound/NotFound';
 // User
-import UserHome from './home/UserHome';
-import UserDashboard from './dashboard/UserDashboard';
-import UserProfile from './profile/UserProfile';
+import TutorHome from './home/TutorHome';
+import TutorProfile from './profile/TutorProfile';
+import TutorDashboard from './dashboard/TutorDashboard';
 
-function User() {
+function Admin() {
   return (
     <div>
       <UserNav />
       <Route
         render={({ location }) => (
           <TransitionGroup>
-            <CSSTransition key={location.key} timeout={1000} classNames="fade">
+            <CSSTransition key={location.key} timeout={86} classNames="fade">
               <Switch location={location}>
                 <Redirect from="/login" to="/" />
                 <Redirect from="/register" to="/" />
-                <Route exact path="/" component={UserHome} />
-                <Route exact path="/dashboard" component={UserDashboard} />
-                <Route exact path="/profile" component={UserProfile} />
+                <Route exact path="/" component={TutorHome} />
+                <Route exact path="/profile" component={TutorProfile} />
+                <Route path="/dashboard" component={TutorDashboard} />
                 <Route component={NotFound} />
               </Switch>
             </CSSTransition>
@@ -37,4 +37,4 @@ function User() {
   );
 }
 
-export default User;
+export default Admin;

@@ -2,6 +2,8 @@ import types from './types';
 import urls from './urls';
 import axios from 'axios';
 
+import { renameProp } from 'utils/fn';
+
 /////////////
 // ACTIONS //
 /////////////
@@ -35,7 +37,8 @@ export function loadUser() {
       })
       .then(res => {
         if (res.status === 200) {
-          dispatch({ type: types.USER_LOADED, user: res.data });
+          let user = renameProp('username', 'email', res.data);
+          dispatch({ type: types.USER_LOADED, user: user });
           return res.data;
         } else if (res.status >= 400 && res.status < 500) {
           dispatch({ type: types.AUTHENTICATION_ERROR, data: res.data });

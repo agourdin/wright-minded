@@ -18,12 +18,38 @@ const LoadableUser = Loadable({
   loading: Loading,
   timeout: 20000
 });
+const LoadableAdmin = Loadable({
+  loader: () => import('app/admin/Admin'),
+  loading: Loading,
+  timeout: 20000
+});
+const LoadableTutor = Loadable({
+  loader: () => import('app/tutor/Tutor'),
+  loading: Loading,
+  timeout: 20000
+});
 
 export class App extends React.Component {
   componentDidMount() {
     this.props.loadUser();
   }
   render() {
+    if (this.props.auth.user) {
+      if (this.props.auth.user.is_superuser) {
+        return (
+          <Router>
+            <Route path="/" component={LoadableAdmin} />
+          </Router>
+        );
+      }
+      if (this.props.auth.user.is_staff) {
+        return (
+          <Router>
+            <Route path="/" component={LoadableTutor} />
+          </Router>
+        );
+      }
+    }
     if (this.props.auth.isAuthenticated) {
       return (
         <Router>

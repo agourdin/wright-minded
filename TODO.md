@@ -4,7 +4,8 @@
 
 ## **Current**
 
-* **BACKEND** // Refactor all tests and views to ViewSets
+* **BACKEND** // Write tests for User Profile view
+* **BACKEND** // Write database validation methods for any model fields that users/public can POST to
 * **FRONTEND** // Start to formalize design language (look at test selection screen for some good examples)
 * **FRONTEND** // Fix ordering of Question Types and Question Type Groups (after Mike has finished question type revamp)
 * **FRONTEND** // [Write full suite of tests for current components](https://www.robinwieruch.de/react-testing-tutorial/)
@@ -97,3 +98,6 @@
 * 2018.07.11 - **FRONTEND** // Implement custom test select dropdown
 * 2018.07.14 - **FRONTEND** // **Implement user registration, authorization, authentication, and password reset flows (along with basic formatting)**
 * 2018.07.14 - **FRONTEND** // Implement some basic UI transitions at page-level and component-level
+* 2018.07.21 - **BACKEND** // Refactor all tests and views to class-based
+* 2018.07.21 - **BACKEND** // Add stricter authorization rules to views
+* 2018.07.21 - **BACKEND** // Create User and Client Profiles. Set up User Profiles to be automatically created when a new User is created.

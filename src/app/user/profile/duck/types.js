@@ -1,0 +1,13 @@
+//////////////////
+// ACTION TYPES //
+//////////////////
+
+export const USER_PROFILE_LOADING = 'USER_PROFILE_LOADING';
+export const USER_PROFILE_LOADED = 'USER_PROFILE_LOADED';
+export const AUTHENTICATION_ERROR = 'AUTHENTICATION_ERROR';
+
+export default {
+  USER_PROFILE_LOADING,
+  USER_PROFILE_LOADED,
+  AUTHENTICATION_ERROR
+};

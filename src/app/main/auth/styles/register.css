@@ -1,4 +1,6 @@
 .register.hero {
+  margin-top: 3.5em;
+  margin-bottom: 7em;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;

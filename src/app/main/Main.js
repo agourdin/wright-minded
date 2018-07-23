@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch, Link } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 // Common
@@ -28,7 +28,7 @@ function Main() {
       <Route
         render={({ location }) => (
           <TransitionGroup>
-            <CSSTransition key={location.key} timeout={150} classNames="fade">
+            <CSSTransition key={location.key} timeout={86} classNames="fade">
               <Switch location={location}>
                 <Route exact path="/" component={Home} />
                 <Route exact path="/login" component={Login} />

@@ -1,15 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-
 import { Link, Redirect } from 'react-router-dom';
+
+import Hero from 'common/wrappers/styling/Hero';
 
 class UserHome extends Component {
   render() {
+    let user = this.props.auth.user;
     return (
-      <div className="register hero is-fullheight">
-        User Home for {this.props.auth.user.first_name}
-      </div>
+      <Hero>
+        <h1 className="has-text-blue">
+          User Home for {user.first_name} {user.last_name}
+        </h1>
+        <p>Stuff goes here.</p>
+      </Hero>
     );
   }
 }
