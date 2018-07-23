@@ -2,7 +2,7 @@ from rest_framework import serializers
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 
-from ..models import ClientProfile
+from ..models import ClientProfile, UserProfile
 
 class CreateUserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -22,7 +22,7 @@ class CreateUserSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('id', 'username', 'first_name', 'last_name', 'is_staff')
+        fields = ('id', 'email', 'first_name', 'last_name', 'is_staff', 'is_superuser')
 
 
 class LoginUserSerializer(serializers.Serializer):
@@ -39,6 +39,19 @@ class LoginUserSerializer(serializers.Serializer):
 class ChangePasswordSerializer(serializers.Serializer):
     old_password = serializers.CharField(required=True)
     new_password = serializers.CharField(required=True)
+
+
+class UserProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserProfile
+        fields = '__all__'
+
+
+class UserProfileInfoSerializer(serializers.ModelSerializer):
+    user = UserSerializer(many=False)
+    class Meta:
+        model = UserProfile
+        fields = '__all__'
 
 
 class ClientProfileSerializer(serializers.ModelSerializer):

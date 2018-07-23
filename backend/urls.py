@@ -6,6 +6,7 @@ from . import views
 
 router = DefaultRouter()
 router.register(r'v0.1/client_profiles', views.ClientProfileViewSet, base_name='client_profile')
+router.register(r'v0.1/user_profiles', views.UserProfileViewSet, base_name='user_profile')
 router.register(r'v0.1/tests', views.TestViewSet, base_name='test')
 router.register(r'v0.1/question_type_groups', views.QuestionTypeGroupViewSet, base_name='question_type_group')
 router.register(r'v0.1/question_types', views.QuestionTypeViewSet, base_name='question_type')
@@ -56,6 +57,12 @@ urlpatterns = [
         'v0.1/client_profiles',
         views.ClientProfileViewSet.as_view({'get': 'list'}),
         name='client_profile_with_param'),
+
+    # USER PROFILES WITH PARAM
+    path(
+        'v0.1/user_profiles',
+        views.UserProfileViewSet.as_view({'get': 'list'}),
+        name='user_profile_with_param'),
 
     # GET AVAILABLE TESTS
     path(

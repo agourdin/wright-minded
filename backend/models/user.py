@@ -1,25 +1,47 @@
 import uuid
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+
+# Standard profile information for all users
+class UserProfile(models.Model):
+    """
+    User Profile Model
+    Defines the attributes of a user profile.
+    """
+    USER_TYPES = (
+        ('admin', 'admin'),
+        ('tutor', 'tutor'),
+        ('client', 'client'),
+        ('public', 'public')
+    )
+    user = models.OneToOneField(User, primary_key=True, on_delete=models.CASCADE)
+    user_type = models.CharField(max_length=25, choices=USER_TYPES, default='public')
+    city = models.CharField(max_length=150, blank=True, null=True)
+    state = models.CharField(max_length=150, blank=True, null=True)
+    country = models.CharField(max_length=150, blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.user.first_name + self.user.last_name
+
+    class Meta:
+        db_table = 'user_profiles'
+
+# Automatically create a user profile when a new user is created
+@receiver(post_save, sender=User)
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        UserProfile.objects.create(user=instance)
+# Save the user profile for a user when the user instance is saved
+@receiver(post_save, sender=User)
+def save_user_profile(sender, instance, **kwargs):
+    instance.userprofile.save()
 
 
-# class UserProfile(models.Model):
-#     """
-#     User Profile Model
-#     Defines the attributes of a user profile.
-#     """
-#     user = models.OneToOneField(User, on_delete=models.CASCADE)
-#     user_type = models.CharField(max_length=25, default='public')
-#     created_at = models.DateTimeField(auto_now_add=True)
-#     updated_at = models.DateTimeField(auto_now=True)
-#
-#     def __str__(self):
-#         return self.test_type
-#
-#     class Meta:
-#         db_table = 'test_types'
-
-
+# Profile information for clients
 class ClientProfile(models.Model):
     """
     Client Profile Model

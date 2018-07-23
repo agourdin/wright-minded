@@ -41,6 +41,8 @@ class ClientProfileAPIViewTest(APITestCase):
             first_name='Tutes',
             last_name='Magoo'
         )
+        self.user_token = AuthToken.objects.create(self.User)
+        self.tutor_token = AuthToken.objects.create(self.Tutor)
         self.ClientProfile = ClientProfile.objects.create(
             client = self.User,
             tutor = self.Tutor,
@@ -84,7 +86,6 @@ class ClientProfileAPIViewTest(APITestCase):
             law_schools_accepted = 'Yale, Harvard',
             law_school_matriculated = 'Yale'
         )
-        self.token = AuthToken.objects.create(self.Tutor)
         self.valid_create_payload = {
             "client": self.User2.pk,
             "tutor": self.Tutor.pk,
@@ -141,28 +142,46 @@ class ClientProfileAPIViewTest(APITestCase):
         }
 
     def test_get_all_client_profiles(self):
-        client.credentials(HTTP_AUTHORIZATION='Token ' + self.token)
+        client.credentials(HTTP_AUTHORIZATION='Token ' + self.tutor_token)
         response = client.get(reverse('client_profile-list'))
         client_profiles = ClientProfile.objects.all()
         serializer = ClientProfileInfoSerializer(client_profiles, many=True)
         self.assertEqual(response.data, serializer.data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
+    def test_get_all_client_profiles_fail_without_token(self):
+        response = client.get(reverse('client_profile-list'))
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+
+    def test_get_all_client_profiles_fail_with_user_token(self):
+        client.credentials(HTTP_AUTHORIZATION='Token ' + self.user_token)
+        response = client.get(reverse('client_profile-list'))
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
     def test_get_single_valid_client_profile(self):
-        client.credentials(HTTP_AUTHORIZATION='Token ' + self.token)
+        client.credentials(HTTP_AUTHORIZATION='Token ' + self.tutor_token)
         response = client.get(reverse('client_profile-detail', kwargs={'pk': self.User.pk}))
         client_profile = ClientProfile.objects.get(pk=self.User.pk)
         serializer = ClientProfileInfoSerializer(client_profile)
         self.assertEqual(response.data, serializer.data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
+    def test_get_single_client_profile_fail_without_token(self):
+        response = client.get(reverse('client_profile-list'))
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+
+    def test_get_single_client_profile_fail_with_user_token(self):
+        client.credentials(HTTP_AUTHORIZATION='Token ' + self.user_token)
+        response = client.get(reverse('client_profile-list'))
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
     def test_get_single_invalid_client_profile(self):
-        client.credentials(HTTP_AUTHORIZATION='Token ' + self.token)
+        client.credentials(HTTP_AUTHORIZATION='Token ' + self.tutor_token)
         response = client.get(reverse('client_profile-detail', kwargs={'pk': 90123}))
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
 
     def test_create_valid_client_profile(self):
-        client.credentials(HTTP_AUTHORIZATION='Token ' + self.token)
+        client.credentials(HTTP_AUTHORIZATION='Token ' + self.tutor_token)
         response = client.post(
             reverse('client_profile-list'),
             data=json.dumps(self.valid_create_payload),
@@ -171,7 +190,7 @@ class ClientProfileAPIViewTest(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
     def test_create_invalid_client_profile(self):
-        client.credentials(HTTP_AUTHORIZATION='Token ' + self.token)
+        client.credentials(HTTP_AUTHORIZATION='Token ' + self.tutor_token)
         response = client.post(
             reverse('client_profile-list'),
             data=json.dumps(self.invalid_payload),
@@ -180,7 +199,7 @@ class ClientProfileAPIViewTest(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
     def test_valid_update_client_profile(self):
-        client.credentials(HTTP_AUTHORIZATION='Token ' + self.token)
+        client.credentials(HTTP_AUTHORIZATION='Token ' + self.tutor_token)
         response = client.patch(
             reverse('client_profile-detail', kwargs={'pk': self.User.pk}),
             data=json.dumps(self.valid_update_payload),
@@ -189,7 +208,7 @@ class ClientProfileAPIViewTest(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_invalid_update_client_profile(self):
-        client.credentials(HTTP_AUTHORIZATION='Token ' + self.token)
+        client.credentials(HTTP_AUTHORIZATION='Token ' + self.tutor_token)
         response = client.patch(
             reverse('client_profile-detail', kwargs={'pk': 123412341}),
             data=json.dumps(self.invalid_payload),
@@ -198,13 +217,13 @@ class ClientProfileAPIViewTest(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
 
     def test_delete_valid_client_profile(self):
-        client.credentials(HTTP_AUTHORIZATION='Token ' + self.token)
+        client.credentials(HTTP_AUTHORIZATION='Token ' + self.tutor_token)
         response = client.delete(
             reverse('client_profile-detail', kwargs={'pk': self.User.pk}))
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
 
     def test_delete_invalid_client_profile(self):
-        client.credentials(HTTP_AUTHORIZATION='Token ' + self.token)
+        client.credentials(HTTP_AUTHORIZATION='Token ' + self.tutor_token)
         response = client.delete(
             reverse('client_profile-detail', kwargs={'pk': 123132515}))
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)

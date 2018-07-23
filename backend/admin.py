@@ -3,17 +3,7 @@ from import_export.admin import ImportExportModelAdmin
 
 from django.contrib.auth.models import User
 
-from .models import (
-    Test,
-    TestType,
-    Section,
-    Question,
-    QuestionType,
-    QuestionTypeGroup,
-    UserAnswer,
-    SATScoreConversion,
-    ClientProfile
-)
+from .models import *
 
 @admin.register(ClientProfile)
 class ClientProfileAdmin(ImportExportModelAdmin):
@@ -48,6 +38,33 @@ class ClientProfileAdmin(ImportExportModelAdmin):
     # def name(self, instance):
     #     return str(instance.user.first_name) + ' ' + str(instance.user.last_name)
 
+
+@admin.register(UserProfile)
+class UserProfileAdmin(ImportExportModelAdmin):
+    list_display = (
+        'user',
+        'user_type',
+        'city',
+        'state',
+        'country',
+        'created_at',
+        'updated_at'
+    )
+    list_select_related = ('user',)
+    list_filter = (
+        'user',
+        'user_type',
+        'city',
+        'state',
+        'country'
+    )
+    search_fields = (
+        'user',
+        'user_type',
+        'city',
+        'state',
+        'country'
+        )
 
 
 @admin.register(Test)

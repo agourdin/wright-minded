@@ -32,3 +32,26 @@ class UserAnswerPermissions(BasePermission):
                 request.user and
                 request.user.is_staff
             )
+
+
+class UserProfilePermissions(BasePermission):
+    def has_permission(self, request, view):
+        if request.method == 'POST':
+            return (
+                (request.query_params.get('userid', None) and
+                str(request.user.id) == request.query_params.get('userid', None)) or
+                (request.user and
+                request.user.is_staff)
+            )
+        if request.method == 'GET':
+            return (
+                (request.query_params.get('userid', None) and
+                str(request.user.id) == request.query_params.get('userid', None)) or
+                (request.user and
+                request.user.is_staff)
+            )
+        else:
+            return (
+                request.user and
+                request.user.is_staff
+            )
