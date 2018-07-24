@@ -1,3 +1,5 @@
+// ES2015+ polyfill
+// import 'babel-polyfill';
 // Base React imports
 import React from 'react';
 import ReactDOM from 'react-dom';

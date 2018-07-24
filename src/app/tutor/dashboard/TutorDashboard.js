@@ -23,9 +23,11 @@ class TutorDashboard extends Component {
       this
     );
   }
+
   componentDidMount() {
     this.props.loadClients({ tutorid: this.state.params.tutorid });
   }
+
   handleEnrollmentStatusFilter(status) {
     if (status === '') {
       let newParams = this.state.params;
@@ -39,6 +41,7 @@ class TutorDashboard extends Component {
     }
     this.setState(prevState => (prevState.params['status'] = status));
   }
+
   render() {
     if (this.props.clients.isLoading) {
       return (

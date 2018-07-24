@@ -4,6 +4,8 @@ from rest_framework.response import Response
 
 from knox.models import AuthToken
 
+from ...utils.views import filter_queryset
+
 from ...models import ClientProfile
 from ...serializers import ClientProfileSerializer, ClientProfileInfoSerializer
 
@@ -13,7 +15,7 @@ class ClientProfileViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         queryset = ClientProfile.objects.all()
         # TUTOR PARAM
-        tutorid = self.request.query_params.get('tutorid', None)
+        tutorid = self.request.query_params.get('tutorid_m', None)
         if tutorid is not None:
             tutorid = tutorid.split(',')
             queryset = queryset.filter(tutor__in=tutorid)

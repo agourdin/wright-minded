@@ -6,7 +6,7 @@
 
 * **BACKEND** // Write tests for User Profile view
 * **BACKEND** // Write database validation methods for any model fields that users/public can POST to
-* **FRONTEND** // Start to formalize design language (look at test selection screen for some good examples)
+* **FRONTEND** // Start to formalize design language
 * **FRONTEND** // Fix ordering of Question Types and Question Type Groups (after Mike has finished question type revamp)
 * **FRONTEND** // [Write full suite of tests for current components](https://www.robinwieruch.de/react-testing-tutorial/)
 
@@ -26,15 +26,12 @@
         * [React-device-detect](https://www.npmjs.com/package/react-device-detect)
     * Video archive
       * Research YouTube API for potential ways of automatically generating playlist based on channel content
-    * Refactor Nav to be more sensible, clean, and organized
     * Add document.title calls to every view
   * Animations
     * Sensible, clean, unobtrusive animations throughout (should guide users intuitively)
   * Routing
     * [Code split routes and components](https://github.com/jamiebuilds/react-loadable)
       * [More in-depth info](https://tylermcginnis.com/react-router-code-splitting/)
-    * Create a catch all route:
-      * `<Route render={() => <div>Not Found</div>} />`
     * [Read/watch this article/video on programmatic routing](https://tylermcginnis.com/react-router-programmatically-navigate/)
   * Organization
     * [Convert presentational components to FSCs](https://javascriptplayground.com/functional-stateless-components-react/)
@@ -61,7 +58,8 @@
   * Views \*
   * Serializers \*
 * **Testing**
-  * Views \*
+  * Views
+    * User Profile
 * **Bug Fixes**
 
 #### **_DEPLOYMENT_**
@@ -84,12 +82,12 @@
 * 2018.06.29 - **BACKEND** // Implement Test -> Question -> Answer models (and any other relevant models needed the diagnostic flow)
 * 2018.06.29 - **BACKEND** // Implement Test -> Question -> Answer -> (...etc) serializers + views using TDD
 * 2018.06.29 - **BACKEND** // **Working API up and running**
-* 2018.06.30 - **FRONTEND** // [Integrate Redux store and test ONE piece of data flow](https://egghead.io/courses/getting-started-with-redux)
+* 2018.06.30 - **FRONTEND** // Integrate Redux store and test ONE piece of data flow
 * 2018.07.01 - **FRONTEND** // Integrate Redux into one part of DiagnosticForm flow (TestSelector)
 * 2018.07.03 - **FRONTEND** // Implement simple loading_test Redux tag
 * 2018.07.03 - **BACKEND** // Write Conversion Chart Test -> Model -> Serializer -> View
 * 2018.07.03 - **FRONTEND** // Fully integrate and implement Redux within current DiagnosticForm component set
-* 2018.07.04 - **BACKEND** // [Implement first-pass user authorization](http://v1k45.com/blog/modern-django-part-4-adding-authentication-to-react-spa-using-drf/)
+* 2018.07.04 - **BACKEND** // Implement first-pass user authorization
 * 2018.07.04 - **FRONTEND** // Write a diagnostic_in_progress Redux flag
 * 2018.07.06 - **BACKEND** // Write Question Type Group Test -> Model -> Serializer -> View
 * 2018.07.10 - **FRONTEND** // **Implement SAT Results with formatting**
@@ -98,6 +96,9 @@
 * 2018.07.11 - **FRONTEND** // Implement custom test select dropdown
 * 2018.07.14 - **FRONTEND** // **Implement user registration, authorization, authentication, and password reset flows (along with basic formatting)**
 * 2018.07.14 - **FRONTEND** // Implement some basic UI transitions at page-level and component-level
-* 2018.07.21 - **BACKEND** // Refactor all tests and views to class-based
+* 2018.07.17 - **FRONTEND** // Major refactor: group components by view and functionality. Refactor redux stuff to ducks format. Shift styles to live with component groups they style.
+* 2018.07.18 - **FRONTEND** // Refactored nav components to be more flexible.
+* 2018.07.21 - **BACKEND** // Refactor all tests and views to class-based (cleaner, easier to maintain). Implement basic authorization of different views with requisite tests.
 * 2018.07.21 - **BACKEND** // Add stricter authorization rules to views
 * 2018.07.21 - **BACKEND** // Create User and Client Profiles. Set up User Profiles to be automatically created when a new User is created.
+* 2018.07.22 - **FRONTEND** // Add basic 'view clients' functionality to Admin and Tutor views, with basic filtering based on query params

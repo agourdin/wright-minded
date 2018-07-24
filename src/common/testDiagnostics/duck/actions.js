@@ -1,6 +1,6 @@
 import types from './types';
 import urls from './urls';
-import { groupByKeys } from 'common/utils/groupByKeys';
+import { groupByKeys } from 'utils/fn';
 import axios from 'axios';
 
 /////////////

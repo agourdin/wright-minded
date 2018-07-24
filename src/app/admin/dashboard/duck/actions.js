@@ -2,7 +2,8 @@ import types from './types';
 import urls from './urls';
 import axios from 'axios';
 
-import { flattenObject } from 'utils/fn';
+import { flattenObject, addQueryParams } from 'utils/fn';
+import { urlWithParams } from 'utils/helpers';
 
 /////////////
 // ACTIONS //
@@ -22,13 +23,7 @@ export function loadClients(params) {
       headers['Authorization'] = `Token ${token}`;
     }
     let url = urls.API_CLIENT_PROFILES;
-    if (params) {
-      url += '?';
-      for (var param in params) {
-        url += param + '=' + params[param] + '&';
-      }
-      url = url.slice(0, -1);
-    }
+    url = urlWithParams(url, params);
     console.log(url);
     return axios({
       method: 'get',

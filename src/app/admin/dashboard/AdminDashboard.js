@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Switch, Route, Link, Redirect } from 'react-router-dom';
-import { flattenObject } from 'utils/fn';
+import { flattenObject, removeFromArray } from 'utils/fn';
+import { manageParams } from 'utils/helpers';
 import { loadClients } from './duck/actions';
 
 import Hero from 'common/wrappers/styling/Hero';
@@ -13,52 +14,28 @@ import ClientProfile from './clientProfile/ClientProfile';
 class AdminDashboard extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      params: {}
-    };
+    this.state = {};
 
-    this.handleEnrollmentStatusFilter = this.handleEnrollmentStatusFilter.bind(
-      this
-    );
-    this.handleTutorFilter = this.handleTutorFilter.bind(this);
-    this.handleClearFilters = this.handleClearFilters.bind(this);
+    this.handleFilters = this.handleFilters.bind(this);
   }
+
   componentDidMount() {
     this.props.loadClients();
   }
-  handleEnrollmentStatusFilter(status) {
-    if (status === '') {
-      let newParams = this.state.params;
-      delete newParams['status'];
-      this.props.loadClients(newParams);
-    } else {
-      this.props.loadClients({
-        ...this.state.params,
-        status: status
-      });
-    }
-    this.setState(prevState => (prevState.params['status'] = status));
+
+  handleFilters(params, namespace) {
+    this.setState(manageParams(params, namespace), () => {
+      this.props.loadClients(this.state[namespace]);
+    });
   }
-  handleTutorFilter(tutorid) {
-    if (tutorid) {
-      this.props.loadClients({
-        ...this.state.params,
-        tutorid: tutorid
-      });
-    } else {
-      let newParams = this.state.params;
-      delete newParams['tutorid'];
-      this.props.loadClients(newParams);
-    }
-    this.setState(prevState => (prevState.params['tutorid'] = tutorid));
-  }
-  handleClearFilters() {
-    this.props.loadClients({});
-    this.setState({ params: {} });
-  }
+
   render() {
     if (this.props.clients.isLoading) {
-      return <h1>Loading...</h1>;
+      return (
+        <Hero>
+          <h1>Loading...</h1>
+        </Hero>
+      );
     }
     let user = this.props.auth.user;
     return (
@@ -98,20 +75,62 @@ class AdminDashboard extends Component {
         /> */}
         <button
           className="button"
-          onClick={() => this.handleEnrollmentStatusFilter('active')}
+          onClick={() =>
+            this.handleFilters({ status: 'active' }, 'client_params')
+          }
         >
           ACTIVE
         </button>
         <button
           className="button"
-          onClick={() => this.handleEnrollmentStatusFilter('inactive')}
+          onClick={() =>
+            this.handleFilters({ status: 'inactive' }, 'client_params')
+          }
         >
           INACTIVE
         </button>
+        <div className="button-group">
+          <button
+            className="button"
+            onClick={() => {
+              console.log('hit button 15');
+              this.handleFilters({ tutorid_m: '15' }, 'client_params');
+            }}
+          >
+            15
+          </button>
+          <button
+            className="button"
+            onClick={() => {
+              console.log('hit button 16');
+              this.handleFilters({ tutorid_m: '16' }, 'client_params');
+            }}
+          >
+            16
+          </button>
+          <button
+            className="button"
+            onClick={() => {
+              console.log('hit button 17');
+              this.handleFilters({ tutorid_m: '17' }, 'client_params');
+            }}
+          >
+            17
+          </button>
+          <button
+            className="button"
+            onClick={() =>
+              this.handleFilters({ tutorid_m: '' }, 'client_params')
+            }
+          >
+            Clear
+          </button>
+        </div>
+
         <button
           className="button"
           onClick={() => {
-            this.handleClearFilters();
+            this.handleFilters();
           }}
         >
           ALL

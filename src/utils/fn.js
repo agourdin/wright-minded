@@ -1,3 +1,12 @@
+export const addQueryParams = (url, params) => {
+  url += '?';
+  for (var param in params) {
+    url += param + '=' + params[param] + '&';
+  }
+  url = url.slice(0, -1);
+  return url;
+};
+
 export const dateTimeStringToDateString = dt => {
   let str = '';
   let months = [
@@ -21,9 +30,6 @@ export const dateTimeStringToDateString = dt => {
   return str;
 };
 
-('2018-07-21T20:42:46.976770Z');
-('2018-07-22T05:24:00.145100Z');
-
 export const flattenObject = obj => {
   var toReturn = {};
 
@@ -42,6 +48,22 @@ export const flattenObject = obj => {
     }
   }
   return toReturn;
+};
+
+export const groupByKeys = (array, f) => {
+  var groups = {};
+  array.forEach(function(o) {
+    var group = JSON.stringify(f(o));
+    groups[group] = groups[group] || [];
+    groups[group].push(o);
+  });
+  return Object.keys(groups).map(function(group) {
+    return groups[group];
+  });
+};
+
+export const isEmpty = obj => {
+  return Object.keys(obj).length === 0 && obj.constructor === Object;
 };
 
 export const objectMap = (object, fn) => {
@@ -64,6 +86,14 @@ export const objectMapToArray = (object, fn) => {
   return arr;
 };
 
+export const removeFromArray = (array, element) => {
+  const index = array.indexOf(element);
+
+  if (index !== -1) {
+    return array.splice(index, 1);
+  }
+};
+
 export const renameProp = (
   oldProp,
   newProp,
@@ -74,6 +104,12 @@ export const renameProp = (
 });
 
 export default {
+  addQueryParams,
+  dateTimeStringToDateString,
   flattenObject,
+  groupByKeys,
+  isEmpty,
+  objectMap,
+  objectMapToArray,
   renameProp
 };
