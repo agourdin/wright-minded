@@ -11,8 +11,50 @@ import ClientList from './components/ClientList';
 import ClientProfile from './clientProfile/ClientProfile';
 
 class AdminDashboard extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      params: {}
+    };
+
+    this.handleEnrollmentStatusFilter = this.handleEnrollmentStatusFilter.bind(
+      this
+    );
+    this.handleTutorFilter = this.handleTutorFilter.bind(this);
+    this.handleClearFilters = this.handleClearFilters.bind(this);
+  }
   componentDidMount() {
-    this.props.loadClients(this.props.auth.user.id);
+    this.props.loadClients();
+  }
+  handleEnrollmentStatusFilter(status) {
+    if (status === '') {
+      let newParams = this.state.params;
+      delete newParams['status'];
+      this.props.loadClients(newParams);
+    } else {
+      this.props.loadClients({
+        ...this.state.params,
+        status: status
+      });
+    }
+    this.setState(prevState => (prevState.params['status'] = status));
+  }
+  handleTutorFilter(tutorid) {
+    if (tutorid) {
+      this.props.loadClients({
+        ...this.state.params,
+        tutorid: tutorid
+      });
+    } else {
+      let newParams = this.state.params;
+      delete newParams['tutorid'];
+      this.props.loadClients(newParams);
+    }
+    this.setState(prevState => (prevState.params['tutorid'] = tutorid));
+  }
+  handleClearFilters() {
+    this.props.loadClients({});
+    this.setState({ params: {} });
   }
   render() {
     if (this.props.clients.isLoading) {
@@ -44,6 +86,36 @@ class AdminDashboard extends Component {
             )}
           />
         </Switch>
+        {/* <input
+          className="input"
+          value={this.state.params.tutorids}
+          onChange={e => {
+            this.setState(prevState => {
+              prevState['tutorids'] += e;
+            });
+            this.handleTutorFilter(this.state.params.tutorids);
+          }}
+        /> */}
+        <button
+          className="button"
+          onClick={() => this.handleEnrollmentStatusFilter('active')}
+        >
+          ACTIVE
+        </button>
+        <button
+          className="button"
+          onClick={() => this.handleEnrollmentStatusFilter('inactive')}
+        >
+          INACTIVE
+        </button>
+        <button
+          className="button"
+          onClick={() => {
+            this.handleClearFilters();
+          }}
+        >
+          ALL
+        </button>
       </Hero>
     );
   }

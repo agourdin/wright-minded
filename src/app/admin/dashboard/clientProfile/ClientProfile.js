@@ -14,9 +14,11 @@ export function ClientProfile(props) {
     <Hero>
       <h1 className="has-text-green">Client Profile</h1>
       <p>
-        Client Profile for {client.client.first_name} {client.client.last_name}
+        Client: {client.client.first_name} {client.client.last_name}
       </p>
-      <p>Stuff goes here.</p>
+      <p>
+        Tutor: {client.tutor.first_name} {client.tutor.last_name}
+      </p>
     </Hero>
   );
 }

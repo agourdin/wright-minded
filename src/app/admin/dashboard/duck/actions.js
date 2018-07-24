@@ -8,7 +8,7 @@ import { flattenObject } from 'utils/fn';
 // ACTIONS //
 /////////////
 
-export function loadClients(tutorid, filter) {
+export function loadClients(params) {
   return (dispatch, getState) => {
     dispatch({ type: types.CLIENT_PROFILES_LOADING });
 
@@ -22,6 +22,13 @@ export function loadClients(tutorid, filter) {
       headers['Authorization'] = `Token ${token}`;
     }
     let url = urls.API_CLIENT_PROFILES;
+    if (params) {
+      url += '?';
+      for (var param in params) {
+        url += param + '=' + params[param] + '&';
+      }
+      url = url.slice(0, -1);
+    }
     console.log(url);
     return axios({
       method: 'get',

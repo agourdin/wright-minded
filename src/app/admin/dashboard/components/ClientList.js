@@ -11,7 +11,8 @@ export function ClientList(props) {
       {objectMapToArray(props.clientList, client => (
         <div key={client.client.id}>
           <Link to={'/dashboard/client/' + client.client.id}>
-            {client.client.first_name} {client.client.last_name}
+            {client.client.first_name} {client.client.last_name} (Tutor:{' '}
+            {client.tutor.first_name} {client.tutor.last_name})
           </Link>
         </div>
       ))}
