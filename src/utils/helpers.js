@@ -34,10 +34,10 @@ import { removeFromArray, isEmpty } from './fn';
  * newParams = { id_m: '2' }
  * newParams_2 = { id_m: '1' }
  *
- * this.setState(manageParams(params))
+ * this.setState(manageParams(newParams))
  * new state = { id_m: '1,2' }
  *
- * this.setState(manageParams(params_2))
+ * this.setState(manageParams(newParams_2))
  * new state = { id_m: '2' }
  * ```
  * ---

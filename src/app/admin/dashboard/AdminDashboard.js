@@ -76,7 +76,7 @@ class AdminDashboard extends Component {
         <button
           className="button"
           onClick={() =>
-            this.handleFilters({ status: 'active' }, 'client_params')
+            this.handleFilters({ enrollment_status: 'active' }, 'client_params')
           }
         >
           ACTIVE
@@ -84,7 +84,10 @@ class AdminDashboard extends Component {
         <button
           className="button"
           onClick={() =>
-            this.handleFilters({ status: 'inactive' }, 'client_params')
+            this.handleFilters(
+              { enrollment_status: 'inactive' },
+              'client_params'
+            )
           }
         >
           INACTIVE
@@ -94,7 +97,7 @@ class AdminDashboard extends Component {
             className="button"
             onClick={() => {
               console.log('hit button 15');
-              this.handleFilters({ tutorid_m: '15' }, 'client_params');
+              this.handleFilters({ tutor_m: '15' }, 'client_params');
             }}
           >
             15
@@ -103,7 +106,7 @@ class AdminDashboard extends Component {
             className="button"
             onClick={() => {
               console.log('hit button 16');
-              this.handleFilters({ tutorid_m: '16' }, 'client_params');
+              this.handleFilters({ tutor_m: '16' }, 'client_params');
             }}
           >
             16
@@ -112,16 +115,14 @@ class AdminDashboard extends Component {
             className="button"
             onClick={() => {
               console.log('hit button 17');
-              this.handleFilters({ tutorid_m: '17' }, 'client_params');
+              this.handleFilters({ tutor_m: '17' }, 'client_params');
             }}
           >
             17
           </button>
           <button
             className="button"
-            onClick={() =>
-              this.handleFilters({ tutorid_m: '' }, 'client_params')
-            }
+            onClick={() => this.handleFilters({ tutor_m: '' }, 'client_params')}
           >
             Clear
           </button>
