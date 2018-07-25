@@ -4,6 +4,7 @@
 
 ## **Current**
 
+* **FRONTEND** // [Search bar](https://dev.to/sage911/how-to-write-a-search-component-with-suggestions-in-react-d20)
 * **BACKEND** // Write tests for User Profile view
 * **BACKEND** // Write database validation methods for any model fields that users/public can POST to
 * **FRONTEND** // Start to formalize design language
@@ -101,4 +102,5 @@
 * 2018.07.21 - **BACKEND** // Refactor all tests and views to class-based (cleaner, easier to maintain). Implement basic authorization of different views with requisite tests.
 * 2018.07.21 - **BACKEND** // Add stricter authorization rules to views
 * 2018.07.21 - **BACKEND** // Create User and Client Profiles. Set up User Profiles to be automatically created when a new User is created.
-* 2018.07.22 - **FRONTEND** // Add basic 'view clients' functionality to Admin and Tutor views, with basic filtering based on query params
+* 2018.07.22 - **FRONTEND** // Add basic 'view clients' functionality to Admin and Tutor views, with filtering based on query params
+* 2018.07.24 - **BACKEND** // Write generalized query filter for handling query params from frontend
