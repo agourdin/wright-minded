@@ -7,6 +7,7 @@ def filter_queryset(queryset, query_params):
     for param in query_params:
             print(param)
             if param[-2:] == '_m':
+                print(param[:-2])
                 param_m = query_params.get(param, None)
                 if param_m is not None:
                     param_m = param_m.split(',')
@@ -14,7 +15,7 @@ def filter_queryset(queryset, query_params):
                         "{}__in".format(param[:-2]): param_m
                     }
                     queryset = queryset.filter(**filter_kwargs)
-            if param[-3:] == '_ic':
+            elif param[-3:] == '_ic':
                 param_ic = query_params.get(param, None)
                 if param_ic is not None:
                     filter_kwargs = {
